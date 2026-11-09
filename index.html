@@ -165,6 +165,24 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
       <h2 id="proj-h">Featured Projects</h2>
       <div class="grid">
         <article class="card">
+          <h3>Pedestrian-Vehicle Proximity Alert</h3>
+          <p>Raises alerts when pedestrians get close to cars, buses or trucks in video. It combines YOLO tracking with Depth Anything V2 monocular depth: a 2D distance gate scaled by person height, a relative depth gate, a time-window vote per person, and filtering of cyclists and motorcyclists.</p>
+          <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>Depth Anything V2</li><li>Transformers</li><li>OpenCV</li><li>Tkinter</li></ul>
+          <a class="link" href="https://github.com/karemdm/pedestrian-vehicle-proximity-alert" rel="noopener">View code &rarr;</a>
+        </article>
+        <article class="card">
+          <h3>Directional Line-Crossing Counter</h3>
+          <p>Counts people and vehicles that cross lines drawn by the user on the video, separated by direction (IN/OUT). Crossings use a strict segment-intersection test on tracked trajectories, each ID is counted once per line, and faces can optionally be blurred in the output.</p>
+          <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8</li><li>BoT-SORT</li><li>OpenCV</li><li>Tkinter</li></ul>
+          <a class="link" href="https://github.com/karemdm/directional-line-crossing-counter" rel="noopener">View code &rarr;</a>
+        </article>
+        <article class="card">
+          <h3>Crowd Heatmap Analytics</h3>
+          <p>Builds a decaying spatial heatmap of where people walk, side by side with the tracking view, and reports current occupancy, peak occupancy and unique tracked people. Useful for studying flow and hotspots in public spaces.</p>
+          <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>ByteTrack</li><li>OpenCV</li><li>NumPy</li></ul>
+          <a class="link" href="https://github.com/karemdm/crowd-heatmap-analytics" rel="noopener">View code &rarr;</a>
+        </article>
+        <article class="card">
           <h3>Lung Opacity Localization</h3>
           <p>Experiments on localizing lung opacities in chest X-rays using YOLOv5 and YOLOX detectors fused with Weighted Boxes Fusion, plus a transfer-learning CNN classifier. Includes preprocessing, training, ensemble and mAP evaluation notebooks; YOLOv5 reports mAP@.5 of 0.54 on its test split. Research code, not for clinical use.</p>
           <ul class="chips"><li>Python</li><li>TensorFlow/Keras</li><li>PyTorch</li><li>YOLOv5</li><li>YOLOX</li><li>ensemble-boxes</li><li>pandas</li><li>OpenCV</li><li>pydicom</li><li>Jupyter</li></ul>
