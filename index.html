@@ -166,9 +166,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
       <div class="grid">
         <article class="card">
           <h3>PPE Compliance VLM</h3>
-          <p>Checks personal protective equipment in video. Paired-class YOLO models detect each item as worn or not worn (hardhat, vest, gloves, goggles, mask), a tracker follows each worker, and a 3-second majority vote confirms violations before a box turns red, filtering out flicker. A vision-language model (Idefics2) can write a short report for each flagged person, for human review.</p>
-          <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8 / YOLO26</li><li>ByteTrack</li><li>Idefics2</li><li>Streamlit</li><li>OpenCV</li></ul>
+          <p>Checks personal protective equipment in video. Paired-class YOLO models detect each item as worn or not worn (hardhat, vest, gloves, goggles, mask), a tracker follows each worker, and a 3-second majority vote confirms violations before a box turns red, filtering out flicker. A vision-language model (SmolVLM or Idefics2) then double-checks each flagged worker's crop, for human review.</p>
+          <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8 / YOLO26</li><li>ByteTrack</li><li>SmolVLM / Idefics2</li><li>Streamlit</li><li>OpenCV</li></ul>
           <a class="link" href="https://github.com/karemdm/ppe-compliance-vlm" rel="noopener">View code &rarr;</a>
+        </article>
+        <article class="card">
+          <h3>Fall Detection Alert</h3>
+          <p>Raises alerts when a person falls in video. YOLO11-pose keypoints and tracking feed a per-person state machine (upright, falling, fallen, alert) driven by torso angle, body aspect ratio and hip velocity, with a hold time to avoid false alarms. Tested on a mix of GMDCSA24 falls and outdoor clips; no training needed and it runs on CPU.</p>
+          <ul class="chips"><li>Python</li><li>Ultralytics YOLO11-pose</li><li>ByteTrack</li><li>OpenCV</li></ul>
+          <a class="link" href="https://github.com/karemdm/fall-detection-alert" rel="noopener">View code &rarr;</a>
         </article>
         <article class="card">
           <h3>Pedestrian-Vehicle Proximity Alert</h3>
