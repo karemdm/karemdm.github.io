@@ -165,6 +165,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
       <h2 id="proj-h">Featured Projects</h2>
       <div class="grid">
         <article class="card">
+          <h3>NutriLabel OCR</h3>
+          <p>Turns a photo of a food package into structured nutrition data. Fourteen interchangeable OCR engines, from Tesseract and PaddleOCR to vision-language OCR models such as olmOCR and GLM-OCR, feed a layout-aware extractor that handles per-100 g and per-serving columns, EU and US formats, 15+ languages and rotated photos. Nutritional sanity rules catch typical OCR slips, and every engine is compared on a benchmark of real Open Food Facts photos. Includes a CLI, a local web interface, a Python API and Docker.</p>
+          <ul class="chips"><li>Python</li><li>PaddleOCR</li><li>Tesseract</li><li>Surya / docTR / EasyOCR</li><li>Vision-language OCR</li><li>Transformers</li><li>Docker</li></ul>
+          <a class="link" href="https://github.com/karemdm/nutrilabel-ocr" rel="noopener">View code &rarr;</a>
+        </article>
+        <article class="card">
           <h3>PPE Compliance VLM</h3>
           <p>Checks personal protective equipment in video. Paired-class YOLO models detect each item as worn or not worn (hardhat, vest, gloves, goggles, mask), a tracker follows each worker, and a 3-second majority vote confirms violations before a box turns red, filtering out flicker. A vision-language model (SmolVLM or Idefics2) then double-checks each flagged worker's crop, for human review.</p>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8 / YOLO26</li><li>ByteTrack</li><li>SmolVLM / Idefics2</li><li>Streamlit</li><li>OpenCV</li></ul>
