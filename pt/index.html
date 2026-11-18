@@ -97,7 +97,7 @@ document.documentElement.dataset.theme=c;})();
       </div>
       <div class="skill-group">
         <h3>Modelos</h3>
-        <ul class="chips"><li>YOLO (v5, X, v8, 11)</li><li>SegFormer</li><li>DeepLab</li><li>EfficientNet</li><li>NAFNet</li><li>FFDNet</li><li>VLMs</li></ul>
+        <ul class="chips"><li>YOLO (v5, X, v8, 11, 26)</li><li>SegFormer</li><li>DeepLab</li><li>EfficientNet</li><li>NAFNet</li><li>FFDNet</li><li>VLMs</li></ul>
       </div>
       <div class="skill-group">
         <h3>Frameworks</h3>
@@ -123,6 +123,10 @@ document.documentElement.dataset.theme=c;})();
       <li><span class="tl-kind">2026 – atual · Indústria</span><article class="card">
         <h3>Analista de Inteligência Artificial | Instituto Hardware BR (HBR)</h3>
         <p class="muted">Campinas, SP (remoto).</p>
+        <ul>
+          <li><strong>Remoção de ruído em imagens médicas:</strong> algoritmos clássicos e de deep learning para denoise de imagens médicas.</li>
+          <li><strong>Fluxos de treinamento:</strong> melhoria e automação dos processos de treinamento de modelos.</li>
+        </ul>
       </article></li>
       <li><span class="tl-kind">2022 – 2026 · Indústria</span><article class="card">
         <h3>Engenheira de Visão Computacional | Pix Force</h3>
@@ -146,7 +150,7 @@ document.documentElement.dataset.theme=c;})();
         <h3>Professora | Universidade Paulista (UNIP)</h3>
         <p class="muted">Campinas, SP.</p>
         <ul>
-          <li>Aulas e orientação em Processamento Digital de Imagens, Computação Gráfica, Interação Humano-Computador e Programação Estruturada.</li>
+          <li>Aulas e orientação em Processamento Digital de Imagens, Computação Gráfica, Interação Humano-Computador, Programação Web Responsiva, Estrutura de Dados e Programação Estruturada.</li>
         </ul>
       </article></li>
       <li><span class="tl-kind">2011 – 2017 · Pesquisa</span><article class="card">
@@ -192,8 +196,8 @@ document.documentElement.dataset.theme=c;})();
         <article class="card" data-cat="video">
           <p class="card-meta"><span>Análise de vídeo</span><span>CLI</span></p>
           <h3><a class="card-title" href="projects/fall-detection-alert/">Fall Detection Alert</a></h3>
-          <p>Dispara alertas quando uma pessoa cai em vídeo. Keypoints do YOLO11-pose e rastreamento alimentam uma máquina de estados por pessoa (em pé, caindo, caída, alerta), guiada pelo ângulo do tronco, pela proporção do corpo e pela velocidade do quadril, com um tempo de retenção para evitar alarmes falsos. Testado em uma mistura de quedas do GMDCSA24 e clipes externos; não requer treinamento e roda em CPU.</p>
-          <figure class="flow"><figcaption>Fig. 03 · pipeline</figcaption><ol><li>Vídeo</li><li>Keypoints YOLO11-pose</li><li>ByteTrack</li><li>Máquina de estados por pessoa</li><li>Alerta de queda</li></ol></figure>
+          <p>Dispara alertas quando uma pessoa cai em vídeo. Pontos-chave do YOLO11-pose e rastreamento alimentam uma máquina de estados por pessoa (em pé, caindo, caída, alerta), guiada pelo ângulo do tronco, pela proporção do corpo e pela velocidade do quadril, com um tempo de retenção para evitar alarmes falsos. Testado em uma compilação de quedas do GMDCSA24 e clipes externos; não requer treinamento e roda em CPU.</p>
+          <figure class="flow"><figcaption>Fig. 03 · pipeline</figcaption><ol><li>Vídeo</li><li>Pontos-chave YOLO11-pose</li><li>ByteTrack</li><li>Máquina de estados por pessoa</li><li>Alerta de queda</li></ol></figure>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLO11-pose</li><li>ByteTrack</li><li>OpenCV</li></ul>
           <p class="links"><a class="link" href="projects/fall-detection-alert/">Página do projeto →</a><a class="link" href="https://github.com/karemdm/fall-detection-alert" rel="noopener">Ver código &rarr;</a></p>
         </article>
@@ -217,7 +221,7 @@ document.documentElement.dataset.theme=c;})();
           <p class="card-meta"><span>Análise de vídeo</span><span>CLI</span></p>
           <h3>Crowd Heatmap Analytics</h3>
           <p>Gera um mapa de calor espacial com decaimento dos locais por onde as pessoas caminham, lado a lado com a visualização do rastreamento, e informa a ocupação atual, o pico de ocupação e o total de pessoas únicas rastreadas. Útil para estudar fluxos e pontos de concentração em espaços públicos.</p>
-          <figure class="flow"><figcaption>Fig. 06 · pipeline</figcaption><ol><li>Vídeo</li><li>YOLO + ByteTrack</li><li>Mapa de calor com decaimento</li><li>Ocupação & picos</li></ol></figure>
+          <figure class="flow"><figcaption>Fig. 06 · pipeline</figcaption><ol><li>Vídeo</li><li>YOLO + ByteTrack</li><li>Mapa de calor com decaimento</li><li>Ocupação &amp; picos</li></ol></figure>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>ByteTrack</li><li>OpenCV</li><li>NumPy</li></ul>
           <a class="link" href="https://github.com/karemdm/crowd-heatmap-analytics" rel="noopener">Ver código &rarr;</a>
         </article>
@@ -350,7 +354,7 @@ document.documentElement.dataset.theme=c;})();
       </article></li>
       </ol>
       <div class="edu-extra">
-        <div><h3>Prêmios</h3><ul class="plain"><li><strong>2017</strong> · Poster Award, SPIE Medical Imaging, Orlando, EUA</li><li><strong>2011</strong> · Segunda melhor apresentação oral, V Simpósio de Instrumentação e Imagens Médicas</li><li><strong>2010</strong> · Mérito Acadêmico, Unisagrado</li></ul></div>
+        <div><h3>Prêmios</h3><ul class="plain"><li><strong>2017</strong> · Prêmio de Pôster, SPIE Medical Imaging, Orlando, EUA</li><li><strong>2011</strong> · Segunda melhor apresentação oral, V Simpósio de Instrumentação e Imagens Médicas</li><li><strong>2010</strong> · Mérito Acadêmico, Unisagrado</li></ul></div>
         <div><h3>Idiomas</h3><ul class="plain"><li>Inglês · avançado</li><li>Português · nativo</li></ul></div>
       </div>
       </div>
