@@ -95,7 +95,7 @@ def svg_states(states, edges, caption):
     return "\n".join(out)
 
 
-def svg_bars(items, caption, unit=""):
+def svg_bars(items, caption, unit="", decimal="."):
     """Horizontal bar chart. items: list of (label, value) or (label, value, color css var)."""
     W, L, R, bh, gap = 900, 220, 70, 30, 14
     vmax = max(v for _, v, *_ in items) or 1
@@ -107,7 +107,7 @@ def svg_bars(items, caption, unit=""):
         color = rest[0] if rest else "var(--accent)"
         out.append('<text x="%d" y="%d" class="c-label" text-anchor="end">%s</text>' % (L - 12, y + bh / 2 + 5, esc(label)))
         out.append('<rect x="%d" y="%d" width="%.1f" height="%d" rx="3" fill="%s"/>' % (L, y, max(w, 2), bh, color))
-        out.append('<text x="%.1f" y="%d" class="c-label">%s%s</text>' % (L + w + 8, y + bh / 2 + 5, v, unit))
+        out.append('<text x="%.1f" y="%d" class="c-label">%s%s</text>' % (L + w + 8, y + bh / 2 + 5, (str(v) if isinstance(v, int) else "%.3f" % v).replace(".", decimal), unit))
     out.append("</svg>")
     return "\n".join(out)
 
@@ -213,7 +213,7 @@ def page(slug, P, lang, nxt):
     if "bars" in d:
         body += "<p>%s</p>\n" % d["bars"]["intro"]
         body += '<figure class="fig">%s<figcaption>Fig. 03 · %s</figcaption></figure>\n' % (
-            svg_bars(d["bars"]["items"], d["bars"]["caption"]), d["bars"]["caption"])
+            svg_bars(d["bars"]["items"], d["bars"]["caption"], decimal=d["bars"].get("decimal", ".")), d["bars"]["caption"])
     if "trace" in P:
         body += "<p>%s</p>\n" % d["trace_intro"]
         body += '<figure class="fig">%s<figcaption>Fig. 03 · %s</figcaption></figure>\n' % (
