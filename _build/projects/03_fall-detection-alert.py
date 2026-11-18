@@ -14,16 +14,17 @@ PAGE = {'slug': 'fall-detection-alert',
  'en': {'summary': 'Rule-based fall detection on YOLO pose keypoints with multi-person tracking and a per-person state '
                    'machine. No training, runs on CPU.',
         'meta': ['Video analytics', 'CLI', 'AGPL-3.0'],
-        'lede': 'Raises an alert the moment a person falls in video. YOLO pose keypoints and multi-person tracking '
-                'feed a small state machine per person, driven by rules you can read: torso angle, body shape and hip '
-                'speed. No training data, no GPU: it runs on a laptop CPU and explains every alert it raises.',
+        'lede': 'Raises an alert about a second after a person ends up lying on the ground. YOLO pose keypoints and '
+                'multi-person tracking feed a small state machine per person, driven by rules you can read: torso '
+                'angle, body shape and hip speed. No training data, no GPU: it runs on a laptop CPU and explains every '
+                'alert it raises.',
         'video_alt': 'Screen recording: the fall-alert command runs in a terminal while the preview window shows a '
                      'person walking, falling and the red FALL ALERT banner.',
         'video_caption': 'The command running end to end: live preview on top, log and events JSON below. Recorded on '
                          'a laptop CPU, with model loading and processing sped up. Footage: GMDCSA24 (MIT).',
         'stats': [('9 / 9', 'falls caught in the fall mix'),
                   ('0', 'false alerts on the test clips'),
-                  ('~1 s', 'from lying down to alert'),
+                  ('~1 s', 'lying posture before the alert fires'),
                   ('0', 'training images')],
         'how_title': 'Pose keypoints in, explainable alerts out',
         'how_intro': 'Each frame goes through a pose model with a tracker, so every person keeps an ID. From the '
@@ -65,28 +66,32 @@ PAGE = {'slug': 'fall-detection-alert',
         'trace_legend': {'angle': 'torso angle θ (degrees)', 'velocity': 'hip velocity v (body heights / s)'},
         'frames': ['1.2 s · upright, green box', '2.6 s · fallen, red box', '4.2 s · alert banner open'],
         'results_table': (['Run', 'Hits', 'Misses', 'False alerts', 'Alert delay'],
-                          [['imgsz 1280, conf 0.30 (defaults)', '<b>9 / 9</b>', '0', '0', '1.5–2.6 s (two at +4.0 s)'],
+                          [['imgsz 1280, conf 0.30 (published run)',
+                            '<b>9 / 9</b>',
+                            '0',
+                            '0',
+                            '1.5–2.6 s (two at +4.0 s)'],
                            ['imgsz 1280, conf 0.35', '8 / 9', '1', '0', '1.5–2.6 s'],
                            ['imgsz 640, conf 0.35', '6 / 9', '3', '0', '1.5–2.4 s']]),
-        'results_note': 'Fall mix: nine falls from GMDCSA24 (three people, day and night, side, forward and backward '
+        'results_note': 'Fall mix: eight falls from GMDCSA24 (three people, day and night, side, forward and backward '
                         'falls) plus an outdoor fall in snow.',
         'more_demos': [{'title': 'Harder footage: slips on ice',
                         'intro': 'Doorbell and handheld phone clips, small people, portrait video and snow. With '
-                                 '<code>--model yolo26s-pose.pt --conf 0.20</code>, the pose gate and the id-switch '
-                                 'repair, all three slips raise an alert, and each alert clears as soon as its person '
-                                 'leaves the screen.',
+                                 '<code>--model yolo26s-pose.pt --conf 0.20</code> (plus the pose gate and id-switch '
+                                 'repair, both on by default), all three slips raise an alert, and each alert clears '
+                                 'as soon as its person leaves the screen.',
                         'alt': 'Screen recording: fall-alert runs on three outdoor slips on ice; each fall gets a red '
                                'FALL ALERT banner.',
                         'caption': 'Recorded on a laptop CPU, processing sped up. Third-party footage from a public '
                                    'compilation of slips on ice.',
-                        'table': (['Pose model', 'imgsz', 'conf', 'Cut (3 falls)'],
+                        'table': (['Pose model', 'imgsz', 'conf', 'Alerts (3 falls)'],
                                   [['yolo11n-pose (default)', '640', '0.30', '1 / 3'],
                                    ['<b>yolo26s-pose</b>', '<b>640</b>', '<b>0.20</b>', '<b>3 / 3</b>'],
                                    ['yolo26s-pose', '1280', '0.20', '2 / 3'],
                                    ['yolo26m-pose', '640', '0.20', '1 / 3']]),
                         'note': 'Swapping in the newer yolo26s-pose was the biggest win on small, handheld footage: it '
                                 'keeps a person lying on the ground in view far longer than the nano model.'}],
-        'run_title': 'Three commands to try it',
+        'run_title': 'Three steps to try it',
         'run': [('install',
                  '',
                  {'Linux / macOS': 'git clone https://github.com/karemdm/fall-detection-alert.git\n'
@@ -135,10 +140,10 @@ PAGE = {'slug': 'fall-detection-alert',
  'pt': {'summary': 'Detecção de quedas por regras sobre os pontos-chave de pose do YOLO, com rastreamento de várias '
                    'pessoas e máquina de estados por pessoa. Sem treino, roda em CPU.',
         'meta': ['Análise de vídeo', 'CLI', 'AGPL-3.0'],
-        'lede': 'Gera um alerta no momento em que uma pessoa cai no vídeo. Pontos-chave de pose do YOLO e rastreamento '
-                'de várias pessoas alimentam uma pequena máquina de estados por pessoa, guiada por regras legíveis: '
-                'ângulo do tronco, formato do corpo e velocidade do quadril. Sem dados de treino e sem GPU: roda na '
-                'CPU de um notebook e explica cada alerta que gera.',
+        'lede': 'Gera um alerta cerca de um segundo depois de a pessoa ficar deitada no chão após uma queda. '
+                'Pontos-chave de pose do YOLO e rastreamento de várias pessoas alimentam uma pequena máquina de '
+                'estados por pessoa, guiada por regras legíveis: ângulo do tronco, formato do corpo e velocidade do '
+                'quadril. Sem dados de treino e sem GPU: roda na CPU de um notebook e explica cada alerta que gera.',
         'video_alt': 'Gravação de tela: o comando fall-alert roda no terminal enquanto a janela de prévia mostra uma '
                      'pessoa andando, caindo e a faixa vermelha FALL ALERT.',
         'video_caption': 'O comando rodando de ponta a ponta: prévia ao vivo em cima, log e JSON de eventos embaixo. '
@@ -146,7 +151,7 @@ PAGE = {'slug': 'fall-detection-alert',
                          'Imagens: GMDCSA24 (MIT).',
         'stats': [('9 / 9', 'quedas detectadas na compilação'),
                   ('0', 'alarmes falsos nos clipes de teste'),
-                  ('~1 s', 'de deitar no chão ao alerta'),
+                  ('~1 s', 'de postura deitada até o alerta disparar'),
                   ('0', 'imagens de treino')],
         'how_title': 'Entram pontos-chave de pose, saem alertas explicáveis',
         'how_intro': 'Cada quadro passa por um modelo de pose com rastreador, então cada pessoa mantém um ID. A partir '
@@ -188,30 +193,34 @@ PAGE = {'slug': 'fall-detection-alert',
                          'fundo',
         'trace_legend': {'angle': 'ângulo do tronco θ (graus)', 'velocity': 'velocidade do quadril v (alturas / s)'},
         'frames': ['1,2 s · em pé, caixa verde', '2,6 s · caída, caixa vermelha', '4,2 s · faixa de alerta aberta'],
-        'results_table': (['Execução', 'Acertos', 'Perdas', 'Alarmes falsos', 'Atraso do alerta'],
-                          [['imgsz 1280, conf 0,30 (padrão)', '<b>9 / 9</b>', '0', '0', '1,5–2,6 s (dois em +4,0 s)'],
+        'results_table': (['Execução', 'Acertos', 'Não detectadas', 'Alarmes falsos', 'Atraso do alerta'],
+                          [['imgsz 1280, conf 0,30 (execução publicada)',
+                            '<b>9 / 9</b>',
+                            '0',
+                            '0',
+                            '1,5–2,6 s (dois em +4,0 s)'],
                            ['imgsz 1280, conf 0,35', '8 / 9', '1', '0', '1,5–2,6 s'],
                            ['imgsz 640, conf 0,35', '6 / 9', '3', '0', '1,5–2,4 s']]),
-        'results_note': 'Compilação: nove quedas do GMDCSA24 (três pessoas, dia e noite, quedas laterais, para frente '
+        'results_note': 'Compilação: oito quedas do GMDCSA24 (três pessoas, dia e noite, quedas laterais, para frente '
                         'e para trás) e uma queda externa na neve.',
         'more_demos': [{'title': 'Vídeos mais difíceis: escorregões no gelo',
                         'intro': 'Clipes de campainha e de celular na mão, pessoas pequenas, vídeo vertical e neve. '
-                                 'Com <code>--model yolo26s-pose.pt --conf 0.20</code>, o filtro por pose e o reparo '
-                                 'de troca de ID, os três escorregões geram alerta, e cada alerta some assim que a '
-                                 'pessoa sai da tela.',
+                                 'Com <code>--model yolo26s-pose.pt --conf 0.20</code> (além do filtro por pose e do '
+                                 'reparo de troca de ID, ambos ativos por padrão), os três escorregões geram alerta, e '
+                                 'cada alerta some assim que a pessoa sai da tela.',
                         'alt': 'Gravação de tela: fall-alert roda em três escorregões no gelo; cada queda recebe a '
                                'faixa vermelha FALL ALERT.',
                         'caption': 'Gravado na CPU de um notebook, processamento acelerado. Imagens de terceiros, de '
                                    'uma compilação pública de escorregões no gelo.',
-                        'table': (['Modelo de pose', 'imgsz', 'conf', 'Corte (3 quedas)'],
+                        'table': (['Modelo de pose', 'imgsz', 'conf', 'Alertas (3 quedas)'],
                                   [['yolo11n-pose (padrão)', '640', '0,30', '1 / 3'],
                                    ['<b>yolo26s-pose</b>', '<b>640</b>', '<b>0,20</b>', '<b>3 / 3</b>'],
                                    ['yolo26s-pose', '1280', '0,20', '2 / 3'],
                                    ['yolo26m-pose', '640', '0,20', '1 / 3']]),
-                        'note': 'Trocar para o yolo26s-pose mais novo foi o maior ganho em vídeos pequenos e de '
-                                'celular: ele mantém a pessoa caída no chão detectada por muito mais tempo que o '
+                        'note': 'Trocar para o modelo mais novo, o yolo26s-pose, foi o maior ganho em vídeos pequenos '
+                                'e de celular: ele mantém a pessoa caída no chão detectada por muito mais tempo que o '
                                 'modelo nano.'}],
-        'run_title': 'Três comandos para testar',
+        'run_title': 'Três passos para testar',
         'run': [('instalação',
                  '',
                  {'Linux / macOS': 'git clone https://github.com/karemdm/fall-detection-alert.git\n'
