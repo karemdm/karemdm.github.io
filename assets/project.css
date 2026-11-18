@@ -52,3 +52,4 @@
   .data-table td::before{content:attr(data-label);font:11px var(--mono);text-transform:uppercase;color:var(--muted);min-width:42%}
 }
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+.sub{font-size:19px;margin:36px 0 8px}

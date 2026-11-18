@@ -208,6 +208,18 @@ def page(slug, P, lang, nxt):
             "".join("<tr>%s</tr>" % "".join('<td data-label="%s">%s</td>' % (h, c) for h, c in zip(head, r)) for r in rows))
     if "results_note" in d:
         body += '<p class="note">%s</p>\n' % d["results_note"]
+    for extra, text in zip(P.get("more_demos", []), d.get("more_demos", [])):
+        body += '<h3 class="sub">%s</h3>\n<p>%s</p>\n' % (text["title"], text["intro"])
+        body += ('<figure class="demo"><div class="demo-frame"><video src="%s%s" poster="%s%s" muted loop playsinline preload="none" '
+                 'aria-label="%s"></video></div><figcaption>%s</figcaption></figure>\n'
+                 % (media, extra["video"], media, extra["poster"], esc(text["alt"]), text["caption"]))
+        if "table" in text:
+            head, rows = text["table"]
+            body += '<div class="scroll-x"><table class="data-table"><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>\n' % (
+                "".join("<th>%s</th>" % h for h in head),
+                "".join("<tr>%s</tr>" % "".join('<td data-label="%s">%s</td>' % (h, c) for h, c in zip(head, r)) for r in rows))
+        if "note" in text:
+            body += '<p class="note">%s</p>\n' % text["note"]
     section(u["results"], d["results_title"], body)
 
     # run
