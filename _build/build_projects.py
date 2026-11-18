@@ -193,8 +193,8 @@ def page(slug, P, lang, nxt):
     def section(label, title, body):
         nonlocal n
         n += 1
-        sections.append('<section class="section" id="s%d"><div class="section-label"><b>%02d</b>%s</div><div>\n<h2>%s</h2>\n%s\n</div></section>'
-                        % (n, n, label, title, body))
+        sections.append('<section class="section" id="s%d"><div class="section-label">%s</div><div>\n<h2><span class="sec-n">%02d</span>%s</h2>\n%s\n</div></section>'
+                        % (n, label, n, title, body))
 
     # how it works
     body = "<p>%s</p>\n" % d["how_intro"]

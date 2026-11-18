@@ -50,8 +50,8 @@ document.documentElement.dataset.theme=c;})();
   <figure class="demo"><div class="demo-frame"><video src="../../assets/projects/ppe-compliance-vlm/demo.mp4" poster="../../assets/projects/ppe-compliance-vlm/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording of the Streamlit app: the infraction filter is narrowed to hardhat and safety vest, a construction-site video is uploaded, workers turn green or red in the live feed, and report cards with VLM text appear."></video></div><figcaption>The Streamlit app end to end: choose the infractions, upload a video, watch the live feed and read the VLM report cards. Recorded on a laptop CPU; processing and the VLM step are sped up. Footage: Pexels.</figcaption></figure>
   <dl class="stats"><div><dt>majority vote before a worker turns red</dt><dd>3 s</dd></div><div><dt>infraction types (hardhat, vest, gloves…)</dt><dd>7</dd></div><div><dt>PPE detectors to choose from</dt><dd>2</dd></div><div><dt>VLM sentence per flagged worker</dt><dd>1</dd></div></dl>
   <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>Ultralytics YOLOv8 / YOLO26</li><li>ByteTrack</li><li>Re-ID</li><li>SmolVLM / Idefics2</li><li>Transformers</li><li>Streamlit</li><li>OpenCV</li></ul>
-  <section class="section" id="s1"><div class="section-label"><b>01</b>How it works</div><div>
-<h2>From detections to a decision per worker</h2>
+  <section class="section" id="s1"><div class="section-label">How it works</div><div>
+<h2><span class="sec-n">01</span>From detections to a decision per worker</h2>
 <p>Two detectors run on every frame: one finds the people, the other finds PPE items as worn or missing. Each item is assigned to the person whose box it overlaps, so the system reasons per worker instead of per box. Re-identification keeps the same id when someone leaves and comes back.</p>
 <figure class="fig"><div class="scroll-x"><svg class="diagram" viewBox="0 0 1226 160" role="img" aria-label="Processing pipeline, from the frame to the per-worker report">
 <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>
@@ -119,8 +119,8 @@ document.documentElement.dataset.theme=c;})();
 </svg></div><figcaption>Fig. 02 · Per-worker, per-item state with the default thresholds</figcaption></figure>
 <dl class="defs"><div><dt>Association</dt><dd>A PPE box belongs to the person it overlaps most (intersection over the smaller box ≥ 0.05).</dd></div><div><dt>Re-identification</dt><dd>A new track is compared with every person seen before by appearance; a match above 0.85 keeps the old id.</dd></div><div><dt>Consolidation</dt><dd>Reports only include workers seen at least 3 times with the violation in at least 10% of their frames.</dd></div></dl>
 
-</div></section><section class="section" id="s2"><div class="section-label"><b>02</b>Results</div><div>
-<h2>What it finds on real job-site footage</h2>
+</div></section><section class="section" id="s2"><div class="section-label">Results</div><div>
+<h2><span class="sec-n">02</span>What it finds on real job-site footage</h2>
 <p>On a six-clip compilation of construction sites, carpenters, a warehouse and an industrial structure (about 83 s), the default SafetyVision model confirmed these violations:</p>
 <figure class="fig"><svg class="chart" viewBox="0 0 900 142" role="img" aria-label="Confirmed violations by type on the six-clip compilation">
 <text x="208" y="25" class="c-label" text-anchor="end">NO-Safety Vest</text>
@@ -140,8 +140,8 @@ document.documentElement.dataset.theme=c;})();
 <p>In this rendered demo the video freezes the first time a worker is confirmed as a violation: the crop is enlarged, SmolVLM-500M runs on it on the CPU, and its answer is shown before playback resumes.</p>
 <figure class="demo"><div class="demo-frame"><video src="../../assets/projects/ppe-compliance-vlm/demo-vlm.mp4" poster="../../assets/projects/ppe-compliance-vlm/demo-vlm.jpg" muted loop playsinline preload="none" aria-label="Rendered demo: the frame darkens, the flagged worker is highlighted in yellow and a side panel shows the crop, the violation and the VLM answer."></video></div><figcaption>Built with scripts/make_demo_video.py; the real VLM time is shown on screen and the wait is shortened.</figcaption></figure>
 
-</div></section><section class="section" id="s3"><div class="section-label"><b>03</b>Run it</div><div>
-<h2>Three steps to try it</h2>
+</div></section><section class="section" id="s3"><div class="section-label">Run it</div><div>
+<h2><span class="sec-n">03</span>Three steps to try it</h2>
 <div class="terminal" data-tabs><div class="terminal-bar"><span>install</span><span class="os-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="0">Linux / macOS</button><button type="button" role="tab" aria-selected="false" data-tab="1">Windows · PowerShell</button><button type="button" role="tab" aria-selected="false" data-tab="2">Windows · cmd</button></span><button type="button" class="copy" data-copy>Copy</button></div><pre data-pane="0"><code>git clone https://github.com/karemdm/ppe-compliance-vlm.git
 cd ppe-compliance-vlm
 python3 -m venv .venv
@@ -158,8 +158,8 @@ python -m venv .venv
 .venv\Scripts\activate.bat
 pip install -r requirements.txt
 pip install -e .</code></pre></div><div class="terminal"><div class="terminal-bar"><span>Streamlit app</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>ppe-compliance --vlm-model HuggingFaceTB/SmolVLM-500M-Instruct</code></pre></div><div class="terminal"><div class="terminal-bar"><span>headless report</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>ppe-compliance analyze --input samples/construction_site.mp4 --output outputs/report.json --save-video outputs/construction_site.mp4 --no-vlm</code></pre></div>
-</div></section><section class="section" id="s4"><div class="section-label"><b>04</b>Design decisions</div><div>
-<h2>Why it is built this way</h2>
+</div></section><section class="section" id="s4"><div class="section-label">Design decisions</div><div>
+<h2><span class="sec-n">04</span>Why it is built this way</h2>
 <div class="grid"><article class="card"><h3>A vote, not a frame</h3><p>PPE detectors flicker. A 3-second majority with hysteresis removes the blinking red boxes that make per-frame systems unusable on a monitor.</p></article><article class="card"><h3>People first</h3><p>Matching PPE to the person who wears it gives one decision per worker and one report per worker, which is what a safety officer needs.</p></article><article class="card"><h3>Re-identification</h3><p>Workers walk out of frame and come back. An appearance gallery keeps their id, so one person is one report instead of five.</p></article><article class="card"><h3>VLM as a second opinion</h3><p>The vision-language model writes a short, readable sentence from the crop. It runs only on confirmed cases, so it stays affordable even on a CPU.</p></article><article class="card"><h3>Swappable detectors</h3><p>SafetyVision (YOLOv8s, 13 classes) or CHD (YOLO26-L); the infraction list adapts to the chosen model.</p></article><article class="card"><h3>Fast reruns</h3><p>The app caches the processed video, so changing the infraction filter re-selects reports instantly.</p></article></div>
 </div></section>
   <nav class="next-project"><a href="../../#projects">← All projects</a><a href="../fall-detection-alert/">Next project: Fall Detection Alert →</a></nav>

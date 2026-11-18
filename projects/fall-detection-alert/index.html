@@ -50,8 +50,8 @@ document.documentElement.dataset.theme=c;})();
   <figure class="demo"><div class="demo-frame"><video src="../../assets/projects/fall-detection-alert/demo.mp4" poster="../../assets/projects/fall-detection-alert/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording: the fall-alert command runs in a terminal while the preview window shows a person walking, falling and the red FALL ALERT banner."></video></div><figcaption>The command running end to end: live preview on top, log and events JSON below. Recorded on a laptop CPU, with model loading and processing sped up. Footage: GMDCSA24 (MIT).</figcaption></figure>
   <dl class="stats"><div><dt>falls caught in the fall mix</dt><dd>9 / 9</dd></div><div><dt>false alerts on the test clips</dt><dd>0</dd></div><div><dt>lying posture before the alert fires</dt><dd>~1 s</dd></div><div><dt>training images</dt><dd>0</dd></div></dl>
   <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>Ultralytics YOLO11-pose</li><li>ByteTrack / BoT-SORT</li><li>OpenCV</li><li>NumPy</li><li>pytest</li></ul>
-  <section class="section" id="s1"><div class="section-label"><b>01</b>How it works</div><div>
-<h2>Pose keypoints in, explainable alerts out</h2>
+  <section class="section" id="s1"><div class="section-label">How it works</div><div>
+<h2><span class="sec-n">01</span>Pose keypoints in, explainable alerts out</h2>
 <p>Each frame goes through a pose model with a tracker, so every person keeps an ID. From the shoulders and hips the pipeline computes three simple features, and a state machine per person turns them into an alert only after a lying posture is held, which filters out bending, sitting and quick crouches.</p>
 <figure class="fig"><div class="scroll-x"><svg class="diagram" viewBox="0 0 1226 160" role="img" aria-label="Processing pipeline, from the video frame to the outputs">
 <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>
@@ -130,8 +130,8 @@ document.documentElement.dataset.theme=c;})();
 </svg></div><figcaption>Fig. 02 · Per-person state machine with the default thresholds</figcaption></figure>
 <dl class="defs"><div><dt>Torso angle θ</dt><dd>Angle of the shoulder-to-hip line from vertical: about 0° standing, about 90° lying.</dd></div><div><dt>Aspect ratio w/h</dt><dd>Width over height of the person box; the fallback when shoulders or hips are hidden.</dd></div><div><dt>Hip velocity v</dt><dd>Downward speed of the hips in body heights per second, so it does not depend on distance to the camera.</dd></div></dl>
 
-</div></section><section class="section" id="s2"><div class="section-label"><b>02</b>Results</div><div>
-<h2>What the rules see during a fall</h2>
+</div></section><section class="section" id="s2"><div class="section-label">Results</div><div>
+<h2><span class="sec-n">02</span>What the rules see during a fall</h2>
 <p>The chart below is the real trace written by <code>--trace-csv</code> for the clip in the demo. The torso angle jumps past 45° when the person goes down, the state moves to FALLEN almost immediately, and the alert opens one second later, at 3.31 s.</p>
 <figure class="fig"><svg class="chart" viewBox="0 0 900 358" role="img" aria-label="Feature trace of track #1 on GMDCSA24 fall-05, with the state shown as background bands">
 <rect x="46.0" y="14" width="328.5" height="170" fill="var(--ok)" opacity=".12"/>
@@ -185,8 +185,8 @@ document.documentElement.dataset.theme=c;})();
 <div class="scroll-x"><table class="data-table"><thead><tr><th>Pose model</th><th>imgsz</th><th>conf</th><th>Alerts (3 falls)</th></tr></thead><tbody><tr><td data-label="Pose model">yolo11n-pose (default)</td><td data-label="imgsz">640</td><td data-label="conf">0.30</td><td data-label="Alerts (3 falls)">1 / 3</td></tr><tr><td data-label="Pose model"><b>yolo26s-pose</b></td><td data-label="imgsz"><b>640</b></td><td data-label="conf"><b>0.20</b></td><td data-label="Alerts (3 falls)"><b>3 / 3</b></td></tr><tr><td data-label="Pose model">yolo26s-pose</td><td data-label="imgsz">1280</td><td data-label="conf">0.20</td><td data-label="Alerts (3 falls)">2 / 3</td></tr><tr><td data-label="Pose model">yolo26m-pose</td><td data-label="imgsz">640</td><td data-label="conf">0.20</td><td data-label="Alerts (3 falls)">1 / 3</td></tr></tbody></table></div>
 <p class="note">Swapping in the newer yolo26s-pose was the biggest win on small, handheld footage: it keeps a person lying on the ground in view far longer than the nano model.</p>
 
-</div></section><section class="section" id="s3"><div class="section-label"><b>03</b>Run it</div><div>
-<h2>Three steps to try it</h2>
+</div></section><section class="section" id="s3"><div class="section-label">Run it</div><div>
+<h2><span class="sec-n">03</span>Three steps to try it</h2>
 <div class="terminal" data-tabs><div class="terminal-bar"><span>install</span><span class="os-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="0">Linux / macOS</button><button type="button" role="tab" aria-selected="false" data-tab="1">Windows · PowerShell</button><button type="button" role="tab" aria-selected="false" data-tab="2">Windows · cmd</button></span><button type="button" class="copy" data-copy>Copy</button></div><pre data-pane="0"><code>git clone https://github.com/karemdm/fall-detection-alert.git
 cd fall-detection-alert
 python3 -m venv .venv
@@ -203,8 +203,8 @@ python -m venv .venv
 .venv\Scripts\activate.bat
 pip install -r requirements.txt
 pip install -e .</code></pre></div><div class="terminal"><div class="terminal-bar"><span>run on a sample clip</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>fall-alert -i samples/gmdcsa24-s1-fall-05.mp4 -o outputs/fall-05.mp4 --events-json outputs/fall-05.json</code></pre></div><div class="terminal"><div class="terminal-bar"><span>small or distant people</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>fall-alert -i input.mp4 -o outputs/out.mp4 --imgsz 1280 --trace-csv outputs/trace.csv</code></pre></div>
-</div></section><section class="section" id="s4"><div class="section-label"><b>04</b>Design decisions</div><div>
-<h2>Why it is built this way</h2>
+</div></section><section class="section" id="s4"><div class="section-label">Design decisions</div><div>
+<h2><span class="sec-n">04</span>Why it is built this way</h2>
 <div class="grid"><article class="card"><h3>Rules instead of a trained classifier</h3><p>Every threshold has a physical meaning and can be tuned from the CLI, and every alert can be explained from the trace. No fall dataset is needed to start.</p></article><article class="card"><h3>Confirmation time</h3><p>An alert needs a lying posture held for 1.0 s, with short gaps tolerated. That removes alarms from bending, tying shoes or sitting down quickly.</p></article><article class="card"><h3>Velocity in body heights</h3><p>Normalizing the hip speed by the person's height makes the same threshold work near and far from the camera.</p></article><article class="card"><h3>Graceful degradation</h3><p>When shoulders or hips are not visible, the box aspect ratio takes over, so occlusion does not silence the detector.</p></article><article class="card"><h3>Objects are not people</h3><p>A track can only fall after it showed a body pose (6 confident keypoints) in some frame. Bins, coats and shadows detected as a person never do, so their wide boxes no longer raise alerts.</p></article><article class="card"><h3>Repairing id switches</h3><p>When a person falls the box goes from tall to wide and the tracker often starts a new id. A new track that appears within one body height of a track lost moments ago continues its state and alert.</p></article></div>
 </div></section>
   <nav class="next-project"><a href="../../#projects">← All projects</a><a href="../ppe-compliance-vlm/">Next project: PPE Compliance VLM →</a></nav>
