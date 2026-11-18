@@ -12,6 +12,9 @@
 <meta property="og:url" content="https://karemdm.github.io/">
 <meta property="og:image" content="https://karemdm.github.io/assets/karem.gif">
 <meta name="twitter:card" content="summary">
+<link rel="alternate" hreflang="en" href="https://karemdm.github.io/">
+<link rel="alternate" hreflang="pt-BR" href="https://karemdm.github.io/pt/">
+<link rel="alternate" hreflang="x-default" href="https://karemdm.github.io/">
 <link rel="icon" href="https://avatars.githubusercontent.com/u/72208245?v=4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -153,6 +156,12 @@ p{margin:0 0 14px;max-width:68ch}
 .flow li:not(:last-child)::after{content:"→";color:var(--accent);padding:0 6px;position:absolute;margin-left:8px}
 .flow li{position:relative;margin-right:22px}
 .flow li:last-child{margin-right:0}
+.lang-switch{display:flex;border:1px solid var(--line);border-radius:3px;font:12px var(--mono)}
+.lang-switch a{color:var(--muted);text-decoration:none;padding:5px 9px}
+.lang-switch a+a{border-left:1px solid var(--line)}
+.lang-switch a[aria-current=page]{color:var(--accent)}
+.lang-switch a:hover{color:var(--text)}
+@media (max-width:900px){.lang-switch{margin-left:auto}.lang-switch+.theme-switch{margin-left:0}}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
 footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a{color:var(--muted)}
@@ -188,6 +197,7 @@ footer a{color:var(--muted)}
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </nav>
+    <div class="lang-switch"><a href="./" aria-current="page" lang="en">EN</a><a href="pt/" lang="pt-BR" hreflang="pt-BR">PT</a></div>
     <div class="theme-switch" role="group" aria-label="Color theme">
       <button type="button" data-choice="system">auto</button>
       <button type="button" data-choice="light">light</button>
