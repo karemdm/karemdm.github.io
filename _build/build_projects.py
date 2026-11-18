@@ -223,15 +223,28 @@ def page(slug, P, lang, nxt):
     section(u["results"], d["results_title"], body)
 
     # run
-    cmds = "".join('<div class="terminal"><div class="terminal-bar"><span>%s</span><button type="button" class="copy" data-copy>%s</button></div><pre><code>%s</code></pre></div>'
-                   % (esc(t), u["copy"], esc(c)) for t, c in d["run"])
+    def terminal(title, cmd, tabs=None):
+        """One command block; ``tabs`` maps an OS label to its own command and adds a tab switcher."""
+        if not tabs:
+            return ('<div class="terminal"><div class="terminal-bar"><span>%s</span><button type="button" class="copy" data-copy>%s</button></div>'
+                    '<pre><code>%s</code></pre></div>' % (esc(title), u["copy"], esc(cmd)))
+        btns = "".join('<button type="button" role="tab" aria-selected="%s" data-tab="%d">%s</button>' % ("true" if i == 0 else "false", i, esc(k))
+                       for i, k in enumerate(tabs))
+        panes = "".join('<pre data-pane="%d"%s><code>%s</code></pre>' % (i, "" if i == 0 else " hidden", esc(v)) for i, v in enumerate(tabs.values()))
+        return ('<div class="terminal" data-tabs><div class="terminal-bar"><span>%s</span><span class="os-tabs" role="tablist">%s</span>'
+                '<button type="button" class="copy" data-copy>%s</button></div>%s</div>' % (esc(title), btns, u["copy"], panes))
+
+    cmds = "".join(terminal(*item) if len(item) == 3 else terminal(item[0], item[1]) for item in d["run"])
     section(u["run"], d["run_title"], cmds)
 
     # decisions
     dec = "".join('<article class="card"><h3>%s</h3><p>%s</p></article>' % x for x in d["decisions"])
     section(u["decisions"], d["decisions_title"], '<div class="grid">%s</div>' % dec)
 
-    nxt_slug, nxt_title = nxt
+    if nxt:
+        nav_next = '<a href="../%s/">%s: %s →</a>' % (nxt[0], u["next"], esc(nxt[1]))
+    else:
+        nav_next = ""
     return f"""<!doctype html>
 <html lang="{'en' if lang == 'en' else 'pt-BR'}">
 <head>
@@ -285,7 +298,7 @@ document.documentElement.dataset.theme=c;}})();
   <dl class="stats">{stats}</dl>
   <ul class="chips p-stack" aria-label="{u['stack']}">{chips}</ul>
   {''.join(sections)}
-  <nav class="next-project"><a href="{home}#projects">{u['back']}</a><a href="../{nxt_slug}/">{u['next']}: {esc(nxt_title)} →</a></nav>
+  <nav class="next-project"><a href="{home}#projects">{u['back']}</a>{nav_next}</nav>
 </main>
 <footer>
   <div class="container">
@@ -300,9 +313,13 @@ document.documentElement.dataset.theme=c;}})();
   btns.forEach(function(b){{b.addEventListener('click',function(){{try{{localStorage.setItem('kdm.theme',b.dataset.choice)}}catch(e){{}}apply(b.dataset.choice)}})}});
   apply(root.dataset.theme||'light');
   document.querySelectorAll('[data-copy]').forEach(function(b){{b.addEventListener('click',function(){{
-    var code=b.closest('.terminal').querySelector('code').innerText;
+    var code=b.closest('.terminal').querySelector('pre:not([hidden]) code').innerText;
     (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(function(){{var t=b.textContent;b.textContent='{u['copied']}';setTimeout(function(){{b.textContent=t}},1400)}}).catch(function(){{}});
   }})}});
+  document.querySelectorAll('[data-tabs]').forEach(function(box){{box.querySelectorAll('[data-tab]').forEach(function(t){{t.addEventListener('click',function(){{
+    box.querySelectorAll('[data-tab]').forEach(function(x){{x.setAttribute('aria-selected',String(x===t))}});
+    box.querySelectorAll('[data-pane]').forEach(function(p){{p.hidden=p.dataset.pane!==t.dataset.tab}});
+  }})}})}});
   var io='IntersectionObserver' in window?new IntersectionObserver(function(es){{es.forEach(function(e){{
     if(e.target.tagName==='VIDEO'){{e.isIntersecting?e.target.play().catch(function(){{}}):e.target.pause()}}
     else if(e.isIntersecting){{e.target.classList.add('is-seen');io.unobserve(e.target)}}
@@ -326,11 +343,11 @@ def main():
     slugs = list(pages)
     for i, slug in enumerate(slugs):
         P = pages[slug]
-        nxt = pages[slugs[(i + 1) % len(slugs)]]
+        nxt = pages[slugs[(i + 1) % len(slugs)]] if len(slugs) > 1 else None
         for lang in ("en", "pt"):
             out = ROOT / ("projects" if lang == "en" else "pt/projects") / slug / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
-            out.write_text(page(slug, P, lang, (nxt["slug"], nxt["title"])), encoding="utf-8", newline="\n")
+            out.write_text(page(slug, P, lang, (nxt["slug"], nxt["title"]) if nxt else None), encoding="utf-8", newline="\n")
             print("wrote", out.relative_to(ROOT))
 
 
