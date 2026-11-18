@@ -119,6 +119,12 @@ p{margin:0 0 14px;max-width:68ch}
 .stats dd{margin:0;font-size:clamp(28px,3.4vw,40px);font-weight:600;letter-spacing:-.02em;line-height:1}
 .stats div:first-child dd{color:var(--accent)}
 @media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats div:nth-child(3){border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}}
+.timeline{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--line)}
+.timeline>li{position:relative;margin:0 0 20px}
+.timeline>li:last-child{margin-bottom:0}
+.timeline>li::before{content:"";position:absolute;left:-27px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl-kind{display:block;font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:8px}
+.timeline .card+.card{margin-top:0}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
 footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a{color:var(--muted)}
@@ -224,7 +230,8 @@ footer a{color:var(--muted)}
       <div class="section-label"><b>03</b>Experience</div>
       <div>
       <h2 id="exp-h">Experience</h2>
-      <article class="card">
+      <ol class="timeline">
+      <li><span class="tl-kind">Industry</span><article class="card">
         <h3>Industrial AI | Pix Force</h3>
         <p class="muted">End-to-end Computer Vision solutions for industrial environments.</p>
         <ul>
@@ -232,8 +239,8 @@ footer a{color:var(--muted)}
           <li><strong>Industrial Safety:</strong> vision pipelines for PPE compliance, hazard detection, and restricted area monitoring.</li>
           <li><strong>OCR Systems:</strong> automated pipelines for high-precision license plate recognition and document data extraction.</li>
         </ul>
-      </article>
-      <article class="card">
+      </article></li>
+      <li><span class="tl-kind">Research</span><article class="card">
         <h3>Medical Imaging Research | USP &amp; University of Pittsburgh</h3>
         <p class="muted">Applying machine learning to complex medical data.</p>
         <ul>
@@ -241,7 +248,8 @@ footer a{color:var(--muted)}
           <li><strong>Computer-Aided Diagnosis (CAD):</strong> systems for breast lesion classification (B-mode Ultrasound/Elastography), using SVM and feature extraction mapped to the BI-RADS lexicon.</li>
           <li><strong>Academic Contribution:</strong> Research Scholar visitor at the University of Pittsburgh (USA) with a focus on feature extraction algorithms.</li>
         </ul>
-      </article>
+      </article></li>
+      </ol>
       </div>
     </section>
 
