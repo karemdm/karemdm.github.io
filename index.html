@@ -145,6 +145,14 @@ p{margin:0 0 14px;max-width:68ch}
 .pub-more{margin:18px 0 0;color:var(--muted);font-size:15px}
 .links{margin:auto 0 0;display:flex;flex-wrap:wrap;gap:6px 18px}
 .links .link{margin:0}
+.flow{margin:2px 0 16px;border:1px solid var(--line);border-radius:4px;background:var(--bg);padding:12px 12px 10px}
+.flow figcaption{font:11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+.flow ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 0}
+.flow li{font:12px/1.3 var(--mono);color:var(--text);border:1px solid var(--line);background:var(--surface);border-radius:3px;padding:5px 8px}
+.flow li:last-child{border-color:var(--accent);color:var(--accent)}
+.flow li:not(:last-child)::after{content:"→";color:var(--accent);padding:0 6px;position:absolute;margin-left:8px}
+.flow li{position:relative;margin-right:22px}
+.flow li:last-child{margin-right:0}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
 footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a{color:var(--muted)}
@@ -291,6 +299,7 @@ footer a{color:var(--muted)}
           <p class="card-meta"><span>OCR</span><span>CLI · web UI · Docker</span></p>
           <h3>NutriLabel OCR</h3>
           <p>Turns a photo of a food package into structured nutrition data. Fourteen interchangeable OCR engines, from Tesseract and PaddleOCR to vision-language OCR models such as olmOCR and GLM-OCR, feed a layout-aware extractor that handles per-100 g and per-serving columns, EU and US formats, 15+ languages and rotated photos. Nutritional sanity rules catch typical OCR slips, and every engine is compared on a benchmark of real Open Food Facts photos. Includes a CLI, a local web interface, a Python API and Docker.</p>
+          <figure class="flow"><figcaption>Fig. 01 · pipeline</figcaption><ol><li>Package photo</li><li>OCR engine (1 of 14)</li><li>Layout-aware extractor</li><li>Nutrition sanity rules</li><li>Structured nutrients</li></ol></figure>
           <ul class="chips"><li>Python</li><li>PaddleOCR</li><li>Tesseract</li><li>Surya / docTR / EasyOCR</li><li>Vision-language OCR</li><li>Transformers</li><li>Docker</li></ul>
           <a class="link" href="https://github.com/karemdm/nutrilabel-ocr" rel="noopener">View code &rarr;</a>
         </article>
@@ -298,6 +307,7 @@ footer a{color:var(--muted)}
           <p class="card-meta"><span>Video analytics</span><span>Streamlit app · CLI</span></p>
           <h3>PPE Compliance VLM</h3>
           <p>Checks personal protective equipment in video. Paired-class YOLO models detect each item as worn or not worn (hardhat, vest, gloves, goggles, mask), a tracker follows each worker, and a 3-second majority vote confirms violations before a box turns red, filtering out flicker. A vision-language model (SmolVLM or Idefics2) then double-checks each flagged worker's crop, for human review.</p>
+          <figure class="flow"><figcaption>Fig. 02 · pipeline</figcaption><ol><li>Video</li><li>YOLO PPE (worn / not worn)</li><li>ByteTrack per worker</li><li>3 s majority vote</li><li>VLM crop check</li><li>Violation report</li></ol></figure>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8 / YOLO26</li><li>ByteTrack</li><li>SmolVLM / Idefics2</li><li>Streamlit</li><li>OpenCV</li></ul>
           <a class="link" href="https://github.com/karemdm/ppe-compliance-vlm" rel="noopener">View code &rarr;</a>
         </article>
@@ -305,6 +315,7 @@ footer a{color:var(--muted)}
           <p class="card-meta"><span>Video analytics</span><span>CLI</span></p>
           <h3>Fall Detection Alert</h3>
           <p>Raises alerts when a person falls in video. YOLO11-pose keypoints and tracking feed a per-person state machine (upright, falling, fallen, alert) driven by torso angle, body aspect ratio and hip velocity, with a hold time to avoid false alarms. Tested on a mix of GMDCSA24 falls and outdoor clips; no training needed and it runs on CPU.</p>
+          <figure class="flow"><figcaption>Fig. 03 · pipeline</figcaption><ol><li>Video</li><li>YOLO11-pose keypoints</li><li>ByteTrack</li><li>Per-person state machine</li><li>Fall alert</li></ol></figure>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLO11-pose</li><li>ByteTrack</li><li>OpenCV</li></ul>
           <a class="link" href="https://github.com/karemdm/fall-detection-alert" rel="noopener">View code &rarr;</a>
         </article>
@@ -312,6 +323,7 @@ footer a{color:var(--muted)}
           <p class="card-meta"><span>Video analytics</span><span>Desktop setup · CLI</span></p>
           <h3>Pedestrian-Vehicle Proximity Alert</h3>
           <p>Raises alerts when pedestrians get close to cars, buses or trucks in video. It combines YOLO tracking with Depth Anything V2 monocular depth: a 2D distance gate scaled by person height, a relative depth gate, a time-window vote per person, and filtering of cyclists and motorcyclists.</p>
+          <figure class="flow"><figcaption>Fig. 04 · pipeline</figcaption><ol><li>Video</li><li>YOLO tracking</li><li>Depth Anything V2</li><li>2D + depth gates</li><li>Time-window vote</li><li>Proximity alert</li></ol></figure>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>Depth Anything V2</li><li>Transformers</li><li>OpenCV</li><li>Tkinter</li></ul>
           <a class="link" href="https://github.com/karemdm/pedestrian-vehicle-proximity-alert" rel="noopener">View code &rarr;</a>
         </article>
@@ -319,6 +331,7 @@ footer a{color:var(--muted)}
           <p class="card-meta"><span>Video analytics</span><span>Desktop launcher · CLI</span></p>
           <h3>Directional Line-Crossing Counter</h3>
           <p>Counts people and vehicles that cross lines drawn by the user on the video, separated by direction (IN/OUT). Crossings use a strict segment-intersection test on tracked trajectories, each ID is counted once per line, and faces can optionally be blurred in the output.</p>
+          <figure class="flow"><figcaption>Fig. 05 · pipeline</figcaption><ol><li>Video + drawn lines</li><li>YOLOv8 + BoT-SORT</li><li>Segment intersection</li><li>IN / OUT counts</li><li>Optional face blur</li></ol></figure>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8</li><li>BoT-SORT</li><li>OpenCV</li><li>Tkinter</li></ul>
           <a class="link" href="https://github.com/karemdm/directional-line-crossing-counter" rel="noopener">View code &rarr;</a>
         </article>
@@ -326,6 +339,7 @@ footer a{color:var(--muted)}
           <p class="card-meta"><span>Video analytics</span><span>CLI</span></p>
           <h3>Crowd Heatmap Analytics</h3>
           <p>Builds a decaying spatial heatmap of where people walk, side by side with the tracking view, and reports current occupancy, peak occupancy and unique tracked people. Useful for studying flow and hotspots in public spaces.</p>
+          <figure class="flow"><figcaption>Fig. 06 · pipeline</figcaption><ol><li>Video</li><li>YOLO + ByteTrack</li><li>Decaying heatmap</li><li>Occupancy & peaks</li></ol></figure>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>ByteTrack</li><li>OpenCV</li><li>NumPy</li></ul>
           <a class="link" href="https://github.com/karemdm/crowd-heatmap-analytics" rel="noopener">View code &rarr;</a>
         </article>
@@ -333,6 +347,7 @@ footer a{color:var(--muted)}
           <p class="card-meta"><span>Medical imaging</span><span>Jupyter notebooks</span></p>
           <h3>Lung Opacity Localization</h3>
           <p>Experiments on localizing lung opacities in chest X-rays using YOLOv5 and YOLOX detectors fused with Weighted Boxes Fusion, plus a transfer-learning CNN classifier. Includes preprocessing, training, ensemble and mAP evaluation notebooks. Companion code for the article published in <em>Big Data and Cognitive Computing</em> (2024). Research code, not for clinical use.</p>
+          <figure class="flow"><figcaption>Fig. 07 · pipeline</figcaption><ol><li>Chest X-ray</li><li>Preprocessing</li><li>YOLOv5 · YOLOX</li><li>Weighted Boxes Fusion</li><li>Opacity boxes + mAP</li></ol></figure>
           <ul class="chips"><li>Python</li><li>TensorFlow/Keras</li><li>PyTorch</li><li>YOLOv5</li><li>YOLOX</li><li>ensemble-boxes</li><li>pandas</li><li>OpenCV</li><li>pydicom</li><li>Jupyter</li></ul>
           <p class="links"><a class="link" href="https://github.com/karemdm/lung-opacity-localization" rel="noopener">View code &rarr;</a><a class="link" href="https://doi.org/10.3390/bdcc8080084" rel="noopener">Paper · BDCC 2024 &rarr;</a></p>
         </article>
@@ -340,6 +355,7 @@ footer a{color:var(--muted)}
           <p class="card-meta"><span>Video analytics</span><span>CLI</span></p>
           <h3>Small Person Pose (YOLOv8)</h3>
           <p>Experiments in detecting small people and estimating their pose in high-resolution video using YOLOv8. It compares overlapping sliding-window inference with NMS merging and a detect-then-crop two-stage approach, with optional SORT tracking.</p>
+          <figure class="flow"><figcaption>Fig. 08 · pipeline</figcaption><ol><li>High-res video</li><li>Sliding window / crop</li><li>YOLOv8 pose</li><li>NMS merge</li><li>SORT tracks</li></ol></figure>
           <ul class="chips"><li>Python</li><li>PyTorch</li><li>Ultralytics YOLOv8</li><li>SAHI</li><li>OpenCV</li><li>NumPy</li><li>SORT</li><li>FilterPy</li></ul>
           <a class="link" href="https://github.com/karemdm/small-person-pose-yolov8" rel="noopener">View code &rarr;</a>
         </article>
@@ -347,6 +363,7 @@ footer a{color:var(--muted)}
           <p class="card-meta"><span>Video analytics</span><span>CLI</span></p>
           <h3>YOLO + OpenCV Tracking</h3>
           <p>A Python tool that detects people in video with an Ultralytics YOLO model and follows them across frames using one of seven OpenCV trackers. Detections are matched to tracks by bounding-box IoU, and the output video shows each track with a persistent ID. Thresholds and track lifetime are exposed as command-line arguments.</p>
+          <figure class="flow"><figcaption>Fig. 09 · pipeline</figcaption><ol><li>Video</li><li>YOLO person detection</li><li>IoU matching</li><li>OpenCV tracker (1 of 7)</li><li>Video with IDs</li></ol></figure>
           <ul class="chips"><li>Python</li><li>OpenCV</li><li>NumPy</li><li>Ultralytics YOLO</li></ul>
           <a class="link" href="https://github.com/karemdm/yolo-opencv-tracking" rel="noopener">View code &rarr;</a>
         </article>
@@ -354,6 +371,7 @@ footer a{color:var(--muted)}
           <p class="card-meta"><span>Tools</span><span>Desktop app</span></p>
           <h3>Video Frame Picker</h3>
           <p>Two small desktop tools for picking frames. A video player built with OpenCV and Tkinter steps through a video and saves the current frame as JPEG. An image viewer built with Pillow lets you browse a folder of images and copy the selected ones to an output folder.</p>
+          <figure class="flow"><figcaption>Fig. 10 · pipeline</figcaption><ol><li>Video or image folder</li><li>Tkinter viewer</li><li>Pick frames</li><li>Saved JPEGs</li></ol></figure>
           <ul class="chips"><li>Python 3</li><li>OpenCV</li><li>Tkinter</li><li>Pillow</li><li>unidecode</li></ul>
           <a class="link" href="https://github.com/karemdm/video-frame-picker" rel="noopener">View code &rarr;</a>
         </article>
