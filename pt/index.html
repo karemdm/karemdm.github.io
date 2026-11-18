@@ -162,6 +162,11 @@ p{margin:0 0 14px;max-width:68ch}
 .lang-switch a[aria-current=page]{color:var(--accent)}
 .lang-switch a:hover{color:var(--text)}
 @media (max-width:900px){.lang-switch{margin-left:auto}.lang-switch+.theme-switch{margin-left:0}}
+.edu-extra{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px 32px;margin-top:32px}
+.edu-extra h3{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.plain{list-style:none;margin:0;padding:0}
+.plain li{padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.plain li strong{font-family:var(--mono);font-weight:500;color:var(--accent)}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
 footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a{color:var(--muted)}
@@ -210,7 +215,7 @@ footer a{color:var(--muted)}
     <div>
       <p class="meta"><span>Visão Computacional e IA</span><span>Ph.D. em Ciência da Computação</span><span>10+ anos</span></p>
       <h1>Karem Daiane Marcomini, Ph.D.</h1>
-      <p class="lede">Engenheira Sênior de IA e Visão Computacional. Mais de 10 anos de experiência conectando pesquisa acadêmica avançada e soluções industriais práticas e de alto impacto, construindo pipelines de deep learning de ponta a ponta, do processamento de dados à implantação em produção.</p>
+      <p class="lede">Engenheira Sênior de IA e Visão Computacional. Mais de 10 anos em aplicações industriais e imagens médicas, criando soluções de deep learning de ponta a ponta, dos dados à inferência em produção.</p>
       <div class="btns">
         <a class="button button-primary" href="#projects">Ver projetos</a>
         <a class="button" href="https://github.com/karemdm" rel="noopener">GitHub</a>
@@ -235,8 +240,8 @@ footer a{color:var(--muted)}
       <div class="section-label"><b>01</b>Sobre</div>
       <div>
       <h2 id="about-h">Sobre</h2>
-      <p>Sou Engenheira Sênior de IA e Visão Computacional, com Ph.D. em Ciência da Computação e mais de 10 anos de experiência. Meu trabalho conecta a pesquisa acadêmica avançada a soluções industriais práticas e de alto impacto.</p>
-      <p>Sou especialista em desenvolver pipelines de deep learning de ponta a ponta, do processamento de dados à implantação em produção.</p>
+      <p>Engenheira Sênior de IA e Visão Computacional, com Ph.D. e mais de 10 anos de experiência em aplicações industriais e imagens médicas. Desenvolvo soluções de deep learning de ponta a ponta (classificação de imagens, detecção de objetos, segmentação de instâncias e semântica, rastreamento e OCR), somadas a processamento clássico de imagens e otimização de modelos para inferência em produção com ONNX, TensorRT e NVIDIA Triton.</p>
+      <p>Minha trajetória une pesquisa (bolsas FAPESP e pesquisa internacional na University of Pittsburgh, EUA) e a entrega de sistemas de visão computacional ao mercado, em segurança industrial, controle de qualidade e apoio ao diagnóstico. Também tenho ampla experiência como professora universitária e orientadora.</p>
       </div>
     </section>
 
@@ -246,20 +251,28 @@ footer a{color:var(--muted)}
       <h2 id="skills-h">Competências</h2>
       <div class="skills">
       <div class="skill-group">
-        <h3>Especialidades</h3>
-        <ul class="chips"><li>Visão Computacional</li><li>Deep Learning</li><li>Processamento Digital de Imagens</li><li>IA Médica</li><li>Reconhecimento de Padrões</li></ul>
+        <h3>Visão computacional</h3>
+        <ul class="chips"><li>Detecção de objetos</li><li>Segmentação de instâncias e semântica</li><li>Classificação de imagens</li><li>Rastreamento (Re-ID)</li><li>OCR</li><li>Processamento digital de imagens</li><li>Reconhecimento de padrões</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Deep learning &amp; ML</h3>
+        <ul class="chips"><li>CNNs</li><li>Modelos visão-linguagem</li><li>Ensembles</li><li>Radiômica</li><li>SVM</li><li>Remoção de ruído e restauração</li><li>Modelos de difusão</li><li>GANs</li><li>Autoencoders</li><li>Aprendizado autossupervisionado</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Modelos</h3>
+        <ul class="chips"><li>YOLO (v5, X, v8, 11)</li><li>SegFormer</li><li>DeepLab</li><li>EfficientNet</li><li>NAFNet</li><li>FFDNet</li><li>VLMs</li></ul>
       </div>
       <div class="skill-group">
         <h3>Frameworks</h3>
-        <ul class="chips"><li>PyTorch</li><li>TensorFlow</li><li>Keras</li><li>Ultralytics (YOLO)</li><li>Torchvision</li></ul>
+        <ul class="chips"><li>PyTorch</li><li>TensorFlow</li><li>Keras</li><li>Torchvision</li><li>Ultralytics</li><li>OpenCV</li><li>Scikit-learn</li><li>SciPy</li><li>NumPy</li><li>Pandas</li><li>Matplotlib</li></ul>
       </div>
       <div class="skill-group">
-        <h3>Ferramentas</h3>
-        <ul class="chips"><li>OpenCV</li><li>Scikit-Learn</li><li>SciPy</li><li>NumPy</li><li>Pandas</li><li>Matplotlib</li></ul>
+        <h3>Implantação &amp; ferramentas</h3>
+        <ul class="chips"><li>ONNX</li><li>TensorRT</li><li>NVIDIA Triton</li><li>Docker</li><li>Python</li><li>MATLAB</li><li>Git</li><li>Linux</li></ul>
       </div>
       <div class="skill-group">
-        <h3>Ambiente</h3>
-        <ul class="chips"><li>Python</li><li>Git</li><li>Docker</li><li>Linux</li></ul>
+        <h3>Domínios</h3>
+        <ul class="chips"><li>Controle de qualidade industrial</li><li>Segurança industrial (EPI)</li><li>IA médica</li><li>Diagnóstico auxiliado por computador</li><li>Análise de dados</li></ul>
       </div>
       </div>
       </div>
@@ -270,22 +283,41 @@ footer a{color:var(--muted)}
       <div>
       <h2 id="exp-h">Experiência</h2>
       <ol class="timeline">
-      <li><span class="tl-kind">Indústria</span><article class="card">
-        <h3>IA Industrial | Pix Force</h3>
-        <p class="muted">Soluções de Visão Computacional de ponta a ponta para ambientes industriais.</p>
+      <li><span class="tl-kind">2026 – atual · Indústria</span><article class="card">
+        <h3>Analista de Inteligência Artificial | Instituto Hardware BR (HBR)</h3>
+        <p class="muted">Campinas, SP (remoto).</p>
+      </article></li>
+      <li><span class="tl-kind">2022 – 2026 · Indústria</span><article class="card">
+        <h3>Engenheira de Visão Computacional | Pix Force</h3>
+        <p class="muted">Soluções de visão computacional e deep learning de ponta a ponta, em Python e PyTorch, para desafios industriais (remoto).</p>
         <ul>
-          <li><strong>Controle de Qualidade:</strong> detecção de defeitos em tempo real e segmentação semântica/de instâncias (YOLO, SegFormer, DeepLab) para inspeção automatizada na manufatura.</li>
-          <li><strong>Segurança Industrial:</strong> pipelines de visão para conformidade de EPI, detecção de situações de risco e monitoramento de áreas restritas.</li>
-          <li><strong>Sistemas de OCR:</strong> pipelines automatizados para reconhecimento de placas veiculares de alta precisão e extração de dados de documentos.</li>
+          <li><strong>Controle de qualidade:</strong> detecção em tempo real e segmentação semântica e de instâncias (YOLO, SegFormer, DeepLab) para identificar defeitos e verificar conformidade na manufatura.</li>
+          <li><strong>Segurança industrial:</strong> pipelines de visão para uso de EPI, uso de corrimão, invasão de área restrita e respeito às faixas de pedestres.</li>
+          <li><strong>Implantação:</strong> modelos otimizados e servidos em produção com ONNX, TensorRT e NVIDIA Triton Inference Server.</li>
+          <li><strong>OCR:</strong> pipelines automáticos de leitura de placas de veículos e extração estruturada de dados de documentos.</li>
         </ul>
       </article></li>
-      <li><span class="tl-kind">Pesquisa</span><article class="card">
-        <h3>Pesquisa em Imagem Médica | USP &amp; University of Pittsburgh</h3>
-        <p class="muted">Aplicação de aprendizado de máquina a dados médicos complexos.</p>
+      <li><span class="tl-kind">2020 – 2022 · Pesquisa</span><article class="card">
+        <h3>Pesquisadora de Pós-doutorado e Bolsista FAPESP | Universidade de São Paulo (USP)</h3>
+        <p class="muted">São Carlos, SP.</p>
         <ul>
-          <li><strong>Detecção de COVID-19:</strong> arquiteturas híbridas de deep learning (EfficientNet-B0 + Radiomics) e modelos em ensemble (YOLOX/YOLOv5) para segmentação de opacidades pulmonares.</li>
-          <li><strong>Diagnóstico Auxiliado por Computador (CAD):</strong> sistemas de classificação de lesões mamárias (ultrassom em modo B/elastografia), usando SVM e extração de características mapeadas ao léxico BI-RADS.</li>
-          <li><strong>Contribuição Acadêmica:</strong> pesquisadora visitante (Research Scholar) na University of Pittsburgh (EUA), com foco em algoritmos de extração de características.</li>
+          <li>Arquitetura híbrida de deep learning (EfficientNet-B0 com atributos radiômicos) para detecção de COVID-19 em radiografias de tórax.</li>
+          <li>Ensemble de YOLOX e YOLOv5 para localizar opacidades pulmonares, com ganho de precisão na localização (<a href="https://doi.org/10.3390/bdcc8080084" rel="noopener">BDCC 2024</a>).</li>
+        </ul>
+      </article></li>
+      <li><span class="tl-kind">2018 – atual · Docência</span><article class="card">
+        <h3>Professora | Universidade Paulista (UNIP)</h3>
+        <p class="muted">Campinas, SP.</p>
+        <ul>
+          <li>Aulas e orientação em Processamento Digital de Imagens, Computação Gráfica, Interação Humano-Computador e Programação Estruturada.</li>
+        </ul>
+      </article></li>
+      <li><span class="tl-kind">2011 – 2017 · Pesquisa</span><article class="card">
+        <h3>Pesquisadora de Doutorado e Bolsista FAPESP | USP e University of Pittsburgh (EUA)</h3>
+        <ul>
+          <li>Desenvolvimento e registro de um sistema de diagnóstico auxiliado por computador (CAD) em MATLAB para classificar lesões de mama em ultrassom modo B e elastografia.</li>
+          <li>Segmentação de lesões e atributos matemáticos e de textura mapeados ao léxico BI-RADS, com classificação por SVM.</li>
+          <li>Pesquisa como visitante na University of Pittsburgh (set. 2015 – nov. 2016) em extração de atributos e classificação de imagens médicas.</li>
         </ul>
       </article></li>
       </ol>
@@ -464,13 +496,26 @@ footer a{color:var(--muted)}
     <section id="education" class="section" aria-labelledby="edu-h">
       <div class="section-label"><b>06</b>Formação</div>
       <div>
-      <h2 id="edu-h">Formação &amp; Docência</h2>
-      <article class="card">
-        <ul>
-          <li><strong>Ph.D. em Ciência da Computação:</strong> Universidade de São Paulo (USP).</li>
-          <li><strong>Professora (nível de graduação):</strong> docência em Processamento Digital de Imagens, Computação Gráfica e Interação Humano-Computador.</li>
-        </ul>
-      </article>
+      <h2 id="edu-h">Formação &amp; prêmios</h2>
+      <ol class="timeline">
+      <li><span class="tl-kind">2020 – 2022 · Pós-doc</span><article class="card">
+        <h3>Pós-doutorado em Ciência da Computação (IA e deep learning) | USP</h3>
+      </article></li>
+      <li><span class="tl-kind">2013 – 2017 · Doutorado</span><article class="card">
+        <h3>Doutorado em Ciências (processamento de imagens e aprendizado de máquina) | USP</h3>
+        <p class="muted">Pesquisadora visitante na University of Pittsburgh (EUA), set. 2015 – nov. 2016.</p>
+      </article></li>
+      <li><span class="tl-kind">2011 – 2013 · Mestrado</span><article class="card">
+        <h3>Mestrado em Ciências (processamento de imagens e aprendizado de máquina) | USP</h3>
+      </article></li>
+      <li><span class="tl-kind">2006 – 2009 · Graduação</span><article class="card">
+        <h3>Bacharelado em Ciência da Computação | Unisagrado, Bauru, SP</h3>
+      </article></li>
+      </ol>
+      <div class="edu-extra">
+        <div><h3>Prêmios</h3><ul class="plain"><li><strong>2017</strong> · Poster Award, SPIE Medical Imaging, Orlando, EUA</li><li><strong>2011</strong> · Segunda melhor apresentação oral, V Simpósio de Instrumentação e Imagens Médicas</li><li><strong>2010</strong> · Mérito Acadêmico, Unisagrado</li></ul></div>
+        <div><h3>Idiomas</h3><ul class="plain"><li>Inglês · avançado</li><li>Português · nativo</li></ul></div>
+      </div>
       </div>
     </section>
 
