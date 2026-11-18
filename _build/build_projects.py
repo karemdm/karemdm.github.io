@@ -303,7 +303,6 @@ document.documentElement.dataset.theme=c;}})();
 <footer>
   <div class="container">
     <span>&copy; Karem Daiane Marcomini</span>
-    <span><a href="https://github.com/karemdm" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/karem-marcomini/" rel="noopener">LinkedIn</a> · <a href="http://lattes.cnpq.br/9252140833340424" rel="noopener">Lattes</a></span>
   </div>
 </footer>
 <script>
