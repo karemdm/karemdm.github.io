@@ -182,8 +182,10 @@ document.documentElement.dataset.theme=c;})();
 
 </div></section><section class="section" id="s3"><div class="section-label"><b>03</b>Como rodar</div><div>
 <h2>Três comandos para testar</h2>
-<div class="terminal"><div class="terminal-bar"><span>instalação</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>python -m venv .venv
-.venv\Scripts\activate
+<div class="terminal"><div class="terminal-bar"><span>instalação · Linux, macOS, Windows</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>git clone https://github.com/karemdm/fall-detection-alert.git
+cd fall-detection-alert
+python -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 pip install -e .</code></pre></div><div class="terminal"><div class="terminal-bar"><span>rodar num clipe de exemplo</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>fall-alert -i samples/gmdcsa24-s1-fall-05.mp4 -o outputs/fall-05.mp4 --events-json outputs/fall-05.json</code></pre></div><div class="terminal"><div class="terminal-bar"><span>pessoas pequenas ou distantes</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>fall-alert -i input.mp4 -o outputs/out.mp4 --imgsz 1280 --trace-csv outputs/trace.csv</code></pre></div>
 </div></section><section class="section" id="s4"><div class="section-label"><b>04</b>Decisões de projeto</div><div>
