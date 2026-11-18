@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0e0f11">
+<meta name="theme-color" content="#f5f3ec">
 <title>Karem Daiane Marcomini, Ph.D. | Senior AI &amp; Computer Vision Engineer</title>
 <meta name="description" content="Portfolio of Karem Daiane Marcomini, Ph.D. in Computer Science: Senior AI and Computer Vision Engineer bridging academic research and industrial deep learning solutions.">
 <meta property="og:type" content="website">
@@ -20,25 +20,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
-(function(){var c='system';try{c=localStorage.getItem('kdm.theme')||'system'}catch(e){}
-var d=c==='system'?(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'):c;
-document.documentElement.dataset.theme=d;document.documentElement.dataset.choice=c;})();
+(function(){var c='light';try{c=localStorage.getItem('kdm.theme')==='dark'?'dark':'light'}catch(e){}
+document.documentElement.dataset.theme=c;})();
 </script>
 <style>
 :root{
-  color-scheme:dark;
-  --bg:#0e0f11;--surface:#15171a;--surface-2:#1d2024;
-  --text:#e9e7e1;--muted:#a6a8a2;--line:#2e3136;--rule:#e9e7e1;
-  --accent:#ff6b57;--accent-ink:#1a0f0c;
-  --sans:"IBM Plex Sans",system-ui,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,monospace;
-  --label-col:176px;
-}
-:root[data-theme=light]{
   color-scheme:light;
   --bg:#f5f3ec;--surface:#fcfbf7;--surface-2:#ebe8de;
   --text:#1b1c1e;--muted:#54575c;--line:#d0ccbf;--rule:#1b1c1e;
   --accent:#b02a1c;--accent-ink:#fff;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --label-col:176px;
+}
+:root[data-theme=dark]{
+  color-scheme:dark;
+  --bg:#0e0f11;--surface:#15171a;--surface-2:#1d2024;
+  --text:#e9e7e1;--muted:#a6a8a2;--line:#2e3136;--rule:#e9e7e1;
+  --accent:#ff6b57;--accent-ink:#1a0f0c;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:88px}
@@ -199,7 +198,6 @@ footer a{color:var(--muted)}
     </nav>
     <div class="lang-switch"><a href="./" aria-current="page" lang="en">EN</a><a href="pt/" lang="pt-BR" hreflang="pt-BR">PT</a></div>
     <div class="theme-switch" role="group" aria-label="Color theme">
-      <button type="button" data-choice="system">auto</button>
       <button type="button" data-choice="light">light</button>
       <button type="button" data-choice="dark">dark</button>
     </div>
@@ -505,19 +503,17 @@ footer a{color:var(--muted)}
 </footer>
 <script>
 (function(){
-  var root=document.documentElement,mq=matchMedia('(prefers-color-scheme: light)');
+  var root=document.documentElement;
   var btns=document.querySelectorAll('.theme-switch button');
   function apply(c){
-    root.dataset.choice=c;
-    root.dataset.theme=c==='system'?(mq.matches?'light':'dark'):c;
+    root.dataset.theme=c;
     btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.choice===c))});
   }
   btns.forEach(function(b){b.addEventListener('click',function(){
     try{localStorage.setItem('kdm.theme',b.dataset.choice)}catch(e){}
     apply(b.dataset.choice);
   })});
-  if(mq.addEventListener)mq.addEventListener('change',function(){if(root.dataset.choice==='system')apply('system')});
-  apply(root.dataset.choice||'system');
+  apply(root.dataset.theme||'light');
 })();
 </script>
 <script>
