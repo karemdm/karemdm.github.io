@@ -50,8 +50,8 @@ document.documentElement.dataset.theme=c;})();
   <figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/ppe-compliance-vlm/demo.mp4" poster="../../../assets/projects/ppe-compliance-vlm/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Gravação do app Streamlit: o filtro de infrações fica só com capacete e colete, um vídeo de obra é enviado, os trabalhadores ficam verdes ou vermelhos na prévia e aparecem os cartões de relatório com texto do VLM."></video></div><figcaption>O app Streamlit de ponta a ponta: escolher as infrações, enviar o vídeo, acompanhar a prévia e ler os cartões do VLM. Gravado na CPU de um notebook; processamento e etapa do VLM acelerados. Imagens: Pexels.</figcaption></figure>
   <dl class="stats"><div><dt>de voto de maioria antes do vermelho</dt><dd>3 s</dd></div><div><dt>tipos de infração (capacete, colete, luvas…)</dt><dd>7</dd></div><div><dt>detectores de EPI para escolher</dt><dd>2</dd></div><div><dt>frase do VLM por trabalhador sinalizado</dt><dd>1</dd></div></dl>
   <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>Ultralytics YOLOv8 / YOLO26</li><li>ByteTrack</li><li>Re-ID</li><li>SmolVLM / Idefics2</li><li>Transformers</li><li>Streamlit</li><li>OpenCV</li></ul>
-  <section class="section" id="s1"><div class="section-label"><b>01</b>Como funciona</div><div>
-<h2>Das detecções a uma decisão por trabalhador</h2>
+  <section class="section" id="s1"><div class="section-label">Como funciona</div><div>
+<h2><span class="sec-n">01</span>Das detecções a uma decisão por trabalhador</h2>
 <p>Dois detectores rodam em cada quadro: um encontra as pessoas e o outro encontra os itens de EPI como usados ou ausentes. Cada item é atribuído à pessoa cuja caixa ele sobrepõe, então o sistema raciocina por trabalhador e não por caixa. A re-identificação mantém o mesmo id quando alguém sai e volta.</p>
 <figure class="fig"><div class="scroll-x"><svg class="diagram" viewBox="0 0 1226 160" role="img" aria-label="Pipeline de processamento, do quadro ao relatório por trabalhador">
 <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>
@@ -119,8 +119,8 @@ document.documentElement.dataset.theme=c;})();
 </svg></div><figcaption>Fig. 02 · Estado por trabalhador e por item, com os limiares padrão</figcaption></figure>
 <dl class="defs"><div><dt>Associação</dt><dd>Uma caixa de EPI pertence à pessoa que ela mais sobrepõe (interseção sobre a menor caixa ≥ 0,05).</dd></div><div><dt>Re-identificação</dt><dd>Uma trilha nova é comparada por aparência com todas as pessoas já vistas; acima de 0,85 o id antigo é mantido.</dd></div><div><dt>Consolidação</dt><dd>Os relatórios só incluem trabalhadores vistos ao menos 3 vezes e com a violação em ao menos 10% dos quadros.</dd></div></dl>
 
-</div></section><section class="section" id="s2"><div class="section-label"><b>02</b>Resultados</div><div>
-<h2>O que ele encontra em vídeos reais de obra</h2>
+</div></section><section class="section" id="s2"><div class="section-label">Resultados</div><div>
+<h2><span class="sec-n">02</span>O que ele encontra em vídeos reais de obra</h2>
 <p>Numa compilação de seis clipes com obras, carpinteiros, um armazém e uma estrutura industrial (cerca de 83 s), o modelo SafetyVision padrão confirmou estas violações:</p>
 <figure class="fig"><svg class="chart" viewBox="0 0 900 142" role="img" aria-label="Violações confirmadas por tipo na compilação de seis clipes">
 <text x="208" y="25" class="c-label" text-anchor="end">NO-Safety Vest</text>
@@ -140,8 +140,8 @@ document.documentElement.dataset.theme=c;})();
 <p>Nesta demo renderizada, o vídeo congela na primeira vez que um trabalhador tem a violação confirmada: o recorte é ampliado, o SmolVLM-500M roda nele na CPU e a resposta aparece antes de o vídeo continuar.</p>
 <figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/ppe-compliance-vlm/demo-vlm.mp4" poster="../../../assets/projects/ppe-compliance-vlm/demo-vlm.jpg" muted loop playsinline preload="none" aria-label="Demo renderizada: o quadro escurece, o trabalhador sinalizado fica destacado em amarelo e um painel lateral mostra o recorte, a violação e a resposta do VLM."></video></div><figcaption>Gerada com scripts/make_demo_video.py; o tempo real do VLM aparece na tela e a espera foi encurtada.</figcaption></figure>
 
-</div></section><section class="section" id="s3"><div class="section-label"><b>03</b>Como rodar</div><div>
-<h2>Três passos para testar</h2>
+</div></section><section class="section" id="s3"><div class="section-label">Como rodar</div><div>
+<h2><span class="sec-n">03</span>Três passos para testar</h2>
 <div class="terminal" data-tabs><div class="terminal-bar"><span>instalação</span><span class="os-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="0">Linux / macOS</button><button type="button" role="tab" aria-selected="false" data-tab="1">Windows · PowerShell</button><button type="button" role="tab" aria-selected="false" data-tab="2">Windows · cmd</button></span><button type="button" class="copy" data-copy>Copiar</button></div><pre data-pane="0"><code>git clone https://github.com/karemdm/ppe-compliance-vlm.git
 cd ppe-compliance-vlm
 python3 -m venv .venv
@@ -158,8 +158,8 @@ python -m venv .venv
 .venv\Scripts\activate.bat
 pip install -r requirements.txt
 pip install -e .</code></pre></div><div class="terminal"><div class="terminal-bar"><span>app Streamlit</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>ppe-compliance --vlm-model HuggingFaceTB/SmolVLM-500M-Instruct</code></pre></div><div class="terminal"><div class="terminal-bar"><span>relatório sem interface</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>ppe-compliance analyze --input samples/construction_site.mp4 --output outputs/report.json --save-video outputs/construction_site.mp4 --no-vlm</code></pre></div>
-</div></section><section class="section" id="s4"><div class="section-label"><b>04</b>Decisões de projeto</div><div>
-<h2>Por que foi construído assim</h2>
+</div></section><section class="section" id="s4"><div class="section-label">Decisões de projeto</div><div>
+<h2><span class="sec-n">04</span>Por que foi construído assim</h2>
 <div class="grid"><article class="card"><h3>Um voto, não um quadro</h3><p>Detectores de EPI piscam. Uma maioria de 3 segundos com histerese elimina as caixas vermelhas piscando que tornam sistemas quadro a quadro inviáveis num monitor.</p></article><article class="card"><h3>Pessoas primeiro</h3><p>Associar o EPI a quem o usa dá uma decisão e um relatório por trabalhador, que é o que o técnico de segurança precisa.</p></article><article class="card"><h3>Re-identificação</h3><p>Trabalhadores saem do quadro e voltam. Uma galeria de aparência mantém o id, então uma pessoa vira um relatório e não cinco.</p></article><article class="card"><h3>VLM como segunda opinião</h3><p>O modelo visão-linguagem escreve uma frase curta e legível a partir do recorte. Ele só roda nos casos confirmados, então continua viável até em CPU.</p></article><article class="card"><h3>Detectores intercambiáveis</h3><p>SafetyVision (YOLOv8s, 13 classes) ou CHD (YOLO26-L); a lista de infrações se adapta ao modelo escolhido.</p></article><article class="card"><h3>Reexecução rápida</h3><p>O app guarda o vídeo processado em cache, então mudar o filtro de infrações reseleciona os relatórios na hora.</p></article></div>
 </div></section>
   <nav class="next-project"><a href="../../../pt/#projects">← Todos os projetos</a><a href="../fall-detection-alert/">Próximo projeto: Fall Detection Alert →</a></nav>
