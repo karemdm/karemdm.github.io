@@ -155,7 +155,7 @@ footer a{color:var(--muted)}
   .theme-switch{margin-left:auto}
   .hero{grid-template-columns:1fr}
   .portrait{justify-self:start;max-width:220px;order:-1}
-  .section{grid-template-columns:1fr;padding:56px 0}
+  .section{grid-template-columns:minmax(0,1fr);padding:56px 0}
   .section-label{padding:0 0 12px}
 }
 @media (max-width:640px){
