@@ -86,11 +86,28 @@ def svg_states(states, edges, caption):
                 out.append('<text x="%d" y="%d" class="d-edge" text-anchor="middle">%s</text>' % ((x1 + x2) // 2, y + 2 - 26, esc(label[1])))
         else:
             back_level += 1
-            top = 26 if back_level == 1 else 8
+            top = 44 if back_level == 1 else 18
             x1, x2 = xa + bw // 2, xb + bw // 2
             out.append('<path d="M%d %d V%d H%d V%d" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>'
                        % (x1, y - 2, top, x2, y - 3))
-            out.append('<text x="%d" y="%d" class="d-edge" text-anchor="middle">%s</text>' % ((x1 + x2) // 2, top - 6 if top > 14 else top + 14, esc(label[0])))
+            out.append('<text x="%d" y="%d" class="d-edge" text-anchor="middle">%s</text>' % ((x1 + x2) // 2, top - 6, esc(label[0])))
+    out.append("</svg>")
+    return "\n".join(out)
+
+
+def svg_bars(items, caption, unit=""):
+    """Horizontal bar chart. items: list of (label, value) or (label, value, color css var)."""
+    W, L, R, bh, gap = 900, 220, 70, 30, 14
+    vmax = max(v for _, v, *_ in items) or 1
+    H = len(items) * (bh + gap) + 10
+    out = ['<svg class="chart" viewBox="0 0 %d %d" role="img" aria-label="%s">' % (W, H, esc(caption))]
+    for i, (label, v, *rest) in enumerate(items):
+        y = 5 + i * (bh + gap)
+        w = (W - L - R) * v / vmax
+        color = rest[0] if rest else "var(--accent)"
+        out.append('<text x="%d" y="%d" class="c-label" text-anchor="end">%s</text>' % (L - 12, y + bh / 2 + 5, esc(label)))
+        out.append('<rect x="%d" y="%d" width="%.1f" height="%d" rx="3" fill="%s"/>' % (L, y, max(w, 2), bh, color))
+        out.append('<text x="%.1f" y="%d" class="c-label">%s%s</text>' % (L + w + 8, y + bh / 2 + 5, v, unit))
     out.append("</svg>")
     return "\n".join(out)
 
@@ -191,8 +208,12 @@ def page(slug, P, lang, nxt):
         body += '<dl class="defs">%s</dl>\n' % "".join("<div><dt>%s</dt><dd>%s</dd></div>" % f for f in d["features"])
     section(u["how"], d["how_title"], body)
 
-    # evidence: trace chart + frames
+    # evidence: trace chart or bar chart + frames
     body = ""
+    if "bars" in d:
+        body += "<p>%s</p>\n" % d["bars"]["intro"]
+        body += '<figure class="fig">%s<figcaption>Fig. 03 · %s</figcaption></figure>\n' % (
+            svg_bars(d["bars"]["items"], d["bars"]["caption"]), d["bars"]["caption"])
     if "trace" in P:
         body += "<p>%s</p>\n" % d["trace_intro"]
         body += '<figure class="fig">%s<figcaption>Fig. 03 · %s</figcaption></figure>\n' % (
