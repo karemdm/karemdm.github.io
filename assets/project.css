@@ -6,7 +6,7 @@
 .crumbs a{color:var(--muted);text-decoration:none}
 .crumbs a:hover{color:var(--accent)}
 .crumbs span{color:var(--text)}
-.p-hero{padding:clamp(28px,4vw,48px) 0 28px;max-width:860px}
+.p-hero{padding:clamp(28px,4vw,48px) 0 28px}
 .p-hero h1{max-width:none}
 .demo{margin:0 0 28px}
 .demo-frame{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#0e0f11;box-shadow:0 30px 80px -40px rgba(0,0,0,.45)}
