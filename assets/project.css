@@ -53,3 +53,7 @@
 }
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
 .sub{font-size:19px;margin:36px 0 8px}
+.os-tabs{display:flex;flex-wrap:wrap;gap:4px;margin:0 10px 0 auto}
+.os-tabs button{background:none;border:1px solid transparent;border-radius:3px;color:var(--muted);font:12px var(--mono);padding:3px 8px;cursor:pointer}
+.os-tabs button[aria-selected=true]{color:var(--accent);border-color:var(--line);background:var(--bg)}
+.os-tabs button:hover{color:var(--text)}

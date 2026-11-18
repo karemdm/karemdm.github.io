@@ -187,17 +187,27 @@ document.documentElement.dataset.theme=c;})();
 
 </div></section><section class="section" id="s3"><div class="section-label"><b>03</b>Como rodar</div><div>
 <h2>Três comandos para testar</h2>
-<div class="terminal"><div class="terminal-bar"><span>instalação · Linux, macOS, Windows</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>git clone https://github.com/karemdm/fall-detection-alert.git
+<div class="terminal" data-tabs><div class="terminal-bar"><span>instalação</span><span class="os-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="0">Linux / macOS</button><button type="button" role="tab" aria-selected="false" data-tab="1">Windows · PowerShell</button><button type="button" role="tab" aria-selected="false" data-tab="2">Windows · cmd</button></span><button type="button" class="copy" data-copy>Copiar</button></div><pre data-pane="0"><code>git clone https://github.com/karemdm/fall-detection-alert.git
+cd fall-detection-alert
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install -e .</code></pre><pre data-pane="1" hidden><code>git clone https://github.com/karemdm/fall-detection-alert.git
 cd fall-detection-alert
 python -m venv .venv
-source .venv/bin/activate      # Windows: .venv\Scripts\activate
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+pip install -e .</code></pre><pre data-pane="2" hidden><code>git clone https://github.com/karemdm/fall-detection-alert.git
+cd fall-detection-alert
+python -m venv .venv
+.venv\Scripts\activate.bat
 pip install -r requirements.txt
 pip install -e .</code></pre></div><div class="terminal"><div class="terminal-bar"><span>rodar num clipe de exemplo</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>fall-alert -i samples/gmdcsa24-s1-fall-05.mp4 -o outputs/fall-05.mp4 --events-json outputs/fall-05.json</code></pre></div><div class="terminal"><div class="terminal-bar"><span>pessoas pequenas ou distantes</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>fall-alert -i input.mp4 -o outputs/out.mp4 --imgsz 1280 --trace-csv outputs/trace.csv</code></pre></div>
 </div></section><section class="section" id="s4"><div class="section-label"><b>04</b>Decisões de projeto</div><div>
 <h2>Por que foi construído assim</h2>
 <div class="grid"><article class="card"><h3>Regras em vez de um classificador treinado</h3><p>Cada limiar tem significado físico e pode ser ajustado pela linha de comando, e cada alerta pode ser explicado pelo traço. Não é preciso um dataset de quedas para começar.</p></article><article class="card"><h3>Tempo de confirmação</h3><p>O alerta exige a postura deitada por 1,0 s, tolerando pequenas interrupções. Isso elimina alarmes ao abaixar, amarrar o sapato ou sentar rápido.</p></article><article class="card"><h3>Velocidade em alturas do corpo</h3><p>Normalizar a velocidade do quadril pela altura da pessoa faz o mesmo limiar funcionar perto ou longe da câmera.</p></article><article class="card"><h3>Degradação controlada</h3><p>Quando ombros ou quadril não aparecem, a proporção da caixa assume, então a oclusão não silencia o detector.</p></article><article class="card"><h3>Objeto não é pessoa</h3><p>Uma trilha só pode cair depois de mostrar uma pose de corpo (6 pontos-chave confiáveis) em algum quadro. Lixeiras, casacos e sombras detectados como pessoa nunca mostram, então suas caixas largas não geram mais alertas.</p></article><article class="card"><h3>Reparo de troca de ID</h3><p>Na queda a caixa passa de alta para larga e o rastreador costuma criar um ID novo. Uma trilha nova que surge a até uma altura de corpo de outra perdida há pouco continua o estado e o alerta dela.</p></article></div>
 </div></section>
-  <nav class="next-project"><a href="../../../pt/#projects">← Todos os projetos</a><a href="../fall-detection-alert/">Próximo projeto: Fall Detection Alert →</a></nav>
+  <nav class="next-project"><a href="../../../pt/#projects">← Todos os projetos</a></nav>
 </main>
 <footer>
   <div class="container">
@@ -212,9 +222,13 @@ pip install -e .</code></pre></div><div class="terminal"><div class="terminal-ba
   btns.forEach(function(b){b.addEventListener('click',function(){try{localStorage.setItem('kdm.theme',b.dataset.choice)}catch(e){}apply(b.dataset.choice)})});
   apply(root.dataset.theme||'light');
   document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
-    var code=b.closest('.terminal').querySelector('code').innerText;
+    var code=b.closest('.terminal').querySelector('pre:not([hidden]) code').innerText;
     (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(function(){var t=b.textContent;b.textContent='Copiado';setTimeout(function(){b.textContent=t},1400)}).catch(function(){});
   })});
+  document.querySelectorAll('[data-tabs]').forEach(function(box){box.querySelectorAll('[data-tab]').forEach(function(t){t.addEventListener('click',function(){
+    box.querySelectorAll('[data-tab]').forEach(function(x){x.setAttribute('aria-selected',String(x===t))});
+    box.querySelectorAll('[data-pane]').forEach(function(p){p.hidden=p.dataset.pane!==t.dataset.tab});
+  })})});
   var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){
     if(e.target.tagName==='VIDEO'){e.isIntersecting?e.target.play().catch(function(){}):e.target.pause()}
     else if(e.isIntersecting){e.target.classList.add('is-seen');io.unobserve(e.target)}
