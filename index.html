@@ -102,6 +102,35 @@ p{margin:0 0 14px;max-width:68ch}
 .grid .card .chips{margin:4px 0 18px}
 .card .link{margin-top:auto;font:13px var(--mono);text-decoration:none;color:var(--accent)}
 
+.card-meta{font:12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 10px}
+.card-meta span+span::before{content:" · "}
+.card-meta span:first-child{color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--line);margin:0 0 24px}
+.filters button{background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font:13px var(--mono);padding:8px 14px;cursor:pointer}
+.filters button span{opacity:.7}
+.filters button:hover{color:var(--text)}
+.filters button[aria-pressed=true]{color:var(--text);border-bottom-color:var(--accent)}
+.grid .card[hidden]{display:none}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;border-top:2px solid var(--rule);border-bottom:2px solid var(--rule)}
+.stats div{padding:20px 20px 22px;display:flex;flex-direction:column-reverse;gap:6px}
+.stats div+div{border-left:1px solid var(--line)}
+.stats dt{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.stats dd{margin:0;font-size:clamp(28px,3.4vw,40px);font-weight:600;letter-spacing:-.02em;line-height:1}
+.stats div:first-child dd{color:var(--accent)}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats div:nth-child(3){border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}}
+.timeline{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--line)}
+.timeline>li{position:relative;margin:0 0 20px}
+.timeline>li:last-child{margin-bottom:0}
+.timeline>li::before{content:"";position:absolute;left:-27px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl-kind{display:block;font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:8px}
+.timeline .card+.card{margin-top:0}
+.profiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px}
+.profiles a.card{display:flex;flex-direction:column;gap:6px;text-decoration:none;height:100%;transition:border-color .2s}
+.profiles a.card:hover{border-color:var(--accent);color:var(--text)}
+.p-kind{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.p-id{font-size:19px;font-weight:600;overflow-wrap:anywhere}
+.p-go{font:13px var(--mono);color:var(--muted)}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
 footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a{color:var(--muted)}
@@ -134,6 +163,7 @@ footer a{color:var(--muted)}
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
     </nav>
     <div class="theme-switch" role="group" aria-label="Color theme">
       <button type="button" data-choice="system">auto</button>
@@ -161,6 +191,13 @@ footer a{color:var(--muted)}
       <figcaption><span>github.com/karemdm</span><span>Brazil</span></figcaption>
     </figure>
   </div>
+
+  <dl class="stats">
+    <div><dt>Years in AI &amp; vision</dt><dd>10+</dd></div>
+    <div><dt>Open-source projects</dt><dd>10</dd></div>
+    <div><dt>Ph.D. Computer Science</dt><dd>USP</dd></div>
+    <div><dt>Visiting scholar</dt><dd>Pitt</dd></div>
+  </dl>
 
     <section id="about" class="section" aria-labelledby="about-h">
       <div class="section-label"><b>01</b>About</div>
@@ -200,7 +237,8 @@ footer a{color:var(--muted)}
       <div class="section-label"><b>03</b>Experience</div>
       <div>
       <h2 id="exp-h">Experience</h2>
-      <article class="card">
+      <ol class="timeline">
+      <li><span class="tl-kind">Industry</span><article class="card">
         <h3>Industrial AI | Pix Force</h3>
         <p class="muted">End-to-end Computer Vision solutions for industrial environments.</p>
         <ul>
@@ -208,8 +246,8 @@ footer a{color:var(--muted)}
           <li><strong>Industrial Safety:</strong> vision pipelines for PPE compliance, hazard detection, and restricted area monitoring.</li>
           <li><strong>OCR Systems:</strong> automated pipelines for high-precision license plate recognition and document data extraction.</li>
         </ul>
-      </article>
-      <article class="card">
+      </article></li>
+      <li><span class="tl-kind">Research</span><article class="card">
         <h3>Medical Imaging Research | USP &amp; University of Pittsburgh</h3>
         <p class="muted">Applying machine learning to complex medical data.</p>
         <ul>
@@ -217,7 +255,8 @@ footer a{color:var(--muted)}
           <li><strong>Computer-Aided Diagnosis (CAD):</strong> systems for breast lesion classification (B-mode Ultrasound/Elastography), using SVM and feature extraction mapped to the BI-RADS lexicon.</li>
           <li><strong>Academic Contribution:</strong> Research Scholar visitor at the University of Pittsburgh (USA) with a focus on feature extraction algorithms.</li>
         </ul>
-      </article>
+      </article></li>
+      </ol>
       </div>
     </section>
 
@@ -225,62 +264,79 @@ footer a{color:var(--muted)}
       <div class="section-label"><b>04</b>Projects</div>
       <div>
       <h2 id="proj-h">Featured projects</h2>
+      <div class="filters" role="group" aria-label="Filter projects" hidden>
+        <button type="button" data-filter="all" aria-pressed="true">All <span>10</span></button>
+        <button type="button" data-filter="video" aria-pressed="false">Video analytics <span>7</span></button>
+        <button type="button" data-filter="medical" aria-pressed="false">Medical imaging <span>1</span></button>
+        <button type="button" data-filter="ocr" aria-pressed="false">OCR <span>1</span></button>
+        <button type="button" data-filter="tools" aria-pressed="false">Tools <span>1</span></button>
+      </div>
       <div class="grid">
-        <article class="card">
+        <article class="card" data-cat="ocr">
+          <p class="card-meta"><span>OCR</span><span>CLI · web UI · Docker</span></p>
           <h3>NutriLabel OCR</h3>
           <p>Turns a photo of a food package into structured nutrition data. Fourteen interchangeable OCR engines, from Tesseract and PaddleOCR to vision-language OCR models such as olmOCR and GLM-OCR, feed a layout-aware extractor that handles per-100 g and per-serving columns, EU and US formats, 15+ languages and rotated photos. Nutritional sanity rules catch typical OCR slips, and every engine is compared on a benchmark of real Open Food Facts photos. Includes a CLI, a local web interface, a Python API and Docker.</p>
           <ul class="chips"><li>Python</li><li>PaddleOCR</li><li>Tesseract</li><li>Surya / docTR / EasyOCR</li><li>Vision-language OCR</li><li>Transformers</li><li>Docker</li></ul>
           <a class="link" href="https://github.com/karemdm/nutrilabel-ocr" rel="noopener">View code &rarr;</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Video analytics</span><span>Streamlit app · CLI</span></p>
           <h3>PPE Compliance VLM</h3>
           <p>Checks personal protective equipment in video. Paired-class YOLO models detect each item as worn or not worn (hardhat, vest, gloves, goggles, mask), a tracker follows each worker, and a 3-second majority vote confirms violations before a box turns red, filtering out flicker. A vision-language model (SmolVLM or Idefics2) then double-checks each flagged worker's crop, for human review.</p>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8 / YOLO26</li><li>ByteTrack</li><li>SmolVLM / Idefics2</li><li>Streamlit</li><li>OpenCV</li></ul>
           <a class="link" href="https://github.com/karemdm/ppe-compliance-vlm" rel="noopener">View code &rarr;</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Video analytics</span><span>CLI</span></p>
           <h3>Fall Detection Alert</h3>
           <p>Raises alerts when a person falls in video. YOLO11-pose keypoints and tracking feed a per-person state machine (upright, falling, fallen, alert) driven by torso angle, body aspect ratio and hip velocity, with a hold time to avoid false alarms. Tested on a mix of GMDCSA24 falls and outdoor clips; no training needed and it runs on CPU.</p>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLO11-pose</li><li>ByteTrack</li><li>OpenCV</li></ul>
           <a class="link" href="https://github.com/karemdm/fall-detection-alert" rel="noopener">View code &rarr;</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Video analytics</span><span>Desktop setup · CLI</span></p>
           <h3>Pedestrian-Vehicle Proximity Alert</h3>
           <p>Raises alerts when pedestrians get close to cars, buses or trucks in video. It combines YOLO tracking with Depth Anything V2 monocular depth: a 2D distance gate scaled by person height, a relative depth gate, a time-window vote per person, and filtering of cyclists and motorcyclists.</p>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>Depth Anything V2</li><li>Transformers</li><li>OpenCV</li><li>Tkinter</li></ul>
           <a class="link" href="https://github.com/karemdm/pedestrian-vehicle-proximity-alert" rel="noopener">View code &rarr;</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Video analytics</span><span>Desktop launcher · CLI</span></p>
           <h3>Directional Line-Crossing Counter</h3>
           <p>Counts people and vehicles that cross lines drawn by the user on the video, separated by direction (IN/OUT). Crossings use a strict segment-intersection test on tracked trajectories, each ID is counted once per line, and faces can optionally be blurred in the output.</p>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8</li><li>BoT-SORT</li><li>OpenCV</li><li>Tkinter</li></ul>
           <a class="link" href="https://github.com/karemdm/directional-line-crossing-counter" rel="noopener">View code &rarr;</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Video analytics</span><span>CLI</span></p>
           <h3>Crowd Heatmap Analytics</h3>
           <p>Builds a decaying spatial heatmap of where people walk, side by side with the tracking view, and reports current occupancy, peak occupancy and unique tracked people. Useful for studying flow and hotspots in public spaces.</p>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>ByteTrack</li><li>OpenCV</li><li>NumPy</li></ul>
           <a class="link" href="https://github.com/karemdm/crowd-heatmap-analytics" rel="noopener">View code &rarr;</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="medical">
+          <p class="card-meta"><span>Medical imaging</span><span>Jupyter notebooks</span></p>
           <h3>Lung Opacity Localization</h3>
           <p>Experiments on localizing lung opacities in chest X-rays using YOLOv5 and YOLOX detectors fused with Weighted Boxes Fusion, plus a transfer-learning CNN classifier. Includes preprocessing, training, ensemble and mAP evaluation notebooks. Research code, not for clinical use.</p>
           <ul class="chips"><li>Python</li><li>TensorFlow/Keras</li><li>PyTorch</li><li>YOLOv5</li><li>YOLOX</li><li>ensemble-boxes</li><li>pandas</li><li>OpenCV</li><li>pydicom</li><li>Jupyter</li></ul>
           <a class="link" href="https://github.com/karemdm/lung-opacity-localization" rel="noopener">View code &rarr;</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Video analytics</span><span>CLI</span></p>
           <h3>Small Person Pose (YOLOv8)</h3>
           <p>Experiments in detecting small people and estimating their pose in high-resolution video using YOLOv8. It compares overlapping sliding-window inference with NMS merging and a detect-then-crop two-stage approach, with optional SORT tracking.</p>
           <ul class="chips"><li>Python</li><li>PyTorch</li><li>Ultralytics YOLOv8</li><li>SAHI</li><li>OpenCV</li><li>NumPy</li><li>SORT</li><li>FilterPy</li></ul>
           <a class="link" href="https://github.com/karemdm/small-person-pose-yolov8" rel="noopener">View code &rarr;</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Video analytics</span><span>CLI</span></p>
           <h3>YOLO + OpenCV Tracking</h3>
           <p>A Python tool that detects people in video with an Ultralytics YOLO model and follows them across frames using one of seven OpenCV trackers. Detections are matched to tracks by bounding-box IoU, and the output video shows each track with a persistent ID. Thresholds and track lifetime are exposed as command-line arguments.</p>
           <ul class="chips"><li>Python</li><li>OpenCV</li><li>NumPy</li><li>Ultralytics YOLO</li></ul>
           <a class="link" href="https://github.com/karemdm/yolo-opencv-tracking" rel="noopener">View code &rarr;</a>
         </article>
-        <article class="card">
+        <article class="card" data-cat="tools">
+          <p class="card-meta"><span>Tools</span><span>Desktop app</span></p>
           <h3>Video Frame Picker</h3>
           <p>Two small desktop tools for picking frames. A video player built with OpenCV and Tkinter steps through a video and saves the current frame as JPEG. An image viewer built with Pillow lets you browse a folder of images and copy the selected ones to an output folder.</p>
           <ul class="chips"><li>Python 3</li><li>OpenCV</li><li>Tkinter</li><li>Pillow</li><li>unidecode</li></ul>
@@ -300,6 +356,18 @@ footer a{color:var(--muted)}
           <li><strong>Professor (Undergraduate level):</strong> Teaching Digital Image Processing, Computer Graphics, and Human-Computer Interaction.</li>
         </ul>
       </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-h">
+      <div class="section-label"><b>06</b>Contact</div>
+      <div>
+      <h2 id="contact-h">Profiles &amp; contact</h2>
+      <ul class="profiles">
+        <li><a class="card" href="https://github.com/karemdm" rel="noopener"><span class="p-kind">GitHub</span><span class="p-id">karemdm</span><span class="p-go">Code &amp; projects →</span></a></li>
+        <li><a class="card" href="https://www.linkedin.com/in/karem-marcomini/?locale=en_US" rel="noopener"><span class="p-kind">LinkedIn</span><span class="p-id">karem-marcomini</span><span class="p-go">Professional profile →</span></a></li>
+        <li><a class="card" href="http://lattes.cnpq.br/9252140833340424" rel="noopener"><span class="p-kind">Lattes</span><span class="p-id">9252140833340424</span><span class="p-go">Academic CV →</span></a></li>
+      </ul>
       </div>
     </section>
 </main>
@@ -329,6 +397,19 @@ footer a{color:var(--muted)}
   })});
   if(mq.addEventListener)mq.addEventListener('change',function(){if(root.dataset.choice==='system')apply('system')});
   apply(root.dataset.choice||'system');
+})();
+</script>
+<script>
+(function(){
+  var bar=document.querySelector('.filters');if(!bar)return;
+  bar.hidden=false;
+  var cards=document.querySelectorAll('#projects .card[data-cat]');
+  bar.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    var f=b.dataset.filter;
+    bar.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+    cards.forEach(function(c){c.hidden=!(f==='all'||c.dataset.cat===f)});
+  });
 })();
 </script>
 </body>
