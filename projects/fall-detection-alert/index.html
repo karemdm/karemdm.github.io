@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f3ec">
+<title>Fall Detection Alert | Karem Marcomini</title>
+<meta name="description" content="Rule-based fall detection on YOLO pose keypoints with multi-person tracking and a per-person state machine. No training, runs on CPU.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fall Detection Alert | Karem Marcomini">
+<meta property="og:description" content="Rule-based fall detection on YOLO pose keypoints with multi-person tracking and a per-person state machine. No training, runs on CPU.">
+<meta property="og:url" content="https://karemdm.github.io/projects/fall-detection-alert/">
+<meta property="og:image" content="https://karemdm.github.io/assets/projects/fall-detection-alert/poster.jpg">
+<link rel="alternate" hreflang="en" href="https://karemdm.github.io/projects/fall-detection-alert/">
+<link rel="alternate" hreflang="pt-BR" href="https://karemdm.github.io/pt/projects/fall-detection-alert/">
+<link rel="icon" href="../../assets/karem.gif">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+(function(){var c='light';try{c=localStorage.getItem('kdm.theme')==='dark'?'dark':'light'}catch(e){}
+document.documentElement.dataset.theme=c;})();
+</script>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/project.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../../">Karem Marcomini</a>
+    <nav class="primary" aria-label="Primary">
+      <a href="../../#projects">Projects</a>
+      <a href="https://github.com/karemdm/fall-detection-alert" rel="noopener">GitHub</a>
+    </nav>
+    <div class="lang-switch"><a href="./" aria-current="page" lang="en">EN</a><a href="../../../pt/projects/fall-detection-alert/" lang="pt-BR" hreflang="pt-BR">PT</a></div>
+    <div class="theme-switch" role="group" aria-label="Color theme">
+      <button type="button" data-choice="light">light</button>
+      <button type="button" data-choice="dark">dark</button>
+    </div>
+  </div>
+</header>
+<main class="container project">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../../#projects">Projects</a> / <span>Fall Detection Alert</span></nav>
+  <div class="p-hero">
+    <p class="meta"><span>Video analytics</span><span>CLI</span><span>AGPL-3.0</span></p>
+    <h1>Fall Detection Alert</h1>
+    <p class="lede">Raises an alert when a person falls in video. YOLO11-pose keypoints and tracking feed a small per-person state machine driven by explainable rules: torso angle, body aspect ratio and hip velocity. No training needed, and it runs on a laptop CPU.</p>
+    <div class="btns"><a class="button button-primary" href="https://github.com/karemdm/fall-detection-alert" rel="noopener">View code on GitHub</a><a class="button" href="../../#projects">← All projects</a></div>
+  </div>
+  <figure class="demo"><div class="demo-frame"><video src="../../assets/projects/fall-detection-alert/demo.mp4" poster="../../assets/projects/fall-detection-alert/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording: the fall-alert command runs in a terminal while the preview window shows a person walking, falling and the red FALL ALERT banner."></video></div><figcaption>Recorded on a laptop CPU (no GPU): the command, the live preview and the events JSON. Model loading and processing are sped up (×2.5–4) so the preview plays at the clip's real pace. Footage: GMDCSA24 (MIT).</figcaption></figure>
+  <dl class="stats"><div><dt>falls detected · fall mix</dt><dd>9 / 9</dd></div><div><dt>false alerts on the test clips</dt><dd>0</dd></div><div><dt>alert delay after the fall</dt><dd>1.5–2.6 s</dd></div><div><dt>training images needed</dt><dd>0</dd></div></dl>
+  <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>Ultralytics YOLO11-pose</li><li>ByteTrack / BoT-SORT</li><li>OpenCV</li><li>NumPy</li><li>pytest</li></ul>
+  <section class="section" id="s1"><div class="section-label"><b>01</b>How it works</div><div>
+<h2>Pose keypoints in, explainable alerts out</h2>
+<p>Each frame goes through a pose model with a tracker, so every person keeps an ID. From the shoulders and hips the pipeline computes three simple features, and a state machine per person turns them into an alert only after a lying posture is held, which filters out bending, sitting and quick crouches.</p>
+<figure class="fig"><div class="scroll-x"><svg class="diagram" viewBox="0 0 1226 160" role="img" aria-label="Processing pipeline, from the video frame to the outputs">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>
+<rect x="1" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="14" y="30" class="d-num">01</text>
+<text x="14" y="54" class="d-title">Video frame</text>
+<text x="14" y="78" class="d-text">any MP4 / camera clip</text>
+<text x="14" y="96" class="d-text">frame time t</text>
+<line x1="178" y1="75" x2="207" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="211" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="224" y="30" class="d-num">02</text>
+<text x="224" y="54" class="d-title">YOLO11n-pose</text>
+<text x="224" y="78" class="d-text">+ ByteTrack IDs</text>
+<text x="224" y="96" class="d-text">box + 17 keypoints</text>
+<text x="224" y="114" class="d-text">per person</text>
+<line x1="388" y1="75" x2="417" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="421" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="434" y="30" class="d-num">03</text>
+<text x="434" y="54" class="d-title">Keypoint gate</text>
+<text x="434" y="78" class="d-text">shoulders / hips</text>
+<text x="434" y="96" class="d-text">conf ≥ 0.5</text>
+<text x="434" y="114" class="d-text">else box only</text>
+<line x1="598" y1="75" x2="627" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="631" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="644" y="30" class="d-num">04</text>
+<text x="644" y="54" class="d-title">Features</text>
+<text x="644" y="78" class="d-text">torso angle θ</text>
+<text x="644" y="96" class="d-text">aspect ratio w/h</text>
+<text x="644" y="114" class="d-text">hip velocity v</text>
+<line x1="808" y1="75" x2="837" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="841" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="854" y="30" class="d-num">05</text>
+<text x="854" y="54" class="d-title">State machine</text>
+<text x="854" y="78" class="d-text">one per track</text>
+<text x="854" y="96" class="d-text">time thresholds</text>
+<text x="854" y="114" class="d-text">recovery</text>
+<line x1="1018" y1="75" x2="1047" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="1051" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
+<text x="1064" y="30" class="d-num">06</text>
+<text x="1064" y="54" class="d-title">Outputs</text>
+<text x="1064" y="78" class="d-text">annotated MP4</text>
+<text x="1064" y="96" class="d-text">events JSON</text>
+<text x="1064" y="114" class="d-text">trace CSV</text>
+</svg></div><figcaption>Fig. 01 · Processing pipeline, from the video frame to the outputs</figcaption></figure>
+<p>The state machine is what keeps false alarms down: a fall must be followed by a lying posture held for one second before the alert fires, and the alert closes on its own when the person stands up again.</p>
+<figure class="fig"><div class="scroll-x"><svg class="diagram" viewBox="0 0 876 250" role="img" aria-label="Per-person state machine with the default thresholds">
+<defs><marker id="sh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+<rect x="1" y="92" width="148" height="56" rx="28" fill="var(--surface)" stroke="var(--ok)" stroke-width="2"/>
+<circle cx="24" cy="120" r="6" fill="var(--ok)"/>
+<text x="38" y="125" class="d-title">UPRIGHT</text>
+<text x="75" y="172" class="d-text" text-anchor="middle">standing or walking</text>
+<rect x="243" y="92" width="148" height="56" rx="28" fill="var(--surface)" stroke="var(--warn)" stroke-width="2"/>
+<circle cx="266" cy="120" r="6" fill="var(--warn)"/>
+<text x="280" y="125" class="d-title">FALLING</text>
+<text x="317" y="172" class="d-text" text-anchor="middle">fast drop or tilt</text>
+<rect x="485" y="92" width="148" height="56" rx="28" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"/>
+<circle cx="508" cy="120" r="6" fill="var(--accent)"/>
+<text x="522" y="125" class="d-title">FALLEN</text>
+<text x="559" y="172" class="d-text" text-anchor="middle">lying posture</text>
+<rect x="727" y="92" width="148" height="56" rx="28" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"/>
+<circle cx="750" cy="120" r="6" fill="var(--accent)"/>
+<text x="764" y="125" class="d-title">ALERT</text>
+<text x="801" y="172" class="d-text" text-anchor="middle">event logged</text>
+<line x1="152" y1="120" x2="239" y2="120" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#sh)"/>
+<text x="196" y="82" class="d-edge" text-anchor="middle">v ≥ 0.8 h/s</text>
+<text x="196" y="68" class="d-edge" text-anchor="middle">or θ ≥ 45°</text>
+<line x1="394" y1="120" x2="481" y2="120" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#sh)"/>
+<text x="438" y="82" class="d-edge" text-anchor="middle">θ ≥ 60°</text>
+<text x="438" y="68" class="d-edge" text-anchor="middle">or w/h ≥ 1.2</text>
+<line x1="636" y1="120" x2="723" y2="120" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#sh)"/>
+<text x="680" y="82" class="d-edge" text-anchor="middle">held 1.0 s</text>
+<path d="M317 90 V26 H75 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
+<text x="196" y="20" class="d-edge" text-anchor="middle">no lying for 2 s</text>
+<path d="M801 90 V8 H75 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
+<text x="438" y="22" class="d-edge" text-anchor="middle">upright held 2 s</text>
+</svg></div><figcaption>Fig. 02 · Per-person state machine with the default thresholds</figcaption></figure>
+<dl class="defs"><div><dt>Torso angle θ</dt><dd>Angle of the shoulder-to-hip line from vertical: about 0° standing, about 90° lying.</dd></div><div><dt>Aspect ratio w/h</dt><dd>Width over height of the person box; the fallback when shoulders or hips are hidden.</dd></div><div><dt>Hip velocity v</dt><dd>Downward speed of the hips in body heights per second, so it does not depend on distance to the camera.</dd></div></dl>
+
+</div></section><section class="section" id="s2"><div class="section-label"><b>02</b>Results</div><div>
+<h2>What the rules see during a fall</h2>
+<p>The chart below is the real trace written by <code>--trace-csv</code> for the clip in the demo. The torso angle jumps past 45° when the person goes down, the state moves to FALLEN almost immediately, and the alert opens one second later, at 3.31 s.</p>
+<figure class="fig"><svg class="chart" viewBox="0 0 900 358" role="img" aria-label="Feature trace of track #1 on GMDCSA24 fall-05, with the state shown as background bands">
+<rect x="46.0" y="14" width="328.5" height="170" fill="var(--ok)" opacity=".12"/>
+<rect x="46.0" y="218" width="328.5" height="110" fill="var(--ok)" opacity=".12"/>
+<text x="50.0" y="27" class="c-band">UPRIGHT</text>
+<rect x="374.5" y="14" width="4.6" height="170" fill="var(--warn)" opacity=".12"/>
+<rect x="374.5" y="218" width="4.6" height="110" fill="var(--warn)" opacity=".12"/>
+<text x="378.5" y="27" class="c-band">FALLING</text>
+<rect x="379.1" y="14" width="145.7" height="170" fill="var(--accent)" opacity=".12"/>
+<rect x="379.1" y="218" width="145.7" height="110" fill="var(--accent)" opacity=".12"/>
+<text x="383.1" y="27" class="c-band">FALLEN</text>
+<rect x="524.8" y="14" width="363.2" height="170" fill="var(--accent)" opacity=".22"/>
+<rect x="524.8" y="218" width="363.2" height="110" fill="var(--accent)" opacity=".22"/>
+<text x="528.8" y="27" class="c-band">ALERT</text>
+<rect x="46" y="14" width="842" height="170" fill="none" stroke="var(--line)"/>
+<text x="40" y="188.0" class="c-axis" text-anchor="end">0</text>
+<text x="40" y="145.5" class="c-axis" text-anchor="end">25</text>
+<text x="40" y="103.0" class="c-axis" text-anchor="end">50</text>
+<text x="40" y="60.5" class="c-axis" text-anchor="end">75</text>
+<text x="40" y="18.0" class="c-axis" text-anchor="end">100</text>
+<line x1="46" x2="888" y1="107.5" y2="107.5" stroke="var(--muted)" stroke-dasharray="5 4"/>
+<text x="884" y="102.5" class="c-axis" text-anchor="end">45° falling</text>
+<line x1="46" x2="888" y1="82.0" y2="82.0" stroke="var(--muted)" stroke-dasharray="5 4"/>
+<text x="884" y="77.0" class="c-axis" text-anchor="end">60° lying</text>
+<polyline points="46.0,182.5 50.6,183.8 55.3,183.1 59.9,183.9 69.1,183.5 73.8,183.2 78.4,183.1 85.3,181.5 90.0,181.3 94.6,181.0 99.2,181.1 103.8,180.3 108.5,180.4 113.1,180.6 117.7,180.2 122.3,180.9 127.0,182.5 131.6,183.3 138.5,181.2 143.2,183.8 147.8,182.0 152.4,184.0 157.0,183.8 161.7,182.9 166.3,181.5 170.9,182.6 175.5,182.4 180.2,183.3 187.1,182.8 191.7,182.9 196.4,183.0 201.0,180.2 205.6,181.5 210.2,180.4 214.9,175.8 219.5,176.8 224.3,178.2 228.7,177.1 233.4,177.1 240.3,178.8 244.9,181.4 249.6,177.5 254.2,179.5 258.8,178.8 263.4,177.3 268.1,178.1 272.7,175.2 277.3,176.9 281.9,176.7 286.6,182.1 293.5,183.3 298.1,182.7 302.8,182.6 307.4,182.0 312.0,181.4 316.6,182.1 321.3,179.6 325.9,179.9 330.5,176.8 335.1,173.1 342.1,164.0 346.7,150.4 351.3,134.7 356.0,131.1 360.6,124.1 365.2,114.9 369.8,111.0 374.5,91.3 379.1,64.0 383.7,60.8 388.4,44.7 395.3,39.3 399.9,37.7 404.5,38.7 409.2,35.5 413.8,44.0 418.4,44.4 423.0,44.7 427.7,45.7 432.3,51.7 436.9,57.3 441.6,62.6 448.5,73.2 453.1,73.8 457.7,68.8 462.4,62.7 467.0,55.9 471.6,47.0 476.3,43.3 480.9,42.6 485.5,34.6 490.1,24.9 497.1,19.9 501.7,16.3 506.3,14.0 511.0,18.5 515.6,25.6 520.2,24.6 524.8,22.7 529.5,19.4 534.1,19.0 538.7,14.0 543.3,15.9 550.3,14.0 554.9,14.0 559.5,14.0 564.2,14.0 568.8,14.0 573.4,14.0 578.0,14.0 582.7,14.0 587.3,14.0 591.9,14.0 596.5,14.0 603.5,14.0 608.1,14.0 612.7,14.0 617.4,14.0 622.0,14.0 626.6,14.0 631.2,14.0 635.9,14.0 640.5,14.0 645.1,14.0 652.1,14.0 656.7,14.0 661.3,14.0 665.9,14.0 670.6,14.0 675.2,14.0 679.8,14.0 684.4,14.0 689.1,14.0 693.7,14.0 698.3,14.0 705.3,14.0 709.9,14.0 714.5,14.0 719.1,14.0 723.8,14.0 728.4,14.0 733.0,14.0 737.6,14.0 742.3,14.0 746.9,14.0 751.5,14.0 758.5,14.0 763.1,14.0 767.7,14.0 772.3,14.0 777.0,14.0 781.6,14.0 786.2,14.0 790.8,14.0 795.5,14.0 800.1,14.0 807.0,14.0 811.7,14.0 816.3,14.0 820.9,14.0 825.5,14.0 830.2,14.0 834.8,14.0 839.4,14.0 844.0,14.0 848.7,14.0 853.3,14.0 860.2,14.0 864.9,14.0 869.5,14.0 874.1,14.0 878.7,14.0 883.4,14.0 888.0,14.0" fill="none" stroke="var(--text)" stroke-width="1.8"/>
+<text x="52" y="176" class="c-label">torso angle θ (degrees)</text>
+<rect x="46" y="218" width="842" height="110" fill="none" stroke="var(--line)"/>
+<line x1="46" x2="888" y1="291.3" y2="291.3" stroke="var(--line)"/>
+<text x="40" y="332.0" class="c-axis" text-anchor="end">-0.5</text>
+<text x="40" y="304.5" class="c-axis" text-anchor="end">-0.12</text>
+<text x="40" y="277.0" class="c-axis" text-anchor="end">0.25</text>
+<text x="40" y="249.5" class="c-axis" text-anchor="end">0.62</text>
+<text x="40" y="222.0" class="c-axis" text-anchor="end">1</text>
+<line x1="46" x2="888" y1="232.7" y2="232.7" stroke="var(--muted)" stroke-dasharray="5 4"/>
+<text x="884" y="227.7" class="c-axis" text-anchor="end">0.8 h/s</text>
+<polyline points="69.1,291.3 73.8,288.0 78.4,286.3 85.3,291.9 90.0,290.3 94.6,292.3 99.2,293.9 103.8,292.2 108.5,292.8 113.1,295.5 117.7,297.2 122.3,291.5 127.0,291.8 131.6,290.7 138.5,288.5 143.2,288.8 147.8,289.0 152.4,288.5 157.0,286.7 161.7,289.2 166.3,292.9 170.9,294.1 175.5,292.9 180.2,294.6 187.1,295.9 191.7,294.8 196.4,295.3 201.0,290.9 205.6,285.4 210.2,287.7 214.9,289.4 219.5,286.5 224.3,285.6 228.7,286.6 233.4,286.5 240.3,292.6 244.9,293.6 249.6,291.3 254.2,290.7 258.8,291.1 263.4,290.9 268.1,290.8 272.7,290.4 277.3,289.7 281.9,290.6 286.6,289.9 293.5,287.7 298.1,289.4 302.8,288.4 307.4,282.9 312.0,283.6 316.6,276.6 321.3,272.2 325.9,269.8 330.5,267.8 335.1,266.3 342.1,270.1 346.7,269.0 351.3,266.7 356.0,265.4 360.6,255.9 365.2,244.1 369.8,240.2 374.5,249.6 379.1,249.9 383.7,248.1 388.4,262.4 395.3,269.3 399.9,279.8 404.5,293.5 409.2,300.9 413.8,288.3 418.4,278.0 423.0,284.2 427.7,274.7 432.3,269.9 436.9,270.0 441.6,268.4 448.5,260.8 453.1,259.3 457.7,259.3 462.4,262.1 467.0,269.8 471.6,276.0 476.3,280.0 480.9,283.8 485.5,295.4 490.1,296.2 497.1,310.0 501.7,310.6 506.3,306.1 511.0,302.0 515.6,292.9 520.2,294.8 524.8,290.2 529.5,289.3 534.1,287.8 538.7,290.1 543.3,284.9 550.3,286.3 554.9,292.1 559.5,289.0 564.2,289.7 568.8,290.0 573.4,290.0 578.0,287.6 582.7,291.1 587.3,288.9 591.9,288.5 596.5,291.2 603.5,290.7 608.1,290.2 612.7,288.3 617.4,289.8 622.0,287.4 626.6,289.1 631.2,293.3 635.9,295.2 640.5,290.0 645.1,294.3 652.1,295.1 656.7,291.4 661.3,295.3 665.9,293.1 670.6,288.8 675.2,282.3 679.8,294.7 684.4,293.8 689.1,288.8 693.7,291.5 698.3,294.6 705.3,292.1 709.9,294.1 714.5,296.9 719.1,295.2 723.8,285.6 728.4,295.4 733.0,294.7 737.6,288.2 742.3,281.5 746.9,290.7 751.5,289.8 758.5,291.3 763.1,284.0 767.7,292.9 772.3,285.3 777.0,295.0 781.6,300.9 786.2,290.3 790.8,293.4 795.5,304.7 800.1,285.9 807.0,281.6 811.7,289.1 816.3,290.4 820.9,297.6 825.5,304.6 830.2,286.2 834.8,283.9 839.4,290.9 844.0,297.4 848.7,298.2 853.3,290.8 860.2,288.8 864.9,280.1 869.5,294.2 874.1,281.8 878.7,293.8 883.4,288.3 888.0,285.2" fill="none" stroke="var(--text)" stroke-width="1.8"/>
+<text x="52" y="320" class="c-label">hip velocity v (body heights / s)</text>
+<text x="46.0" y="346" class="c-axis" text-anchor="middle">0 s</text>
+<text x="190.6" y="346" class="c-axis" text-anchor="middle">1 s</text>
+<text x="335.1" y="346" class="c-axis" text-anchor="middle">2 s</text>
+<text x="479.7" y="346" class="c-axis" text-anchor="middle">3 s</text>
+<text x="624.3" y="346" class="c-axis" text-anchor="middle">4 s</text>
+<text x="768.9" y="346" class="c-axis" text-anchor="middle">5 s</text>
+</svg><figcaption>Fig. 03 · Feature trace of track #1 on GMDCSA24 fall-05, with the state shown as background bands</figcaption></figure>
+<div class="frames"><figure><img src="../../assets/projects/fall-detection-alert/step-1.jpg" alt="1.2 s · upright, green box" loading="lazy" width="640" height="360"><figcaption>1.2 s · upright, green box</figcaption></figure><figure><img src="../../assets/projects/fall-detection-alert/step-2.jpg" alt="2.6 s · fallen, red box" loading="lazy" width="640" height="360"><figcaption>2.6 s · fallen, red box</figcaption></figure><figure><img src="../../assets/projects/fall-detection-alert/step-3.jpg" alt="4.2 s · alert banner open" loading="lazy" width="640" height="360"><figcaption>4.2 s · alert banner open</figcaption></figure></div>
+<div class="scroll-x"><table class="data-table"><thead><tr><th>Run</th><th>Hits</th><th>Misses</th><th>False alerts</th><th>Alert delay</th></tr></thead><tbody><tr><td data-label="Run">imgsz 1280, conf 0.30 (defaults)</td><td data-label="Hits"><b>9 / 9</b></td><td data-label="Misses">0</td><td data-label="False alerts">0</td><td data-label="Alert delay">1.5–2.6 s (two at +4.0 s)</td></tr><tr><td data-label="Run">imgsz 1280, conf 0.35</td><td data-label="Hits">8 / 9</td><td data-label="Misses">1</td><td data-label="False alerts">0</td><td data-label="Alert delay">1.5–2.6 s</td></tr><tr><td data-label="Run">imgsz 640, conf 0.35</td><td data-label="Hits">6 / 9</td><td data-label="Misses">3</td><td data-label="False alerts">0</td><td data-label="Alert delay">1.5–2.4 s</td></tr></tbody></table></div>
+<p class="note">Fall mix: nine falls from GMDCSA24 (three subjects, day and night) plus one outdoor snow clip. Own measurement on one compilation, not a validation. Misses came from the pose model losing a person lying on the floor, not from the rules.</p>
+
+</div></section><section class="section" id="s3"><div class="section-label"><b>03</b>Run it</div><div>
+<h2>Three commands to try it</h2>
+<div class="terminal"><div class="terminal-bar"><span>install · Linux, macOS, Windows</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>git clone https://github.com/karemdm/fall-detection-alert.git
+cd fall-detection-alert
+python -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+pip install -e .</code></pre></div><div class="terminal"><div class="terminal-bar"><span>run on a sample clip</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>fall-alert -i samples/gmdcsa24-s1-fall-05.mp4 -o outputs/fall-05.mp4 --events-json outputs/fall-05.json</code></pre></div><div class="terminal"><div class="terminal-bar"><span>small or distant people</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>fall-alert -i input.mp4 -o outputs/out.mp4 --imgsz 1280 --trace-csv outputs/trace.csv</code></pre></div>
+</div></section><section class="section" id="s4"><div class="section-label"><b>04</b>Design decisions</div><div>
+<h2>Why it is built this way</h2>
+<div class="grid"><article class="card"><h3>Rules instead of a trained classifier</h3><p>Every threshold has a physical meaning and can be tuned from the CLI, and every alert can be explained from the trace. No fall dataset is needed to start.</p></article><article class="card"><h3>Confirmation time</h3><p>An alert needs a lying posture held for 1.0 s, with short gaps tolerated. That removes alarms from bending, tying shoes or sitting down quickly.</p></article><article class="card"><h3>Velocity in body heights</h3><p>Normalizing the hip speed by the person's height makes the same threshold work near and far from the camera.</p></article><article class="card"><h3>Graceful degradation</h3><p>When shoulders or hips are not visible, the box aspect ratio takes over, so occlusion does not silence the detector.</p></article></div>
+</div></section>
+  <nav class="next-project"><a href="../../#projects">← All projects</a><a href="../fall-detection-alert/">Next project: Fall Detection Alert →</a></nav>
+</main>
+<footer>
+  <div class="container">
+    <span>&copy; Karem Daiane Marcomini</span>
+    <span><a href="https://github.com/karemdm" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/karem-marcomini/" rel="noopener">LinkedIn</a> · <a href="http://lattes.cnpq.br/9252140833340424" rel="noopener">Lattes</a></span>
+  </div>
+</footer>
+<script>
+(function(){
+  var root=document.documentElement,btns=document.querySelectorAll('.theme-switch button');
+  function apply(c){root.dataset.theme=c;btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.choice===c))})}
+  btns.forEach(function(b){b.addEventListener('click',function(){try{localStorage.setItem('kdm.theme',b.dataset.choice)}catch(e){}apply(b.dataset.choice)})});
+  apply(root.dataset.theme||'light');
+  document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+    var code=b.closest('.terminal').querySelector('code').innerText;
+    (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(function(){var t=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=t},1400)}).catch(function(){});
+  })});
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.target.tagName==='VIDEO'){e.isIntersecting?e.target.play().catch(function(){}):e.target.pause()}
+    else if(e.isIntersecting){e.target.classList.add('is-seen');io.unobserve(e.target)}
+  })},{threshold:.2}):null;
+  document.querySelectorAll('video,.fig,.frames figure,.stats div').forEach(function(el){if(io){if(el.tagName!=='VIDEO')el.classList.add('reveal');io.observe(el)}});
+})();
+</script>
+</body>
+</html>
