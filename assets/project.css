@@ -10,7 +10,7 @@
 .p-hero h1{max-width:none}
 .demo{margin:0 0 28px}
 .demo-frame{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#0e0f11;box-shadow:0 30px 80px -40px rgba(0,0,0,.45)}
-.demo video{display:block;width:100%;height:auto;aspect-ratio:16/9}
+.demo video{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain;background:#0e0f11}
 .demo figcaption,.fig figcaption,.frames figcaption{font:12px var(--mono);color:var(--muted);margin-top:10px}
 .p-stack{margin:22px 0 8px}
 .fig{margin:24px 0;border:1px solid var(--line);border-radius:4px;background:var(--surface);padding:18px}
