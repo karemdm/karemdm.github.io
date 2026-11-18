@@ -112,6 +112,13 @@ p{margin:0 0 14px;max-width:68ch}
 .filters button[aria-pressed=true]{color:var(--text);border-bottom-color:var(--accent)}
 .grid .card[hidden]{display:none}
 
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;border-top:2px solid var(--rule);border-bottom:2px solid var(--rule)}
+.stats div{padding:20px 20px 22px;display:flex;flex-direction:column-reverse;gap:6px}
+.stats div+div{border-left:1px solid var(--line)}
+.stats dt{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.stats dd{margin:0;font-size:clamp(28px,3.4vw,40px);font-weight:600;letter-spacing:-.02em;line-height:1}
+.stats div:first-child dd{color:var(--accent)}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats div:nth-child(3){border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
 footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a{color:var(--muted)}
@@ -171,6 +178,13 @@ footer a{color:var(--muted)}
       <figcaption><span>github.com/karemdm</span><span>Brazil</span></figcaption>
     </figure>
   </div>
+
+  <dl class="stats">
+    <div><dt>Years in AI &amp; vision</dt><dd>10+</dd></div>
+    <div><dt>Open-source projects</dt><dd>10</dd></div>
+    <div><dt>Ph.D. Computer Science</dt><dd>USP</dd></div>
+    <div><dt>Visiting scholar</dt><dd>Pitt</dd></div>
+  </dl>
 
     <section id="about" class="section" aria-labelledby="about-h">
       <div class="section-label"><b>01</b>About</div>
