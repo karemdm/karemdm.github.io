@@ -131,6 +131,20 @@ p{margin:0 0 14px;max-width:68ch}
 .p-kind{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
 .p-id{font-size:19px;font-weight:600;overflow-wrap:anywhere}
 .p-go{font:13px var(--mono);color:var(--muted)}
+.pubs{list-style:none;margin:0;padding:0;border-top:2px solid var(--rule)}
+.pubs>li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.pub-n{font:13px var(--mono);color:var(--accent);padding-top:3px}
+.pub-meta{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 6px}
+.pub-meta span+span::before{content:" · "}
+.pubs h3{font-size:18px;margin:0 0 6px}
+.pubs h3 a{text-decoration:none}
+.pub-authors{font-size:15px;color:var(--muted);margin:0 0 4px}
+.pub-authors b{color:var(--text);font-weight:600}
+.pub-venue{font:13px var(--mono);color:var(--muted);margin:0}
+.pub-venue a{color:var(--muted)}
+.pub-more{margin:18px 0 0;color:var(--muted);font-size:15px}
+.links{margin:auto 0 0;display:flex;flex-wrap:wrap;gap:6px 18px}
+.links .link{margin:0}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
 footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a{color:var(--muted)}
@@ -162,6 +176,7 @@ footer a{color:var(--muted)}
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -317,9 +332,9 @@ footer a{color:var(--muted)}
         <article class="card" data-cat="medical">
           <p class="card-meta"><span>Medical imaging</span><span>Jupyter notebooks</span></p>
           <h3>Lung Opacity Localization</h3>
-          <p>Experiments on localizing lung opacities in chest X-rays using YOLOv5 and YOLOX detectors fused with Weighted Boxes Fusion, plus a transfer-learning CNN classifier. Includes preprocessing, training, ensemble and mAP evaluation notebooks. Research code, not for clinical use.</p>
+          <p>Experiments on localizing lung opacities in chest X-rays using YOLOv5 and YOLOX detectors fused with Weighted Boxes Fusion, plus a transfer-learning CNN classifier. Includes preprocessing, training, ensemble and mAP evaluation notebooks. Companion code for the article published in <em>Big Data and Cognitive Computing</em> (2024). Research code, not for clinical use.</p>
           <ul class="chips"><li>Python</li><li>TensorFlow/Keras</li><li>PyTorch</li><li>YOLOv5</li><li>YOLOX</li><li>ensemble-boxes</li><li>pandas</li><li>OpenCV</li><li>pydicom</li><li>Jupyter</li></ul>
-          <a class="link" href="https://github.com/karemdm/lung-opacity-localization" rel="noopener">View code &rarr;</a>
+          <p class="links"><a class="link" href="https://github.com/karemdm/lung-opacity-localization" rel="noopener">View code &rarr;</a><a class="link" href="https://doi.org/10.3390/bdcc8080084" rel="noopener">Paper · BDCC 2024 &rarr;</a></p>
         </article>
         <article class="card" data-cat="video">
           <p class="card-meta"><span>Video analytics</span><span>CLI</span></p>
@@ -346,8 +361,81 @@ footer a{color:var(--muted)}
       </div>
     </section>
 
+    <section id="publications" class="section" aria-labelledby="pub-h">
+      <div class="section-label"><b>05</b>Publications</div>
+      <div>
+      <h2 id="pub-h">Selected publications</h2>
+      <ol class="pubs">
+        <li>
+          <span class="pub-n">01</span>
+          <div>
+            <p class="pub-meta"><span>2025</span><span>Journal article</span></p>
+            <h3><a href="https://doi.org/10.3390/jsan14010010" rel="noopener">A Novel Approach to Road Safety: Detecting Illegal Overtaking Using Smartphone Cameras and Deep Learning for Vehicle Auditing</a></h3>
+            <p class="pub-authors"><b>Marcomini, K. D.</b>; Brito, V. C.; Balestra, G. C.; Tosetto, V.; Duarte, L. C.; Donadon, A. R.</p>
+            <p class="pub-venue">Journal of Sensor and Actuator Networks, v. 14, art. 10 · <a href="https://doi.org/10.3390/jsan14010010" rel="noopener">doi:10.3390/jsan14010010</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">02</span>
+          <div>
+            <p class="pub-meta"><span>2024</span><span>Journal article</span></p>
+            <h3><a href="https://doi.org/10.3390/bdcc8080084" rel="noopener">Ensemble of Convolutional Neural Networks for COVID-19 Localization on Chest X-ray Images</a></h3>
+            <p class="pub-authors"><b>Marcomini, K. D.</b></p>
+            <p class="pub-venue">Big Data and Cognitive Computing, v. 8, art. 84 · <a href="https://doi.org/10.3390/bdcc8080084" rel="noopener">doi:10.3390/bdcc8080084</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">03</span>
+          <div>
+            <p class="pub-meta"><span>2020</span><span>Journal article</span></p>
+            <h3><a href="https://doi.org/10.1016/j.ejrad.2020.109197" rel="noopener">Impact of radiomics on the breast ultrasound radiologist’s clinical practice: from lumpologist to data wrangler</a></h3>
+            <p class="pub-authors">Fleury, E. F. C.; <b>Marcomini, K. D.</b></p>
+            <p class="pub-venue">European Journal of Radiology, v. 131, art. 109197 · <a href="https://doi.org/10.1016/j.ejrad.2020.109197" rel="noopener">doi:10.1016/j.ejrad.2020.109197</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">04</span>
+          <div>
+            <p class="pub-meta"><span>2019</span><span>Journal article</span></p>
+            <h3><a href="https://doi.org/10.1186/s41747-019-0112-7" rel="noopener">Performance of machine learning software to classify breast lesions using BI-RADS radiomic features on ultrasound images</a></h3>
+            <p class="pub-authors">Fleury, E. F. C.; <b>Marcomini, K. D.</b></p>
+            <p class="pub-venue">European Radiology Experimental, v. 3, art. 34 · <a href="https://doi.org/10.1186/s41747-019-0112-7" rel="noopener">doi:10.1186/s41747-019-0112-7</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">05</span>
+          <div>
+            <p class="pub-meta"><span>2018</span><span>Journal article</span></p>
+            <h3><a href="https://doi.org/10.1177/1533033818763461" rel="noopener">The Feasibility of Classifying Breast Masses Using a Computer-Assisted Diagnosis (CAD) System Based on Ultrasound Elastography and BI-RADS Lexicon</a></h3>
+            <p class="pub-authors">Fleury, E. F. C.; Gianini, A. C.; <b>Marcomini, K. D.</b>; Oliveira, V.</p>
+            <p class="pub-venue">Technology in Cancer Research &amp; Treatment, v. 17 · <a href="https://doi.org/10.1177/1533033818763461" rel="noopener">doi:10.1177/1533033818763461</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">06</span>
+          <div>
+            <p class="pub-meta"><span>2018</span><span>Journal article</span></p>
+            <h3><a href="https://doi.org/10.3390/bioengineering5030062" rel="noopener">Evaluation of a Computer-Aided Diagnosis System in the Classification of Lesions in Breast Strain Elastography Imaging</a></h3>
+            <p class="pub-authors"><b>Marcomini, K. D.</b>; Fleury, E. F. C.; Oliveira, V. M.; Carneiro, A. A. O.; Schiabel, H.; Nishikawa, R. M.</p>
+            <p class="pub-venue">Bioengineering (Basel), v. 5, art. 62 · <a href="https://doi.org/10.3390/bioengineering5030062" rel="noopener">doi:10.3390/bioengineering5030062</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">07</span>
+          <div>
+            <p class="pub-meta"><span>2016</span><span>Journal article</span></p>
+            <h3><a href="https://doi.org/10.1155/2016/7987212" rel="noopener">Application of Artificial Neural Network Models in Segmentation and Classification of Nodules in Breast Ultrasound Digital Images</a></h3>
+            <p class="pub-authors"><b>Marcomini, K. D.</b>; Carneiro, A. A. O.; Schiabel, H.</p>
+            <p class="pub-venue">International Journal of Biomedical Imaging, v. 2016, pp. 1–13 · <a href="https://doi.org/10.1155/2016/7987212" rel="noopener">doi:10.1155/2016/7987212</a></p>
+          </div>
+        </li>
+      </ol>
+      <p class="pub-more">Full list on <a href="https://scholar.google.com/citations?user=eMh5PGEAAAAJ" rel="noopener">Google Scholar</a>, <a href="https://orcid.org/0000-0002-8594-4654" rel="noopener">ORCID</a> and <a href="http://lattes.cnpq.br/9252140833340424" rel="noopener">Lattes</a>.</p>
+      </div>
+    </section>
+
     <section id="education" class="section" aria-labelledby="edu-h">
-      <div class="section-label"><b>05</b>Education</div>
+      <div class="section-label"><b>06</b>Education</div>
       <div>
       <h2 id="edu-h">Education &amp; Teaching</h2>
       <article class="card">
@@ -360,13 +448,16 @@ footer a{color:var(--muted)}
     </section>
 
     <section id="contact" class="section" aria-labelledby="contact-h">
-      <div class="section-label"><b>06</b>Contact</div>
+      <div class="section-label"><b>07</b>Contact</div>
       <div>
       <h2 id="contact-h">Profiles &amp; contact</h2>
       <ul class="profiles">
         <li><a class="card" href="https://github.com/karemdm" rel="noopener"><span class="p-kind">GitHub</span><span class="p-id">karemdm</span><span class="p-go">Code &amp; projects →</span></a></li>
         <li><a class="card" href="https://www.linkedin.com/in/karem-marcomini/?locale=en_US" rel="noopener"><span class="p-kind">LinkedIn</span><span class="p-id">karem-marcomini</span><span class="p-go">Professional profile →</span></a></li>
         <li><a class="card" href="http://lattes.cnpq.br/9252140833340424" rel="noopener"><span class="p-kind">Lattes</span><span class="p-id">9252140833340424</span><span class="p-go">Academic CV →</span></a></li>
+        <li><a class="card" href="https://scholar.google.com/citations?user=eMh5PGEAAAAJ" rel="noopener"><span class="p-kind">Google Scholar</span><span class="p-id">eMh5PGEAAAAJ</span><span class="p-go">Citations →</span></a></li>
+        <li><a class="card" href="https://orcid.org/0000-0002-8594-4654" rel="noopener"><span class="p-kind">ORCID</span><span class="p-id">0000-0002-8594-4654</span><span class="p-go">Research record →</span></a></li>
+        <li><a class="card" href="https://bv.fapesp.br/pt/pesquisador/90602/karem-daiane-marcomini/" rel="noopener"><span class="p-kind">FAPESP</span><span class="p-id">BV researcher 90602</span><span class="p-go">Grants &amp; fellowships →</span></a></li>
       </ul>
       </div>
     </section>
@@ -378,7 +469,9 @@ footer a{color:var(--muted)}
     <span>
       <a href="https://github.com/karemdm" rel="noopener">GitHub</a> ·
       <a href="https://www.linkedin.com/in/karem-marcomini/?locale=en_US" rel="noopener">LinkedIn</a> ·
-      <a href="http://lattes.cnpq.br/9252140833340424" rel="noopener">Lattes</a>
+      <a href="http://lattes.cnpq.br/9252140833340424" rel="noopener">Lattes</a> ·
+      <a href="https://scholar.google.com/citations?user=eMh5PGEAAAAJ" rel="noopener">Scholar</a> ·
+      <a href="https://orcid.org/0000-0002-8594-4654" rel="noopener">ORCID</a>
     </span>
   </div>
 </footer>
