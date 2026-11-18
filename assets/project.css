@@ -8,6 +8,7 @@
 .crumbs span{color:var(--text)}
 .p-hero{padding:clamp(28px,4vw,48px) 0 28px}
 .p-hero h1{max-width:none}
+.p-hero .lede{max-width:none}
 .demo{margin:0 0 28px}
 .demo-frame{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#0e0f11;box-shadow:0 30px 80px -40px rgba(0,0,0,.45)}
 .demo video{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain;background:#0e0f11}
