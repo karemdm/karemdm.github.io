@@ -260,7 +260,7 @@ def page(slug, P, lang, nxt):
 <meta property="og:image" content="https://karemdm.github.io/assets/projects/{slug}/{P['poster']}">
 <link rel="alternate" hreflang="en" href="https://karemdm.github.io/projects/{slug}/">
 <link rel="alternate" hreflang="pt-BR" href="https://karemdm.github.io/pt/projects/{slug}/">
-<link rel="icon" href="{depth}assets/karem.gif">
+<link rel="icon" href="https://avatars.githubusercontent.com/u/72208245?v=4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
