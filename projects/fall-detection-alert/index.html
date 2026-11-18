@@ -187,17 +187,27 @@ document.documentElement.dataset.theme=c;})();
 
 </div></section><section class="section" id="s3"><div class="section-label"><b>03</b>Run it</div><div>
 <h2>Three commands to try it</h2>
-<div class="terminal"><div class="terminal-bar"><span>install · Linux, macOS, Windows</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>git clone https://github.com/karemdm/fall-detection-alert.git
+<div class="terminal" data-tabs><div class="terminal-bar"><span>install</span><span class="os-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="0">Linux / macOS</button><button type="button" role="tab" aria-selected="false" data-tab="1">Windows · PowerShell</button><button type="button" role="tab" aria-selected="false" data-tab="2">Windows · cmd</button></span><button type="button" class="copy" data-copy>Copy</button></div><pre data-pane="0"><code>git clone https://github.com/karemdm/fall-detection-alert.git
+cd fall-detection-alert
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install -e .</code></pre><pre data-pane="1" hidden><code>git clone https://github.com/karemdm/fall-detection-alert.git
 cd fall-detection-alert
 python -m venv .venv
-source .venv/bin/activate      # Windows: .venv\Scripts\activate
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+pip install -e .</code></pre><pre data-pane="2" hidden><code>git clone https://github.com/karemdm/fall-detection-alert.git
+cd fall-detection-alert
+python -m venv .venv
+.venv\Scripts\activate.bat
 pip install -r requirements.txt
 pip install -e .</code></pre></div><div class="terminal"><div class="terminal-bar"><span>run on a sample clip</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>fall-alert -i samples/gmdcsa24-s1-fall-05.mp4 -o outputs/fall-05.mp4 --events-json outputs/fall-05.json</code></pre></div><div class="terminal"><div class="terminal-bar"><span>small or distant people</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>fall-alert -i input.mp4 -o outputs/out.mp4 --imgsz 1280 --trace-csv outputs/trace.csv</code></pre></div>
 </div></section><section class="section" id="s4"><div class="section-label"><b>04</b>Design decisions</div><div>
 <h2>Why it is built this way</h2>
 <div class="grid"><article class="card"><h3>Rules instead of a trained classifier</h3><p>Every threshold has a physical meaning and can be tuned from the CLI, and every alert can be explained from the trace. No fall dataset is needed to start.</p></article><article class="card"><h3>Confirmation time</h3><p>An alert needs a lying posture held for 1.0 s, with short gaps tolerated. That removes alarms from bending, tying shoes or sitting down quickly.</p></article><article class="card"><h3>Velocity in body heights</h3><p>Normalizing the hip speed by the person's height makes the same threshold work near and far from the camera.</p></article><article class="card"><h3>Graceful degradation</h3><p>When shoulders or hips are not visible, the box aspect ratio takes over, so occlusion does not silence the detector.</p></article><article class="card"><h3>Objects are not people</h3><p>A track can only fall after it showed a body pose (6 confident keypoints) in some frame. Bins, coats and shadows detected as a person never do, so their wide boxes no longer raise alerts.</p></article><article class="card"><h3>Repairing id switches</h3><p>When a person falls the box goes from tall to wide and the tracker often starts a new id. A new track that appears within one body height of a track lost moments ago continues its state and alert.</p></article></div>
 </div></section>
-  <nav class="next-project"><a href="../../#projects">← All projects</a><a href="../fall-detection-alert/">Next project: Fall Detection Alert →</a></nav>
+  <nav class="next-project"><a href="../../#projects">← All projects</a></nav>
 </main>
 <footer>
   <div class="container">
@@ -212,9 +222,13 @@ pip install -e .</code></pre></div><div class="terminal"><div class="terminal-ba
   btns.forEach(function(b){b.addEventListener('click',function(){try{localStorage.setItem('kdm.theme',b.dataset.choice)}catch(e){}apply(b.dataset.choice)})});
   apply(root.dataset.theme||'light');
   document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
-    var code=b.closest('.terminal').querySelector('code').innerText;
+    var code=b.closest('.terminal').querySelector('pre:not([hidden]) code').innerText;
     (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(function(){var t=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=t},1400)}).catch(function(){});
   })});
+  document.querySelectorAll('[data-tabs]').forEach(function(box){box.querySelectorAll('[data-tab]').forEach(function(t){t.addEventListener('click',function(){
+    box.querySelectorAll('[data-tab]').forEach(function(x){x.setAttribute('aria-selected',String(x===t))});
+    box.querySelectorAll('[data-pane]').forEach(function(p){p.hidden=p.dataset.pane!==t.dataset.tab});
+  })})});
   var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){
     if(e.target.tagName==='VIDEO'){e.isIntersecting?e.target.play().catch(function(){}):e.target.pause()}
     else if(e.isIntersecting){e.target.classList.add('is-seen');io.unobserve(e.target)}
