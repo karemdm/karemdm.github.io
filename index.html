@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0e0f11">
 <title>Karem Daiane Marcomini, Ph.D. | Senior AI &amp; Computer Vision Engineer</title>
 <meta name="description" content="Portfolio of Karem Daiane Marcomini, Ph.D. in Computer Science: Senior AI and Computer Vision Engineer bridging academic research and industrial deep learning solutions.">
 <meta property="og:type" content="website">
@@ -14,113 +15,167 @@
 <link rel="icon" href="https://avatars.githubusercontent.com/u/72208245?v=4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+(function(){var c='system';try{c=localStorage.getItem('kdm.theme')||'system'}catch(e){}
+var d=c==='system'?(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'):c;
+document.documentElement.dataset.theme=d;document.documentElement.dataset.choice=c;})();
+</script>
 <style>
 :root{
-  --bg:#f8fafc;
-  --surface:#ffffff;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:#e2e8f0;
-  --accent:#2563eb;
-  --accent-contrast:#ffffff;
-  --chip-bg:#eff6ff;
-  --chip-text:#1d4ed8;
-  --shadow:0 1px 3px rgba(15,23,42,.08),0 8px 24px rgba(15,23,42,.05);
+  color-scheme:dark;
+  --bg:#0e0f11;--surface:#15171a;--surface-2:#1d2024;
+  --text:#e9e7e1;--muted:#a6a8a2;--line:#2e3136;--rule:#e9e7e1;
+  --accent:#ff6b57;--accent-ink:#1a0f0c;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --label-col:176px;
 }
-@media (prefers-color-scheme:dark){
-  :root{
-    --bg:#0b1120;
-    --surface:#111a2e;
-    --text:#e5e7eb;
-    --muted:#9ca3af;
-    --border:#1f2a44;
-    --accent:#60a5fa;
-    --accent-contrast:#0b1120;
-    --chip-bg:#16233f;
-    --chip-text:#93c5fd;
-    --shadow:0 1px 3px rgba(0,0,0,.4);
-  }
+:root[data-theme=light]{
+  color-scheme:light;
+  --bg:#f5f3ec;--surface:#fcfbf7;--surface-2:#ebe8de;
+  --text:#1b1c1e;--muted:#54575c;--line:#d0ccbf;--rule:#1b1c1e;
+  --accent:#b02a1c;--accent-ink:#fff;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.65;overflow-x:hidden}
-a{color:var(--accent)}
-.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
-header.site{border-bottom:1px solid var(--border);background:var(--surface)}
-nav{display:flex;flex-wrap:wrap;gap:6px 18px;padding:14px 0;font-size:.92rem}
-nav a{color:var(--muted);text-decoration:none;font-weight:500}
-nav a:hover{color:var(--accent)}
-.hero{display:flex;gap:32px;align-items:center;padding:56px 0 48px;flex-wrap:wrap}
-.hero img{width:160px;height:160px;border-radius:50%;border:4px solid var(--surface);box-shadow:var(--shadow);flex:none}
-.hero-text{flex:1 1 300px;min-width:0}
-h1{font-size:clamp(1.9rem,6vw,2.8rem);line-height:1.15;margin:0 0 8px;letter-spacing:-.02em}
-.tagline{font-size:1.1rem;font-weight:600;color:var(--accent);margin:0 0 14px}
-.hero p.lead{color:var(--muted);margin:0 0 22px;max-width:62ch}
-.btns{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-block;padding:10px 18px;border-radius:8px;font-weight:600;text-decoration:none;border:1px solid var(--accent);color:var(--accent);font-size:.95rem}
-.btn.primary{background:var(--accent);color:var(--accent-contrast)}
-.btn:hover{opacity:.88}
-.btn:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-section{padding:44px 0;border-top:1px solid var(--border)}
-h2{font-size:1.5rem;margin:0 0 20px;letter-spacing:-.01em}
-h3{font-size:1.1rem;margin:0 0 8px}
-p{margin:0 0 12px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
-.chips li{background:var(--chip-bg);color:var(--chip-text);padding:4px 11px;border-radius:999px;font-size:.84rem;font-weight:500}
-.skill-group{margin-bottom:18px}
-.skill-group h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;box-shadow:var(--shadow)}
-.card+.card{margin-top:16px}
-.card ul{margin:8px 0 0;padding-left:20px}
-.card li{margin-bottom:6px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
-.grid .card{display:flex;flex-direction:column;margin:0}
-.grid .card .chips{margin:6px 0 16px}
-.grid .card a.link{margin-top:auto;font-weight:600;text-decoration:none}
-.grid .card a.link:hover{text-decoration:underline}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--text);text-underline-offset:4px;text-decoration-color:var(--line);transition:color .15s,text-decoration-color .15s}
+a:hover{color:var(--accent);text-decoration-color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.container{max-width:1160px;margin:0 auto;padding:0 28px}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.site-header .container{display:flex;align-items:center;gap:24px;min-height:64px}
+.brand{font-weight:600;font-size:19px;text-decoration:none;white-space:nowrap}
+.brand:hover{color:var(--text)}
+nav.primary{display:flex;gap:24px;font-size:15px;margin-left:auto}
+nav.primary a{text-decoration:none;color:var(--muted);white-space:nowrap}
+nav.primary a:hover{color:var(--accent)}
+.theme-switch{display:flex;border:1px solid var(--line);border-radius:3px;font:12px var(--mono)}
+.theme-switch button{background:none;border:0;color:var(--muted);font:inherit;padding:5px 9px;cursor:pointer}
+.theme-switch button+button{border-left:1px solid var(--line)}
+.theme-switch button[aria-pressed=true]{color:var(--accent)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:32px clamp(32px,5vw,72px);padding:clamp(36px,5vw,64px) 0 clamp(48px,6vw,80px);align-items:center}
+.meta{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 20px}
+.meta span+span::before{content:" · "}
+.meta span:first-child{color:var(--accent)}
+h1{font-size:clamp(30px,4vw,46px);line-height:1.1;letter-spacing:-.025em;font-weight:600;margin:0 0 18px;max-width:20ch}
+.lede{font-size:18px;color:var(--muted);max-width:62ch;margin:0 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.button{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;font-weight:600;font-size:16px;border:1px solid var(--text);border-radius:3px;text-decoration:none;color:var(--text);transition:color .15s,border-color .15s,background .15s}
+.button:hover{border-color:var(--accent);color:var(--accent)}
+.button-primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.button-primary:hover{background:var(--text);border-color:var(--text);color:var(--bg)}
+.portrait{justify-self:end;margin:0;border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:10px;max-width:240px;width:100%}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:2px}
+.portrait figcaption{font:12px var(--mono);color:var(--muted);padding:10px 2px 0;display:flex;justify-content:space-between}
+
+/* sections */
+.section{border-top:1px solid var(--line);padding:72px 0;display:grid;grid-template-columns:var(--label-col) minmax(0,1fr);gap:0 40px}
+.section-label{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:8px}
+.section-label b{color:var(--accent);font-weight:500;margin-right:6px}
+h2{font-size:clamp(24px,2.6vw,32px);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin:0 0 24px}
+h3{font-size:19px;font-weight:600;line-height:1.3;margin:0 0 8px}
+p{margin:0 0 14px;max-width:68ch}
 .muted{color:var(--muted)}
-footer{border-top:1px solid var(--border);padding:28px 0;color:var(--muted);font-size:.9rem;background:var(--surface)}
-footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+/* tags */
+.chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0}
+.chips li{font:12px/1 var(--mono);border:1px solid var(--line);color:var(--muted);padding:6px 10px;border-radius:999px}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px 32px}
+.skill-group h3{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:12px}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:24px}
+.card+.card{margin-top:16px}
+.card ul{margin:10px 0 0;padding-left:20px}
+.card li{margin-bottom:8px}
+.card li::marker{color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}
+.grid .card{display:flex;flex-direction:column;margin:0;transition:border-color .2s}
+.grid .card:hover{border-color:var(--accent)}
+.grid .card p{font-size:16px;color:var(--muted)}
+.grid .card .chips{margin:4px 0 18px}
+.card .link{margin-top:auto;font:13px var(--mono);text-decoration:none;color:var(--accent)}
+
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
+footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+footer a{color:var(--muted)}
+
+@media (max-width:900px){
+  html{scroll-padding-top:16px}
+  .site-header{position:static}
+  .site-header .container{flex-wrap:wrap;gap:8px 16px;padding-top:12px;padding-bottom:12px}
+  nav.primary{order:3;width:100%;margin:0;overflow-x:auto;scrollbar-width:none}
+  .theme-switch{margin-left:auto}
+  .hero{grid-template-columns:1fr}
+  .portrait{justify-self:start;max-width:220px;order:-1}
+  .section{grid-template-columns:1fr;padding:56px 0}
+  .section-label{padding:0 0 12px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .container{padding:0 20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<header class="site">
-  <div class="wrap">
-    <nav aria-label="Primary">
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#top">Karem Marcomini</a>
+    <nav class="primary" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#education">Education &amp; Teaching</a>
+      <a href="#education">Education</a>
     </nav>
+    <div class="theme-switch" role="group" aria-label="Color theme">
+      <button type="button" data-choice="system">auto</button>
+      <button type="button" data-choice="light">light</button>
+      <button type="button" data-choice="dark">dark</button>
+    </div>
   </div>
 </header>
 
-<main>
-  <div class="wrap">
-    <div class="hero">
-      <img src="https://avatars.githubusercontent.com/u/72208245?v=4" alt="Portrait of Karem Daiane Marcomini" width="160" height="160">
-      <div class="hero-text">
-        <h1>Karem Daiane Marcomini, Ph.D.</h1>
-        <p class="tagline">Senior AI &amp; Computer Vision Engineer · Ph.D. in Computer Science</p>
-        <p class="lead">Over 10 years of experience bridging advanced academic research and practical, high-impact industrial solutions, building end-to-end deep learning pipelines from data processing to production deployment.</p>
-        <div class="btns">
-          <a class="btn primary" href="https://github.com/karemdm" rel="noopener">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/karem-marcomini/?locale=en_US" rel="noopener">LinkedIn</a>
-          <a class="btn" href="http://lattes.cnpq.br/9252140833340424" rel="noopener">Lattes</a>
-        </div>
+<main id="top" class="container">
+  <div class="hero">
+    <div>
+      <p class="meta"><span>Computer Vision &amp; AI</span><span>Ph.D. in Computer Science</span><span>10+ years</span></p>
+      <h1>Karem Daiane Marcomini, Ph.D.</h1>
+      <p class="lede">Senior AI &amp; Computer Vision Engineer. Over 10 years of experience bridging advanced academic research and practical, high-impact industrial solutions, building end-to-end deep learning pipelines from data processing to production deployment.</p>
+      <div class="btns">
+        <a class="button button-primary" href="#projects">See projects</a>
+        <a class="button" href="https://github.com/karemdm" rel="noopener">GitHub</a>
+        <a class="button" href="https://www.linkedin.com/in/karem-marcomini/?locale=en_US" rel="noopener">LinkedIn</a>
+        <a class="button" href="http://lattes.cnpq.br/9252140833340424" rel="noopener">Lattes</a>
       </div>
     </div>
+    <figure class="portrait">
+      <img src="https://avatars.githubusercontent.com/u/72208245?v=4" alt="Portrait of Karem Daiane Marcomini" width="320" height="320">
+      <figcaption><span>github.com/karemdm</span><span>Brazil</span></figcaption>
+    </figure>
+  </div>
 
-    <section id="about" aria-labelledby="about-h">
+    <section id="about" class="section" aria-labelledby="about-h">
+      <div class="section-label"><b>01</b>About</div>
+      <div>
       <h2 id="about-h">About</h2>
       <p>I am a Senior AI and Computer Vision Engineer with a Ph.D. in Computer Science and over 10 years of experience. My work bridges the gap between advanced academic research and practical, high-impact industrial solutions.</p>
       <p>I specialize in developing end-to-end deep learning pipelines, from data processing to production deployment.</p>
+      </div>
     </section>
 
-    <section id="skills" aria-labelledby="skills-h">
+    <section id="skills" class="section" aria-labelledby="skills-h">
+      <div class="section-label"><b>02</b>Skills</div>
+      <div>
       <h2 id="skills-h">Skills</h2>
+      <div class="skills">
       <div class="skill-group">
         <h3>Core Specialties</h3>
         <ul class="chips"><li>Computer Vision</li><li>Deep Learning</li><li>Digital Image Processing</li><li>Medical AI</li><li>Pattern Recognition</li></ul>
@@ -137,9 +192,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
         <h3>Environment</h3>
         <ul class="chips"><li>Python</li><li>Git</li><li>Docker</li><li>Linux</li></ul>
       </div>
+      </div>
+      </div>
     </section>
 
-    <section id="experience" aria-labelledby="exp-h">
+    <section id="experience" class="section" aria-labelledby="exp-h">
+      <div class="section-label"><b>03</b>Experience</div>
+      <div>
       <h2 id="exp-h">Experience</h2>
       <article class="card">
         <h3>Industrial AI | Pix Force</h3>
@@ -159,10 +218,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
           <li><strong>Academic Contribution:</strong> Research Scholar visitor at the University of Pittsburgh (USA) with a focus on feature extraction algorithms.</li>
         </ul>
       </article>
+      </div>
     </section>
 
-    <section id="projects" aria-labelledby="proj-h">
-      <h2 id="proj-h">Featured Projects</h2>
+    <section id="projects" class="section" aria-labelledby="proj-h">
+      <div class="section-label"><b>04</b>Projects</div>
+      <div>
+      <h2 id="proj-h">Featured projects</h2>
       <div class="grid">
         <article class="card">
           <h3>NutriLabel OCR</h3>
@@ -225,9 +287,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
           <a class="link" href="https://github.com/karemdm/video-frame-picker" rel="noopener">View code &rarr;</a>
         </article>
       </div>
+      </div>
     </section>
 
-    <section id="education" aria-labelledby="edu-h">
+    <section id="education" class="section" aria-labelledby="edu-h">
+      <div class="section-label"><b>05</b>Education</div>
+      <div>
       <h2 id="edu-h">Education &amp; Teaching</h2>
       <article class="card">
         <ul>
@@ -235,12 +300,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
           <li><strong>Professor (Undergraduate level):</strong> Teaching Digital Image Processing, Computer Graphics, and Human-Computer Interaction.</li>
         </ul>
       </article>
+      </div>
     </section>
-  </div>
 </main>
 
 <footer>
-  <div class="wrap">
+  <div class="container">
     <span>&copy; Karem Daiane Marcomini</span>
     <span>
       <a href="https://github.com/karemdm" rel="noopener">GitHub</a> ·
@@ -249,5 +314,22 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-betw
     </span>
   </div>
 </footer>
+<script>
+(function(){
+  var root=document.documentElement,mq=matchMedia('(prefers-color-scheme: light)');
+  var btns=document.querySelectorAll('.theme-switch button');
+  function apply(c){
+    root.dataset.choice=c;
+    root.dataset.theme=c==='system'?(mq.matches?'light':'dark'):c;
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.choice===c))});
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    try{localStorage.setItem('kdm.theme',b.dataset.choice)}catch(e){}
+    apply(b.dataset.choice);
+  })});
+  if(mq.addEventListener)mq.addEventListener('change',function(){if(root.dataset.choice==='system')apply('system')});
+  apply(root.dataset.choice||'system');
+})();
+</script>
 </body>
 </html>
