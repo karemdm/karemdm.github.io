@@ -125,6 +125,12 @@ p{margin:0 0 14px;max-width:68ch}
 .timeline>li::before{content:"";position:absolute;left:-27px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
 .tl-kind{display:block;font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:8px}
 .timeline .card+.card{margin-top:0}
+.profiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px}
+.profiles a.card{display:flex;flex-direction:column;gap:6px;text-decoration:none;height:100%;transition:border-color .2s}
+.profiles a.card:hover{border-color:var(--accent);color:var(--text)}
+.p-kind{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.p-id{font-size:19px;font-weight:600;overflow-wrap:anywhere}
+.p-go{font:13px var(--mono);color:var(--muted)}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
 footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a{color:var(--muted)}
@@ -157,6 +163,7 @@ footer a{color:var(--muted)}
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
     </nav>
     <div class="theme-switch" role="group" aria-label="Color theme">
       <button type="button" data-choice="system">auto</button>
@@ -349,6 +356,18 @@ footer a{color:var(--muted)}
           <li><strong>Professor (Undergraduate level):</strong> Teaching Digital Image Processing, Computer Graphics, and Human-Computer Interaction.</li>
         </ul>
       </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-h">
+      <div class="section-label"><b>06</b>Contact</div>
+      <div>
+      <h2 id="contact-h">Profiles &amp; contact</h2>
+      <ul class="profiles">
+        <li><a class="card" href="https://github.com/karemdm" rel="noopener"><span class="p-kind">GitHub</span><span class="p-id">karemdm</span><span class="p-go">Code &amp; projects →</span></a></li>
+        <li><a class="card" href="https://www.linkedin.com/in/karem-marcomini/?locale=en_US" rel="noopener"><span class="p-kind">LinkedIn</span><span class="p-id">karem-marcomini</span><span class="p-go">Professional profile →</span></a></li>
+        <li><a class="card" href="http://lattes.cnpq.br/9252140833340424" rel="noopener"><span class="p-kind">Lattes</span><span class="p-id">9252140833340424</span><span class="p-go">Academic CV →</span></a></li>
+      </ul>
       </div>
     </section>
 </main>
