@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f3ec">
+<title>PPE Compliance VLM | Karem Marcomini</title>
+<meta name="description" content="Uso de EPI em vídeo: rastreamento de pessoas com YOLO e re-identificação, detecção de EPI usado / ausente, voto temporal por trabalhador e relatórios curtos de um modelo visão-linguagem, num app Streamlit.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PPE Compliance VLM | Karem Marcomini">
+<meta property="og:description" content="Uso de EPI em vídeo: rastreamento de pessoas com YOLO e re-identificação, detecção de EPI usado / ausente, voto temporal por trabalhador e relatórios curtos de um modelo visão-linguagem, num app Streamlit.">
+<meta property="og:url" content="https://karemdm.github.io/pt/projects/ppe-compliance-vlm/">
+<meta property="og:image" content="https://karemdm.github.io/assets/projects/ppe-compliance-vlm/poster.jpg">
+<link rel="alternate" hreflang="en" href="https://karemdm.github.io/projects/ppe-compliance-vlm/">
+<link rel="alternate" hreflang="pt-BR" href="https://karemdm.github.io/pt/projects/ppe-compliance-vlm/">
+<link rel="icon" href="https://avatars.githubusercontent.com/u/72208245?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+(function(){var c='light';try{c=localStorage.getItem('kdm.theme')==='dark'?'dark':'light'}catch(e){}
+document.documentElement.dataset.theme=c;})();
+</script>
+<link rel="stylesheet" href="../../../assets/site.css">
+<link rel="stylesheet" href="../../../assets/project.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../../../pt/">Karem Marcomini</a>
+    <nav class="primary" aria-label="Primary">
+      <a href="../../../pt/#projects">Projetos</a>
+      <a href="https://github.com/karemdm/ppe-compliance-vlm" rel="noopener">GitHub</a>
+    </nav>
+    <div class="lang-switch"><a href="../../../projects/ppe-compliance-vlm/" lang="en" hreflang="en">EN</a><a href="./" aria-current="page" lang="pt-BR">PT</a></div>
+    <div class="theme-switch" role="group" aria-label="Tema de cores">
+      <button type="button" data-choice="light">claro</button>
+      <button type="button" data-choice="dark">escuro</button>
+    </div>
+  </div>
+</header>
+<main class="container project">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../pt/">Início</a> / <a href="../../../pt/#projects">Projetos</a> / <span>PPE Compliance VLM</span></nav>
+  <div class="p-hero">
+    <p class="meta"><span>Análise de vídeo</span><span>App Streamlit · CLI</span><span>AGPL-3.0</span></p>
+    <h1>PPE Compliance VLM</h1>
+    <p class="lede">Verifica o equipamento de proteção individual de cada trabalhador num vídeo. Cada pessoa é rastreada e re-identificada, cada capacete, colete, luva, óculos e máscara é associado a quem o usa, e um voto de maioria em 3 segundos só deixa o trabalhador vermelho quando a evidência se mantém. No fim, um modelo visão-linguagem escreve uma frase de relatório para cada trabalhador com violação confirmada.</p>
+    <div class="btns"><a class="button button-primary" href="https://github.com/karemdm/ppe-compliance-vlm" rel="noopener">Ver código no GitHub</a><a class="button" href="../../../pt/#projects">← Todos os projetos</a></div>
+  </div>
+  <figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/ppe-compliance-vlm/demo.mp4" poster="../../../assets/projects/ppe-compliance-vlm/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Gravação do app Streamlit: o filtro de infrações fica só com capacete e colete, um vídeo de obra é enviado, os trabalhadores ficam verdes ou vermelhos na prévia e aparecem os cartões de relatório com texto do VLM."></video></div><figcaption>O app Streamlit de ponta a ponta: escolher as infrações, enviar o vídeo, acompanhar a prévia e ler os cartões do VLM. Gravado na CPU de um notebook; processamento e etapa do VLM acelerados. Imagens: Pexels.</figcaption></figure>
+  <dl class="stats"><div><dt>de voto de maioria antes do vermelho</dt><dd>3 s</dd></div><div><dt>tipos de infração (capacete, colete, luvas…)</dt><dd>7</dd></div><div><dt>detectores de EPI para escolher</dt><dd>2</dd></div><div><dt>frase do VLM por trabalhador sinalizado</dt><dd>1</dd></div></dl>
+  <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>Ultralytics YOLOv8 / YOLO26</li><li>ByteTrack</li><li>Re-ID</li><li>SmolVLM / Idefics2</li><li>Transformers</li><li>Streamlit</li><li>OpenCV</li></ul>
+  <section class="section" id="s1"><div class="section-label"><b>01</b>Como funciona</div><div>
+<h2>Das detecções a uma decisão por trabalhador</h2>
+<p>Dois detectores rodam em cada quadro: um encontra as pessoas e o outro encontra os itens de EPI como usados ou ausentes. Cada item é atribuído à pessoa cuja caixa ele sobrepõe, então o sistema raciocina por trabalhador e não por caixa. A re-identificação mantém o mesmo id quando alguém sai e volta.</p>
+<figure class="fig"><div class="scroll-x"><svg class="diagram" viewBox="0 0 1226 160" role="img" aria-label="Pipeline de processamento, do quadro ao relatório por trabalhador">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>
+<rect x="1" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="14" y="30" class="d-num">01</text>
+<text x="14" y="54" class="d-title">Quadro do vídeo</text>
+<text x="14" y="78" class="d-text">upload no app</text>
+<text x="14" y="96" class="d-text">ou CLI sem interface</text>
+<line x1="178" y1="75" x2="207" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="211" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="224" y="30" class="d-num">02</text>
+<text x="224" y="54" class="d-title">YOLO de pessoas</text>
+<text x="224" y="78" class="d-text">yolov8n + ByteTrack</text>
+<text x="224" y="96" class="d-text">um id por pessoa</text>
+<line x1="388" y1="75" x2="417" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="421" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="434" y="30" class="d-num">03</text>
+<text x="434" y="54" class="d-title">Re-ID</text>
+<text x="434" y="78" class="d-text">aparência HSV</text>
+<text x="434" y="96" class="d-text">galeria por pessoa</text>
+<line x1="598" y1="75" x2="627" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="631" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="644" y="30" class="d-num">04</text>
+<text x="644" y="54" class="d-title">YOLO de EPI</text>
+<text x="644" y="78" class="d-text">SafetyVision v8s</text>
+<text x="644" y="96" class="d-text">ou CHD YOLO26-L</text>
+<line x1="808" y1="75" x2="837" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="841" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="854" y="30" class="d-num">05</text>
+<text x="854" y="54" class="d-title">Voto temporal</text>
+<text x="854" y="78" class="d-text">janela de 3 s</text>
+<text x="854" y="96" class="d-text">maioria ≥ 60%</text>
+<line x1="1018" y1="75" x2="1047" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="1051" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
+<text x="1064" y="30" class="d-num">06</text>
+<text x="1064" y="54" class="d-title">Relatórios + VLM</text>
+<text x="1064" y="78" class="d-text">cartão por pessoa</text>
+<text x="1064" y="96" class="d-text">SmolVLM / Idefics2</text>
+</svg></div><figcaption>Fig. 01 · Pipeline de processamento, do quadro ao relatório por trabalhador</figcaption></figure>
+<p>Quadros isolados são ruidosos, então a caixa do trabalhador nunca os segue diretamente. Para cada item de EPI, os últimos 3 segundos são lidos como usado, ausente ou desconhecido, e o estado só muda quando 60% dos quadros informativos concordam; quadros desconhecidos nunca o viram.</p>
+<figure class="fig"><div class="scroll-x"><svg class="diagram" viewBox="0 0 634 250" role="img" aria-label="Estado por trabalhador e por item, com os limiares padrão">
+<defs><marker id="sh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+<rect x="1" y="92" width="148" height="56" rx="28" fill="var(--surface)" stroke="var(--muted)" stroke-width="2"/>
+<circle cx="24" cy="120" r="6" fill="var(--muted)"/>
+<text x="38" y="125" class="d-title">CHECKING</text>
+<text x="75" y="172" class="d-text" text-anchor="middle">cinza, primeiros 3 s</text>
+<rect x="243" y="92" width="148" height="56" rx="28" fill="var(--surface)" stroke="var(--ok)" stroke-width="2"/>
+<circle cx="266" cy="120" r="6" fill="var(--ok)"/>
+<text x="280" y="125" class="d-title">OK</text>
+<text x="317" y="172" class="d-text" text-anchor="middle">caixa verde</text>
+<rect x="485" y="92" width="148" height="56" rx="28" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"/>
+<circle cx="508" cy="120" r="6" fill="var(--accent)"/>
+<text x="522" y="125" class="d-title">VIOLATION</text>
+<text x="559" y="172" class="d-text" text-anchor="middle">vermelha, item listado</text>
+<line x1="152" y1="120" x2="239" y2="120" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#sh)"/>
+<text x="196" y="82" class="d-edge" text-anchor="middle">≥ 60% usado</text>
+<text x="196" y="68" class="d-edge" text-anchor="middle">em 3 s</text>
+<line x1="394" y1="120" x2="481" y2="120" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#sh)"/>
+<text x="438" y="82" class="d-edge" text-anchor="middle">≥ 60% ausente</text>
+<text x="438" y="68" class="d-edge" text-anchor="middle">em 3 s</text>
+<path d="M559 90 V44 H317 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
+<text x="438" y="38" class="d-edge" text-anchor="middle">≥ 60% usado de novo</text>
+<path d="M75 90 V18 H559 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
+<text x="317" y="12" class="d-edge" text-anchor="middle">≥ 60% ausente</text>
+</svg></div><figcaption>Fig. 02 · Estado por trabalhador e por item, com os limiares padrão</figcaption></figure>
+<dl class="defs"><div><dt>Associação</dt><dd>Uma caixa de EPI pertence à pessoa que ela mais sobrepõe (interseção sobre a menor caixa ≥ 0,05).</dd></div><div><dt>Re-identificação</dt><dd>Uma trilha nova é comparada por aparência com todas as pessoas já vistas; acima de 0,85 o id antigo é mantido.</dd></div><div><dt>Consolidação</dt><dd>Os relatórios só incluem trabalhadores vistos ao menos 3 vezes e com a violação em ao menos 10% dos quadros.</dd></div></dl>
+
+</div></section><section class="section" id="s2"><div class="section-label"><b>02</b>Resultados</div><div>
+<h2>O que ele encontra em vídeos reais de obra</h2>
+<p>Numa compilação de seis clipes com obras, carpinteiros, um armazém e uma estrutura industrial (cerca de 83 s), o modelo SafetyVision padrão confirmou estas violações:</p>
+<figure class="fig"><svg class="chart" viewBox="0 0 900 142" role="img" aria-label="Violações confirmadas por tipo na compilação de seis clipes">
+<text x="208" y="25" class="c-label" text-anchor="end">NO-Safety Vest</text>
+<rect x="220" y="5" width="610.0" height="30" rx="3" fill="var(--accent)"/>
+<text x="838.0" y="25" class="c-label">20</text>
+<text x="208" y="69" class="c-label" text-anchor="end">NO-Hardhat</text>
+<rect x="220" y="49" width="152.5" height="30" rx="3" fill="var(--accent)"/>
+<text x="380.5" y="69" class="c-label">5</text>
+<text x="208" y="113" class="c-label" text-anchor="end">NO-Goggles</text>
+<rect x="220" y="93" width="91.5" height="30" rx="3" fill="var(--accent)"/>
+<text x="319.5" y="113" class="c-label">3</text>
+</svg><figcaption>Fig. 03 · Violações confirmadas por tipo na compilação de seis clipes</figcaption></figure>
+<div class="frames"><figure><img src="../../../assets/projects/ppe-compliance-vlm/step-1.jpg" alt="2 s · todos cinza enquanto verifica" loading="lazy" width="640" height="360"><figcaption>2 s · todos cinza enquanto verifica</figcaption></figure><figure><img src="../../../assets/projects/ppe-compliance-vlm/step-2.jpg" alt="6 s · verde para EPI usado, vermelho para ausente" loading="lazy" width="640" height="360"><figcaption>6 s · verde para EPI usado, vermelho para ausente</figcaption></figure><figure><img src="../../../assets/projects/ppe-compliance-vlm/step-3.jpg" alt="10 s · decisões mantidas pelo voto" loading="lazy" width="640" height="360"><figcaption>10 s · decisões mantidas pelo voto</figcaption></figure></div>
+<div class="scroll-x"><table class="data-table"><thead><tr><th>Clipe</th><th>Violações confirmadas</th></tr></thead><tbody><tr><td data-label="Clipe">Obra</td><td data-label="Violações confirmadas">NO-Safety Vest, NO-Hardhat</td></tr><tr><td data-label="Clipe">Estrutura industrial</td><td data-label="Violações confirmadas">NO-Safety Vest, NO-Goggles</td></tr><tr><td data-label="Clipe">Carpinteiros</td><td data-label="Violações confirmadas">NO-Safety Vest</td></tr><tr><td data-label="Clipe">Corredor de armazém</td><td data-label="Violações confirmadas">NO-Safety Vest, NO-Hardhat, NO-Goggles</td></tr><tr><td data-label="Clipe">Trabalhador em conformidade</td><td data-label="Violações confirmadas"><b>nenhuma</b>: capacete e colete ficam verdes</td></tr></tbody></table></div>
+<p class="note">Imagens: clipes do Pexels listados no repositório. As respostas do VLM são saídas de modelo, então os cartões de relatório são para revisão humana.</p>
+<h3 class="sub">Dupla checagem pelo VLM</h3>
+<p>Nesta demo renderizada, o vídeo congela na primeira vez que um trabalhador tem a violação confirmada: o recorte é ampliado, o SmolVLM-500M roda nele na CPU e a resposta aparece antes de o vídeo continuar.</p>
+<figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/ppe-compliance-vlm/demo-vlm.mp4" poster="../../../assets/projects/ppe-compliance-vlm/demo-vlm.jpg" muted loop playsinline preload="none" aria-label="Demo renderizada: o quadro escurece, o trabalhador sinalizado fica destacado em amarelo e um painel lateral mostra o recorte, a violação e a resposta do VLM."></video></div><figcaption>Gerada com scripts/make_demo_video.py; o tempo real do VLM aparece na tela e a espera foi encurtada.</figcaption></figure>
+
+</div></section><section class="section" id="s3"><div class="section-label"><b>03</b>Como rodar</div><div>
+<h2>Três passos para testar</h2>
+<div class="terminal" data-tabs><div class="terminal-bar"><span>instalação</span><span class="os-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="0">Linux / macOS</button><button type="button" role="tab" aria-selected="false" data-tab="1">Windows · PowerShell</button><button type="button" role="tab" aria-selected="false" data-tab="2">Windows · cmd</button></span><button type="button" class="copy" data-copy>Copiar</button></div><pre data-pane="0"><code>git clone https://github.com/karemdm/ppe-compliance-vlm.git
+cd ppe-compliance-vlm
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install -e .</code></pre><pre data-pane="1" hidden><code>git clone https://github.com/karemdm/ppe-compliance-vlm.git
+cd ppe-compliance-vlm
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+pip install -e .</code></pre><pre data-pane="2" hidden><code>git clone https://github.com/karemdm/ppe-compliance-vlm.git
+cd ppe-compliance-vlm
+python -m venv .venv
+.venv\Scripts\activate.bat
+pip install -r requirements.txt
+pip install -e .</code></pre></div><div class="terminal"><div class="terminal-bar"><span>app Streamlit</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>ppe-compliance --vlm-model HuggingFaceTB/SmolVLM-500M-Instruct</code></pre></div><div class="terminal"><div class="terminal-bar"><span>relatório sem interface</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>ppe-compliance analyze --input samples/construction_site.mp4 --output outputs/report.json --save-video outputs/construction_site.mp4 --no-vlm</code></pre></div>
+</div></section><section class="section" id="s4"><div class="section-label"><b>04</b>Decisões de projeto</div><div>
+<h2>Por que foi construído assim</h2>
+<div class="grid"><article class="card"><h3>Um voto, não um quadro</h3><p>Detectores de EPI piscam. Uma maioria de 3 segundos com histerese elimina as caixas vermelhas piscando que tornam sistemas quadro a quadro inviáveis num monitor.</p></article><article class="card"><h3>Pessoas primeiro</h3><p>Associar o EPI a quem o usa dá uma decisão e um relatório por trabalhador, que é o que o técnico de segurança precisa.</p></article><article class="card"><h3>Re-identificação</h3><p>Trabalhadores saem do quadro e voltam. Uma galeria de aparência mantém o id, então uma pessoa vira um relatório e não cinco.</p></article><article class="card"><h3>VLM como segunda opinião</h3><p>O modelo visão-linguagem escreve uma frase curta e legível a partir do recorte. Ele só roda nos casos confirmados, então continua viável até em CPU.</p></article><article class="card"><h3>Detectores intercambiáveis</h3><p>SafetyVision (YOLOv8s, 13 classes) ou CHD (YOLO26-L); a lista de infrações se adapta ao modelo escolhido.</p></article><article class="card"><h3>Reexecução rápida</h3><p>O app guarda o vídeo processado em cache, então mudar o filtro de infrações reseleciona os relatórios na hora.</p></article></div>
+</div></section>
+  <nav class="next-project"><a href="../../../pt/#projects">← Todos os projetos</a><a href="../fall-detection-alert/">Próximo projeto: Fall Detection Alert →</a></nav>
+</main>
+<footer>
+  <div class="container">
+    <span>&copy; Karem Daiane Marcomini</span>
+  </div>
+</footer>
+<script>
+(function(){
+  var root=document.documentElement,btns=document.querySelectorAll('.theme-switch button');
+  function apply(c){root.dataset.theme=c;btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.choice===c))})}
+  btns.forEach(function(b){b.addEventListener('click',function(){try{localStorage.setItem('kdm.theme',b.dataset.choice)}catch(e){}apply(b.dataset.choice)})});
+  apply(root.dataset.theme||'light');
+  document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+    var code=b.closest('.terminal').querySelector('pre:not([hidden]) code').innerText;
+    (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(function(){var t=b.textContent;b.textContent='Copiado';setTimeout(function(){b.textContent=t},1400)}).catch(function(){});
+  })});
+  document.querySelectorAll('[data-tabs]').forEach(function(box){box.querySelectorAll('[data-tab]').forEach(function(t){t.addEventListener('click',function(){
+    box.querySelectorAll('[data-tab]').forEach(function(x){x.setAttribute('aria-selected',String(x===t))});
+    box.querySelectorAll('[data-pane]').forEach(function(p){p.hidden=p.dataset.pane!==t.dataset.tab});
+  })})});
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.target.tagName==='VIDEO'){e.isIntersecting?e.target.play().catch(function(){}):e.target.pause()}
+    else if(e.isIntersecting){e.target.classList.add('is-seen');io.unobserve(e.target)}
+  })},{threshold:.2}):null;
+  document.querySelectorAll('video,.fig,.frames figure,.stats div').forEach(function(el){if(io){if(el.tagName!=='VIDEO')el.classList.add('reveal');io.observe(el)}});
+})();
+</script>
+</body>
+</html>

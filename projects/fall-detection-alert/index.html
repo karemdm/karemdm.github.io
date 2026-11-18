@@ -123,10 +123,10 @@ document.documentElement.dataset.theme=c;})();
 <text x="438" y="68" class="d-edge" text-anchor="middle">or w/h ≥ 1.2</text>
 <line x1="636" y1="120" x2="723" y2="120" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#sh)"/>
 <text x="680" y="82" class="d-edge" text-anchor="middle">held 1.0 s</text>
-<path d="M317 90 V26 H75 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
-<text x="196" y="20" class="d-edge" text-anchor="middle">no lying for 2 s</text>
-<path d="M801 90 V8 H75 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
-<text x="438" y="22" class="d-edge" text-anchor="middle">upright held 2 s</text>
+<path d="M317 90 V44 H75 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
+<text x="196" y="38" class="d-edge" text-anchor="middle">no lying for 2 s</text>
+<path d="M801 90 V18 H75 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
+<text x="438" y="12" class="d-edge" text-anchor="middle">upright held 2 s</text>
 </svg></div><figcaption>Fig. 02 · Per-person state machine with the default thresholds</figcaption></figure>
 <dl class="defs"><div><dt>Torso angle θ</dt><dd>Angle of the shoulder-to-hip line from vertical: about 0° standing, about 90° lying.</dd></div><div><dt>Aspect ratio w/h</dt><dd>Width over height of the person box; the fallback when shoulders or hips are hidden.</dd></div><div><dt>Hip velocity v</dt><dd>Downward speed of the hips in body heights per second, so it does not depend on distance to the camera.</dd></div></dl>
 
@@ -207,7 +207,7 @@ pip install -e .</code></pre></div><div class="terminal"><div class="terminal-ba
 <h2>Why it is built this way</h2>
 <div class="grid"><article class="card"><h3>Rules instead of a trained classifier</h3><p>Every threshold has a physical meaning and can be tuned from the CLI, and every alert can be explained from the trace. No fall dataset is needed to start.</p></article><article class="card"><h3>Confirmation time</h3><p>An alert needs a lying posture held for 1.0 s, with short gaps tolerated. That removes alarms from bending, tying shoes or sitting down quickly.</p></article><article class="card"><h3>Velocity in body heights</h3><p>Normalizing the hip speed by the person's height makes the same threshold work near and far from the camera.</p></article><article class="card"><h3>Graceful degradation</h3><p>When shoulders or hips are not visible, the box aspect ratio takes over, so occlusion does not silence the detector.</p></article><article class="card"><h3>Objects are not people</h3><p>A track can only fall after it showed a body pose (6 confident keypoints) in some frame. Bins, coats and shadows detected as a person never do, so their wide boxes no longer raise alerts.</p></article><article class="card"><h3>Repairing id switches</h3><p>When a person falls the box goes from tall to wide and the tracker often starts a new id. A new track that appears within one body height of a track lost moments ago continues its state and alert.</p></article></div>
 </div></section>
-  <nav class="next-project"><a href="../../#projects">← All projects</a></nav>
+  <nav class="next-project"><a href="../../#projects">← All projects</a><a href="../ppe-compliance-vlm/">Next project: PPE Compliance VLM →</a></nav>
 </main>
 <footer>
   <div class="container">

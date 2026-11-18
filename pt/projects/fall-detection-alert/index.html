@@ -123,10 +123,10 @@ document.documentElement.dataset.theme=c;})();
 <text x="438" y="68" class="d-edge" text-anchor="middle">ou l/a ≥ 1,2</text>
 <line x1="636" y1="120" x2="723" y2="120" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#sh)"/>
 <text x="680" y="82" class="d-edge" text-anchor="middle">mantido 1,0 s</text>
-<path d="M317 90 V26 H75 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
-<text x="196" y="20" class="d-edge" text-anchor="middle">sem deitar por 2 s</text>
-<path d="M801 90 V8 H75 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
-<text x="438" y="22" class="d-edge" text-anchor="middle">em pé por 2 s</text>
+<path d="M317 90 V44 H75 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
+<text x="196" y="38" class="d-edge" text-anchor="middle">sem deitar por 2 s</text>
+<path d="M801 90 V18 H75 V89" fill="none" stroke="var(--muted)" stroke-dasharray="4 4" stroke-width="1.2" marker-end="url(#sh)"/>
+<text x="438" y="12" class="d-edge" text-anchor="middle">em pé por 2 s</text>
 </svg></div><figcaption>Fig. 02 · Máquina de estados por pessoa, com os limiares padrão</figcaption></figure>
 <dl class="defs"><div><dt>Ângulo do tronco θ</dt><dd>Ângulo da linha ombro-quadril em relação à vertical: cerca de 0° em pé, cerca de 90° deitado.</dd></div><div><dt>Proporção l/a</dt><dd>Largura sobre altura da caixa da pessoa; é o recurso quando ombros ou quadril estão ocultos.</dd></div><div><dt>Velocidade do quadril v</dt><dd>Velocidade de descida do quadril em alturas do corpo por segundo, independente da distância até a câmera.</dd></div></dl>
 
@@ -207,7 +207,7 @@ pip install -e .</code></pre></div><div class="terminal"><div class="terminal-ba
 <h2>Por que foi construído assim</h2>
 <div class="grid"><article class="card"><h3>Regras em vez de um classificador treinado</h3><p>Cada limiar tem significado físico e pode ser ajustado pela linha de comando, e cada alerta pode ser explicado pelo traço. Não é preciso um dataset de quedas para começar.</p></article><article class="card"><h3>Tempo de confirmação</h3><p>O alerta exige a postura deitada por 1,0 s, tolerando pequenas interrupções. Isso elimina alarmes ao abaixar, amarrar o sapato ou sentar rápido.</p></article><article class="card"><h3>Velocidade em alturas do corpo</h3><p>Normalizar a velocidade do quadril pela altura da pessoa faz o mesmo limiar funcionar perto ou longe da câmera.</p></article><article class="card"><h3>Degradação controlada</h3><p>Quando ombros ou quadril não aparecem, a proporção da caixa assume, então a oclusão não silencia o detector.</p></article><article class="card"><h3>Objeto não é pessoa</h3><p>Uma trilha só pode cair depois de mostrar uma pose de corpo (6 pontos-chave confiáveis) em algum quadro. Lixeiras, casacos e sombras detectados como pessoa nunca mostram, então suas caixas largas não geram mais alertas.</p></article><article class="card"><h3>Reparo de troca de ID</h3><p>Na queda a caixa passa de alta para larga e o rastreador costuma criar um ID novo. Uma trilha nova que surge a até uma altura de corpo de outra perdida há pouco continua o estado e o alerta dela.</p></article></div>
 </div></section>
-  <nav class="next-project"><a href="../../../pt/#projects">← Todos os projetos</a></nav>
+  <nav class="next-project"><a href="../../../pt/#projects">← Todos os projetos</a><a href="../ppe-compliance-vlm/">Próximo projeto: PPE Compliance VLM →</a></nav>
 </main>
 <footer>
   <div class="container">

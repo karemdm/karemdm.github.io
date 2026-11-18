@@ -187,11 +187,11 @@ document.documentElement.dataset.theme=c;})();
         </article>
         <article class="card" data-cat="video">
           <p class="card-meta"><span>Análise de vídeo</span><span>App Streamlit · CLI</span></p>
-          <h3>PPE Compliance VLM</h3>
+          <h3><a class="card-title" href="projects/ppe-compliance-vlm/">PPE Compliance VLM</a></h3>
           <p>Verifica equipamentos de proteção individual (EPI) em vídeo. Modelos YOLO com classes pareadas detectam cada item como usado ou não usado (capacete, colete, luvas, óculos, máscara), um rastreador acompanha cada trabalhador e uma votação majoritária de 3 segundos confirma as violações antes de a caixa ficar vermelha, filtrando oscilações. Um modelo visão-linguagem (SmolVLM ou Idefics2) então reconfere o recorte de cada trabalhador sinalizado, para revisão humana.</p>
           <figure class="flow"><figcaption>Fig. 02 · pipeline</figcaption><ol><li>Vídeo</li><li>YOLO EPI (usado / não usado)</li><li>ByteTrack por trabalhador</li><li>Votação majoritária de 3 s</li><li>Checagem do recorte por VLM</li><li>Relatório de violações</li></ol></figure>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8 / YOLO26</li><li>ByteTrack</li><li>SmolVLM / Idefics2</li><li>Streamlit</li><li>OpenCV</li></ul>
-          <a class="link" href="https://github.com/karemdm/ppe-compliance-vlm" rel="noopener">Ver código &rarr;</a>
+          <p class="links"><a class="link" href="projects/ppe-compliance-vlm/">Página do projeto →</a><a class="link" href="https://github.com/karemdm/ppe-compliance-vlm" rel="noopener">Ver código &rarr;</a></p>
         </article>
         <article class="card" data-cat="video">
           <p class="card-meta"><span>Análise de vídeo</span><span>CLI</span></p>
