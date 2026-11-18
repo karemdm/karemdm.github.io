@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f3ec">
+<title>NutriLabel OCR | Karem Marcomini</title>
+<meta name="description" content="Lê a tabela nutricional de qualquer foto de embalagem com 14 motores de OCR intercambiáveis, um extrator que entende o layout e checagens de coerência nutricional; CLI, interface web local, API Python e Docker.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NutriLabel OCR | Karem Marcomini">
+<meta property="og:description" content="Lê a tabela nutricional de qualquer foto de embalagem com 14 motores de OCR intercambiáveis, um extrator que entende o layout e checagens de coerência nutricional; CLI, interface web local, API Python e Docker.">
+<meta property="og:url" content="https://karemdm.github.io/pt/projects/nutrilabel-ocr/">
+<meta property="og:image" content="https://karemdm.github.io/assets/projects/nutrilabel-ocr/poster.jpg">
+<link rel="alternate" hreflang="en" href="https://karemdm.github.io/projects/nutrilabel-ocr/">
+<link rel="alternate" hreflang="pt-BR" href="https://karemdm.github.io/pt/projects/nutrilabel-ocr/">
+<link rel="icon" href="https://avatars.githubusercontent.com/u/72208245?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+(function(){var c='light';try{c=localStorage.getItem('kdm.theme')==='dark'?'dark':'light'}catch(e){}
+document.documentElement.dataset.theme=c;})();
+</script>
+<link rel="stylesheet" href="../../../assets/site.css">
+<link rel="stylesheet" href="../../../assets/project.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../../../pt/">Karem Marcomini</a>
+    <nav class="primary" aria-label="Primary">
+      <a href="../../../pt/#projects">Projetos</a>
+      <a href="https://github.com/karemdm/nutrilabel-ocr" rel="noopener">GitHub</a>
+    </nav>
+    <div class="lang-switch"><a href="../../../projects/nutrilabel-ocr/" lang="en" hreflang="en">EN</a><a href="./" aria-current="page" lang="pt-BR">PT</a></div>
+    <div class="theme-switch" role="group" aria-label="Tema de cores">
+      <button type="button" data-choice="light">claro</button>
+      <button type="button" data-choice="dark">escuro</button>
+    </div>
+  </div>
+</header>
+<main class="container project">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../pt/">Início</a> / <a href="../../../pt/#projects">Projetos</a> / <span>NutriLabel OCR</span></nav>
+  <div class="p-hero">
+    <p class="meta"><span>OCR</span><span>CLI · interface web · API Python · Docker</span><span>MIT</span></p>
+    <h1>NutriLabel OCR</h1>
+    <p class="lede">Transforma a foto de uma embalagem em dados nutricionais estruturados. Escolha qualquer um dos 14 motores de OCR, do Tesseract clássico aos modelos visão-linguagem de 2025–2026, e um extrator que entende o layout encontra cada nutriente com os valores por 100 g e por porção, em mais de 15 idiomas e até em fotos de lado. Regras de coerência nutricional corrigem erros típicos de OCR, e todos os motores são medidos no mesmo benchmark de fotos reais do Open Food Facts.</p>
+    <div class="btns"><a class="button button-primary" href="https://github.com/karemdm/nutrilabel-ocr" rel="noopener">Ver código no GitHub</a><a class="button" href="../../../pt/#projects">← Todos os projetos</a></div>
+  </div>
+  <figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/nutrilabel-ocr/demo.mp4" poster="../../../assets/projects/nutrilabel-ocr/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Gravação da interface web local: seis fotos reais de produtos são abertas, lidas com o RapidOCR, mostradas lado a lado com os valores destacados, lidas de novo com o docTR e exportadas para CSV."></video></div><figcaption>A interface web local: abrir fotos, ler com o RapidOCR, navegar pela visão lado a lado, trocar para o docTR para comparar e exportar CSV. Gravado na CPU de um notebook, leitura acelerada. Fotos: colaboradores do Open Food Facts (CC BY-SA 3.0).</figcaption></figure>
+  <dl class="stats"><div><dt>motores de OCR num único parâmetro</dt><dd>14</dd></div><div><dt>idiomas, formatos europeu e americano</dt><dd>15+</dd></div><div><dt>de F1 em fotos reais com RapidOCR em CPU</dt><dd>0,73</dd></div><div><dt>treino necessário</dt><dd>0</dd></div></dl>
+  <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>RapidOCR (ONNX)</li><li>PaddleOCR</li><li>docTR</li><li>EasyOCR</li><li>Tesseract</li><li>Surya</li><li>olmOCR / GLM-OCR</li><li>Docker</li></ul>
+  <section class="section" id="s1"><div class="section-label">Como funciona</div><div>
+<h2><span class="sec-n">01</span>De uma foto torta a números limpos</h2>
+<p>O motor de OCR só transforma pixels em palavras com posições. Todo o resto é um extrator que entende o layout e lê a tabela como uma pessoa: encontra os nomes dos nutrientes, encontra os números com unidades, associa cada número à sua linha e coluna e confere se o resultado faz sentido nutricional.</p>
+<figure class="fig"><div class="scroll-x"><svg class="diagram" viewBox="0 0 1226 160" role="img" aria-label="Pipeline de extração, da foto aos dados estruturados">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>
+<rect x="1" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="14" y="30" class="d-num">01</text>
+<text x="14" y="54" class="d-title">Foto</text>
+<text x="14" y="78" class="d-text">rotação EXIF</text>
+<text x="14" y="96" class="d-text">redimensionar</text>
+<line x1="178" y1="75" x2="207" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="211" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="224" y="30" class="d-num">02</text>
+<text x="224" y="54" class="d-title">Motor de OCR</text>
+<text x="224" y="78" class="d-text">1 de 14</text>
+<text x="224" y="96" class="d-text">palavras + caixas</text>
+<line x1="388" y1="75" x2="417" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="421" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="434" y="30" class="d-num">03</text>
+<text x="434" y="54" class="d-title">Âncoras</text>
+<text x="434" y="78" class="d-text">nomes de nutrientes</text>
+<text x="434" y="96" class="d-text">16 idiomas</text>
+<line x1="598" y1="75" x2="627" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="631" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="644" y="30" class="d-num">04</text>
+<text x="644" y="54" class="d-title">Valores</text>
+<text x="644" y="78" class="d-text">4,5 g · 1873 kJ</text>
+<text x="644" y="96" class="d-text">erros de OCR corrigidos</text>
+<line x1="808" y1="75" x2="837" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="841" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="854" y="30" class="d-num">05</text>
+<text x="854" y="54" class="d-title">Linhas e colunas</text>
+<text x="854" y="78" class="d-text">inclinação, kJ/kcal</text>
+<text x="854" y="96" class="d-text">por 100 g / porção</text>
+<line x1="1018" y1="75" x2="1047" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="1051" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
+<text x="1064" y="30" class="d-num">06</text>
+<text x="1064" y="54" class="d-title">Checagens</text>
+<text x="1064" y="78" class="d-text">repara decimais perdidos</text>
+<text x="1064" y="96" class="d-text">JSON / CSV</text>
+</svg></div><figcaption>Fig. 01 · Pipeline de extração, da foto aos dados estruturados</figcaption></figure>
+<dl class="defs"><div><dt>Qualquer motor, o mesmo extrator</dt><dd>Motores que devolvem texto em vez de caixas (OCR visão-linguagem) são dispostos numa grade, então o mesmo extrator e o mesmo benchmark valem para os 14.</dd></div><div><dt>Layouts reais de rótulo</dt><dd>Colunas por 100 g e por porção, kJ e kcal na mesma célula, colunas de %VD ignoradas, tabelas americanas, fotos de lado e tabelas horizontais.</dd></div><div><dt>Autoverificação</dt><dd>Gordura saturada ≤ gordura, açúcares ≤ carboidratos, ≤ 100 g por 100 g, kJ ≈ 4,184 × kcal: valores implausíveis são sinalizados e um separador decimal perdido é reparado.</dd></div></dl>
+
+</div></section><section class="section" id="s2"><div class="section-label">Resultados</div><div>
+<h2><span class="sec-n">02</span>Medido em fotos reais de produtos</h2>
+<p>F1 por campo nas 199 fotos de teste do dataset de nutrientes do Open Food Facts: fotos de celular, embalagens curvas, reflexos e muitos idiomas. A referência usa o OCR em nuvem do próprio dataset com o mesmo extrator.</p>
+<figure class="fig"><svg class="chart" viewBox="0 0 900 186" role="img" aria-label="F1 por campo para cada motor de OCR em fotos reais (maior é melhor)">
+<text x="208" y="25" class="c-label" text-anchor="end">OCR de referência</text>
+<rect x="220" y="5" width="610.0" height="30" rx="3" fill="var(--muted)"/>
+<text x="838.0" y="25" class="c-label">0,834</text>
+<text x="208" y="69" class="c-label" text-anchor="end">RapidOCR (CPU)</text>
+<rect x="220" y="49" width="533.9" height="30" rx="3" fill="var(--accent)"/>
+<text x="761.9" y="69" class="c-label">0,730</text>
+<text x="208" y="113" class="c-label" text-anchor="end">docTR (CPU)</text>
+<rect x="220" y="93" width="511.3" height="30" rx="3" fill="var(--accent)"/>
+<text x="739.3" y="113" class="c-label">0,699</text>
+<text x="208" y="157" class="c-label" text-anchor="end">EasyOCR (CPU)</text>
+<rect x="220" y="137" width="397.9" height="30" rx="3" fill="var(--line)"/>
+<text x="625.9" y="157" class="c-label">0,544</text>
+</svg><figcaption>Fig. 03 · F1 por campo para cada motor de OCR em fotos reais (maior é melhor)</figcaption></figure>
+<div class="frames"><figure><img src="../../../assets/projects/nutrilabel-ocr/example-1.jpg" alt="Tabela em alemão / inglês / francês, todos os valores associados" loading="lazy" width="640" height="360"><figcaption>Tabela em alemão / inglês / francês, todos os valores associados</figcaption></figure><figure><img src="../../../assets/projects/nutrilabel-ocr/example-2.jpg" alt="Rótulo espanhol com colunas por 100 g e por porção" loading="lazy" width="640" height="360"><figcaption>Rótulo espanhol com colunas por 100 g e por porção</figcaption></figure><figure><img src="../../../assets/projects/nutrilabel-ocr/example-3.jpg" alt="Foto pequena e de baixa resolução, ainda assim lida" loading="lazy" width="640" height="360"><figcaption>Foto pequena e de baixa resolução, ainda assim lida</figcaption></figure></div>
+<div class="scroll-x"><table class="data-table"><thead><tr><th>Motor</th><th>F1</th><th>Precisão</th><th>Revocação</th><th>Rótulos perfeitos</th></tr></thead><tbody><tr><td data-label="Motor">OCR de referência (tokens do dataset)</td><td data-label="F1">0,834</td><td data-label="Precisão">0,888</td><td data-label="Revocação">0,787</td><td data-label="Rótulos perfeitos">41,9 %</td></tr><tr><td data-label="Motor"><b>RapidOCR</b> (ONNX, CPU)</td><td data-label="F1"><b>0,730</b></td><td data-label="Precisão">0,856</td><td data-label="Revocação">0,636</td><td data-label="Rótulos perfeitos">17,6 %</td></tr><tr><td data-label="Motor">docTR</td><td data-label="F1">0,699</td><td data-label="Precisão">0,808</td><td data-label="Revocação">0,617</td><td data-label="Rótulos perfeitos">18,1 %</td></tr><tr><td data-label="Motor">EasyOCR</td><td data-label="F1">0,544</td><td data-label="Precisão">0,677</td><td data-label="Revocação">0,454</td><td data-label="Rótulos perfeitos">6,0 %</td></tr></tbody></table></div>
+<p class="note">O extrator foi ajustado só com o conjunto de treino; o de teste ficou separado. O motor mais leve, o RapidOCR em ONNX Runtime, é o que mais se aproxima da referência em nuvem.</p>
+<h3 class="sub">Galeria de fotos reais</h3>
+<p>Seis fotos do conjunto de teste lidas pelo RapidOCR: cada valor lido aparece destacado na cor do seu nutriente, ao lado da tabela extraída.</p>
+<figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/nutrilabel-ocr/gallery.mp4" poster="../../../assets/projects/nutrilabel-ocr/gallery.jpg" muted loop playsinline preload="none" aria-label="Galeria animada: tabelas nutricionais reais com caixas coloridas sobre os valores e a tabela extraída ao lado de cada foto."></video></div><figcaption>Gerada pelo make report a partir do benchmark. Fotos: colaboradores do Open Food Facts (CC BY-SA 3.0).</figcaption></figure>
+
+</div></section><section class="section" id="s3"><div class="section-label">Como rodar</div><div>
+<h2><span class="sec-n">03</span>Três passos para testar</h2>
+<div class="terminal" data-tabs><div class="terminal-bar"><span>instalação</span><span class="os-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="0">Linux / macOS</button><button type="button" role="tab" aria-selected="false" data-tab="1">Windows · PowerShell</button><button type="button" role="tab" aria-selected="false" data-tab="2">Windows · cmd</button></span><button type="button" class="copy" data-copy>Copiar</button></div><pre data-pane="0"><code>git clone https://github.com/karemdm/nutrilabel-ocr.git
+cd nutrilabel-ocr
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[rapidocr]"</code></pre><pre data-pane="1" hidden><code>git clone https://github.com/karemdm/nutrilabel-ocr.git
+cd nutrilabel-ocr
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -e ".[rapidocr]"</code></pre><pre data-pane="2" hidden><code>git clone https://github.com/karemdm/nutrilabel-ocr.git
+cd nutrilabel-ocr
+python -m venv .venv
+.venv\Scripts\activate.bat
+pip install -e ".[rapidocr]"</code></pre></div><div class="terminal"><div class="terminal-bar"><span>ler uma foto</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>nutrilabel read label.jpg --engine rapidocr</code></pre></div><div class="terminal"><div class="terminal-bar"><span>interface web local</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>nutrilabel ui</code></pre></div>
+</div></section><section class="section" id="s4"><div class="section-label">Decisões de projeto</div><div>
+<h2><span class="sec-n">04</span>Por que foi construído assim</h2>
+<div class="grid"><article class="card"><h3>Vários motores, um parâmetro</h3><p>Não existe um OCR melhor para tudo: precisão, velocidade, tamanho da instalação, hardware e licença se equilibram. O benchmark mede esse equilíbrio e engine="auto" segue o ranking.</p></article><article class="card"><h3>Regras legíveis</h3><p>Não precisa de dados de treino, e cada valor pode ser rastreado até as palavras e caixas de onde veio.</p></article><article class="card"><h3>Benchmark primeiro</h3><p>Toda mudança no extrator é medida em fotos reais, com precisão, revocação, taxa de rótulos perfeitos e F1 por nutriente.</p></article><article class="card"><h3>Núcleo leve</h3><p>O núcleo só precisa de NumPy e Pillow; cada motor é um extra opcional, então a instalação só com CPU fica pequena.</p></article><article class="card"><h3>Local por padrão</h3><p>CLI, interface web, API Python ou Docker, e as imagens nunca saem da máquina. O servidor web usa só a biblioteca padrão.</p></article><article class="card"><h3>Só modelos abertos</h3><p>O OCR visão-linguagem roda pelo Hugging Face ou por um servidor local Ollama / vLLM; nenhuma API paga é chamada.</p></article></div>
+</div></section>
+  <nav class="next-project"><a href="../../../pt/#projects">← Todos os projetos</a><a href="../ppe-compliance-vlm/">Próximo projeto: PPE Compliance VLM →</a></nav>
+</main>
+<footer>
+  <div class="container">
+    <span>&copy; Karem Daiane Marcomini</span>
+  </div>
+</footer>
+<script>
+(function(){
+  var root=document.documentElement,btns=document.querySelectorAll('.theme-switch button');
+  function apply(c){root.dataset.theme=c;btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.choice===c))})}
+  btns.forEach(function(b){b.addEventListener('click',function(){try{localStorage.setItem('kdm.theme',b.dataset.choice)}catch(e){}apply(b.dataset.choice)})});
+  apply(root.dataset.theme||'light');
+  document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+    var code=b.closest('.terminal').querySelector('pre:not([hidden]) code').innerText;
+    (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(function(){var t=b.textContent;b.textContent='Copiado';setTimeout(function(){b.textContent=t},1400)}).catch(function(){});
+  })});
+  document.querySelectorAll('[data-tabs]').forEach(function(box){box.querySelectorAll('[data-tab]').forEach(function(t){t.addEventListener('click',function(){
+    box.querySelectorAll('[data-tab]').forEach(function(x){x.setAttribute('aria-selected',String(x===t))});
+    box.querySelectorAll('[data-pane]').forEach(function(p){p.hidden=p.dataset.pane!==t.dataset.tab});
+  })})});
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.target.tagName==='VIDEO'){e.isIntersecting?e.target.play().catch(function(){}):e.target.pause()}
+    else if(e.isIntersecting){e.target.classList.add('is-seen');io.unobserve(e.target)}
+  })},{threshold:.2}):null;
+  document.querySelectorAll('video,.fig,.frames figure,.stats div').forEach(function(el){if(io){if(el.tagName!=='VIDEO')el.classList.add('reveal');io.observe(el)}});
+})();
+</script>
+</body>
+</html>
