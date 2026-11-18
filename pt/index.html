@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0e0f11">
+<title>Karem Daiane Marcomini, Ph.D. | Engenheira Sênior de IA e Visão Computacional</title>
+<meta name="description" content="Portfólio de Karem Daiane Marcomini, Ph.D. em Ciência da Computação: Engenheira Sênior de IA e Visão Computacional, conectando pesquisa acadêmica e soluções industriais de deep learning.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Karem Daiane Marcomini, Ph.D. | Engenheira Sênior de IA e Visão Computacional">
+<meta property="og:description" content="Engenheira Sênior de IA e Visão Computacional com mais de 10 anos de experiência. Pipelines de deep learning de ponta a ponta, do processamento de dados à implantação em produção.">
+<meta property="og:url" content="https://karemdm.github.io/pt/">
+<meta property="og:image" content="https://karemdm.github.io/assets/karem.gif">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" hreflang="en" href="https://karemdm.github.io/">
+<link rel="alternate" hreflang="pt-BR" href="https://karemdm.github.io/pt/">
+<link rel="alternate" hreflang="x-default" href="https://karemdm.github.io/">
+<link rel="icon" href="https://avatars.githubusercontent.com/u/72208245?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+(function(){var c='system';try{c=localStorage.getItem('kdm.theme')||'system'}catch(e){}
+var d=c==='system'?(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'):c;
+document.documentElement.dataset.theme=d;document.documentElement.dataset.choice=c;})();
+</script>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0e0f11;--surface:#15171a;--surface-2:#1d2024;
+  --text:#e9e7e1;--muted:#a6a8a2;--line:#2e3136;--rule:#e9e7e1;
+  --accent:#ff6b57;--accent-ink:#1a0f0c;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --label-col:176px;
+}
+:root[data-theme=light]{
+  color-scheme:light;
+  --bg:#f5f3ec;--surface:#fcfbf7;--surface-2:#ebe8de;
+  --text:#1b1c1e;--muted:#54575c;--line:#d0ccbf;--rule:#1b1c1e;
+  --accent:#b02a1c;--accent-ink:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--text);text-underline-offset:4px;text-decoration-color:var(--line);transition:color .15s,text-decoration-color .15s}
+a:hover{color:var(--accent);text-decoration-color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.container{max-width:1160px;margin:0 auto;padding:0 28px}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.site-header .container{display:flex;align-items:center;gap:24px;min-height:64px}
+.brand{font-weight:600;font-size:19px;text-decoration:none;white-space:nowrap}
+.brand:hover{color:var(--text)}
+nav.primary{display:flex;gap:24px;font-size:15px;margin-left:auto}
+nav.primary a{text-decoration:none;color:var(--muted);white-space:nowrap}
+nav.primary a:hover{color:var(--accent)}
+.theme-switch{display:flex;border:1px solid var(--line);border-radius:3px;font:12px var(--mono)}
+.theme-switch button{background:none;border:0;color:var(--muted);font:inherit;padding:5px 9px;cursor:pointer}
+.theme-switch button+button{border-left:1px solid var(--line)}
+.theme-switch button[aria-pressed=true]{color:var(--accent)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:32px clamp(32px,5vw,72px);padding:clamp(36px,5vw,64px) 0 clamp(48px,6vw,80px);align-items:center}
+.meta{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 20px}
+.meta span+span::before{content:" · "}
+.meta span:first-child{color:var(--accent)}
+h1{font-size:clamp(30px,4vw,46px);line-height:1.1;letter-spacing:-.025em;font-weight:600;margin:0 0 18px;max-width:20ch}
+.lede{font-size:18px;color:var(--muted);max-width:62ch;margin:0 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.button{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;font-weight:600;font-size:16px;border:1px solid var(--text);border-radius:3px;text-decoration:none;color:var(--text);transition:color .15s,border-color .15s,background .15s}
+.button:hover{border-color:var(--accent);color:var(--accent)}
+.button-primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.button-primary:hover{background:var(--text);border-color:var(--text);color:var(--bg)}
+.portrait{justify-self:end;margin:0;border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:10px;max-width:280px;width:100%}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:2px}
+.portrait figcaption{font:12px var(--mono);color:var(--muted);padding:10px 2px 0;display:flex;justify-content:space-between}
+
+/* sections */
+.section{border-top:1px solid var(--line);padding:72px 0;display:grid;grid-template-columns:var(--label-col) minmax(0,1fr);gap:0 40px}
+.section-label{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:8px}
+.section-label b{color:var(--accent);font-weight:500;margin-right:6px}
+h2{font-size:clamp(24px,2.6vw,32px);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin:0 0 24px}
+h3{font-size:19px;font-weight:600;line-height:1.3;margin:0 0 8px}
+p{margin:0 0 14px;max-width:68ch}
+.muted{color:var(--muted)}
+
+/* tags */
+.chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0}
+.chips li{font:12px/1 var(--mono);border:1px solid var(--line);color:var(--muted);padding:6px 10px;border-radius:999px}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px 32px}
+.skill-group h3{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:12px}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:24px}
+.card+.card{margin-top:16px}
+.card ul{margin:10px 0 0;padding-left:20px}
+.card li{margin-bottom:8px}
+.card li::marker{color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}
+.grid .card{display:flex;flex-direction:column;margin:0;transition:border-color .2s}
+.grid .card:hover{border-color:var(--accent)}
+.grid .card p{font-size:16px;color:var(--muted)}
+.grid .card .chips{margin:4px 0 18px}
+.card .link{margin-top:auto;font:13px var(--mono);text-decoration:none;color:var(--accent)}
+
+.card-meta{font:12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 10px}
+.card-meta span+span::before{content:" · "}
+.card-meta span:first-child{color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--line);margin:0 0 24px}
+.filters button{background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font:13px var(--mono);padding:8px 14px;cursor:pointer}
+.filters button span{opacity:.7}
+.filters button:hover{color:var(--text)}
+.filters button[aria-pressed=true]{color:var(--text);border-bottom-color:var(--accent)}
+.grid .card[hidden]{display:none}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;border-top:2px solid var(--rule);border-bottom:2px solid var(--rule)}
+.stats div{padding:20px 20px 22px;display:flex;flex-direction:column-reverse;gap:6px}
+.stats div+div{border-left:1px solid var(--line)}
+.stats dt{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.stats dd{margin:0;font-size:clamp(28px,3.4vw,40px);font-weight:600;letter-spacing:-.02em;line-height:1}
+.stats div:first-child dd{color:var(--accent)}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats div:nth-child(3){border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}}
+.timeline{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--line)}
+.timeline>li{position:relative;margin:0 0 20px}
+.timeline>li:last-child{margin-bottom:0}
+.timeline>li::before{content:"";position:absolute;left:-27px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl-kind{display:block;font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:8px}
+.timeline .card+.card{margin-top:0}
+.profiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px}
+.profiles a.card{display:flex;flex-direction:column;gap:6px;text-decoration:none;height:100%;transition:border-color .2s}
+.profiles a.card:hover{border-color:var(--accent);color:var(--text)}
+.p-kind{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.p-id{font-size:19px;font-weight:600;overflow-wrap:anywhere}
+.p-go{font:13px var(--mono);color:var(--muted)}
+.pubs{list-style:none;margin:0;padding:0;border-top:2px solid var(--rule)}
+.pubs>li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.pub-n{font:13px var(--mono);color:var(--accent);padding-top:3px}
+.pub-meta{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 6px}
+.pub-meta span+span::before{content:" · "}
+.pubs h3{font-size:18px;margin:0 0 6px}
+.pubs h3 a{text-decoration:none}
+.pub-authors{font-size:15px;color:var(--muted);margin:0 0 4px}
+.pub-authors b{color:var(--text);font-weight:600}
+.pub-venue{font:13px var(--mono);color:var(--muted);margin:0}
+.pub-venue a{color:var(--muted)}
+.pub-more{margin:18px 0 0;color:var(--muted);font-size:15px}
+.links{margin:auto 0 0;display:flex;flex-wrap:wrap;gap:6px 18px}
+.links .link{margin:0}
+.flow{margin:2px 0 16px;border:1px solid var(--line);border-radius:4px;background:var(--bg);padding:12px 12px 10px}
+.flow figcaption{font:11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+.flow ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 0}
+.flow li{font:12px/1.3 var(--mono);color:var(--text);border:1px solid var(--line);background:var(--surface);border-radius:3px;padding:5px 8px}
+.flow li:last-child{border-color:var(--accent);color:var(--accent)}
+.flow li:not(:last-child)::after{content:"→";color:var(--accent);padding:0 6px;position:absolute;margin-left:8px}
+.flow li{position:relative;margin-right:22px}
+.flow li:last-child{margin-right:0}
+.lang-switch{display:flex;border:1px solid var(--line);border-radius:3px;font:12px var(--mono)}
+.lang-switch a{color:var(--muted);text-decoration:none;padding:5px 9px}
+.lang-switch a+a{border-left:1px solid var(--line)}
+.lang-switch a[aria-current=page]{color:var(--accent)}
+.lang-switch a:hover{color:var(--text)}
+@media (max-width:900px){.lang-switch{margin-left:auto}.lang-switch+.theme-switch{margin-left:0}}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
+footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+footer a{color:var(--muted)}
+
+@media (max-width:900px){
+  html{scroll-padding-top:16px}
+  .site-header{position:static}
+  .site-header .container{flex-wrap:wrap;gap:8px 16px;padding-top:12px;padding-bottom:12px}
+  nav.primary{order:3;width:100%;margin:0;overflow-x:auto;scrollbar-width:none}
+  .theme-switch{margin-left:auto}
+  .hero{grid-template-columns:1fr}
+  .portrait{justify-self:start;max-width:220px;order:-1}
+  .section{grid-template-columns:1fr;padding:56px 0}
+  .section-label{padding:0 0 12px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .container{padding:0 20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#top">Karem Marcomini</a>
+    <nav class="primary" aria-label="Principal">
+      <a href="#about">Sobre</a>
+      <a href="#skills">Competências</a>
+      <a href="#experience">Experiência</a>
+      <a href="#projects">Projetos</a>
+      <a href="#publications">Publicações</a>
+      <a href="#education">Formação</a>
+      <a href="#contact">Contato</a>
+    </nav>
+    <div class="lang-switch"><a href="../" lang="en" hreflang="en">EN</a><a href="./" aria-current="page" lang="pt-BR">PT</a></div>
+    <div class="theme-switch" role="group" aria-label="Tema de cores">
+      <button type="button" data-choice="system">auto</button>
+      <button type="button" data-choice="light">claro</button>
+      <button type="button" data-choice="dark">escuro</button>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="container">
+  <div class="hero">
+    <div>
+      <p class="meta"><span>Visão Computacional e IA</span><span>Ph.D. em Ciência da Computação</span><span>10+ anos</span></p>
+      <h1>Karem Daiane Marcomini, Ph.D.</h1>
+      <p class="lede">Engenheira Sênior de IA e Visão Computacional. Mais de 10 anos de experiência conectando pesquisa acadêmica avançada e soluções industriais práticas e de alto impacto, construindo pipelines de deep learning de ponta a ponta, do processamento de dados à implantação em produção.</p>
+      <div class="btns">
+        <a class="button button-primary" href="#projects">Ver projetos</a>
+        <a class="button" href="https://github.com/karemdm" rel="noopener">GitHub</a>
+        <a class="button" href="https://www.linkedin.com/in/karem-marcomini/?locale=pt_BR" rel="noopener">LinkedIn</a>
+        <a class="button" href="http://lattes.cnpq.br/9252140833340424" rel="noopener">Lattes</a>
+      </div>
+    </div>
+    <figure class="portrait">
+      <img src="../assets/karem.gif" alt="Retrato de Karem Daiane Marcomini" width="332" height="472">
+      <figcaption><span>github.com/karemdm</span><span>Brasil</span></figcaption>
+    </figure>
+  </div>
+
+  <dl class="stats">
+    <div><dt>Anos em IA e visão</dt><dd>10+</dd></div>
+    <div><dt>Projetos open source</dt><dd>10</dd></div>
+    <div><dt>Ph.D. Ciência da Computação</dt><dd>USP</dd></div>
+    <div><dt>Pesquisadora visitante</dt><dd>Pitt</dd></div>
+  </dl>
+
+    <section id="about" class="section" aria-labelledby="about-h">
+      <div class="section-label"><b>01</b>Sobre</div>
+      <div>
+      <h2 id="about-h">Sobre</h2>
+      <p>Sou Engenheira Sênior de IA e Visão Computacional, com Ph.D. em Ciência da Computação e mais de 10 anos de experiência. Meu trabalho conecta a pesquisa acadêmica avançada a soluções industriais práticas e de alto impacto.</p>
+      <p>Sou especialista em desenvolver pipelines de deep learning de ponta a ponta, do processamento de dados à implantação em produção.</p>
+      </div>
+    </section>
+
+    <section id="skills" class="section" aria-labelledby="skills-h">
+      <div class="section-label"><b>02</b>Competências</div>
+      <div>
+      <h2 id="skills-h">Competências</h2>
+      <div class="skills">
+      <div class="skill-group">
+        <h3>Especialidades</h3>
+        <ul class="chips"><li>Visão Computacional</li><li>Deep Learning</li><li>Processamento Digital de Imagens</li><li>IA Médica</li><li>Reconhecimento de Padrões</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Frameworks</h3>
+        <ul class="chips"><li>PyTorch</li><li>TensorFlow</li><li>Keras</li><li>Ultralytics (YOLO)</li><li>Torchvision</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Ferramentas</h3>
+        <ul class="chips"><li>OpenCV</li><li>Scikit-Learn</li><li>SciPy</li><li>NumPy</li><li>Pandas</li><li>Matplotlib</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Ambiente</h3>
+        <ul class="chips"><li>Python</li><li>Git</li><li>Docker</li><li>Linux</li></ul>
+      </div>
+      </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section" aria-labelledby="exp-h">
+      <div class="section-label"><b>03</b>Experiência</div>
+      <div>
+      <h2 id="exp-h">Experiência</h2>
+      <ol class="timeline">
+      <li><span class="tl-kind">Indústria</span><article class="card">
+        <h3>IA Industrial | Pix Force</h3>
+        <p class="muted">Soluções de Visão Computacional de ponta a ponta para ambientes industriais.</p>
+        <ul>
+          <li><strong>Controle de Qualidade:</strong> detecção de defeitos em tempo real e segmentação semântica/de instâncias (YOLO, SegFormer, DeepLab) para inspeção automatizada na manufatura.</li>
+          <li><strong>Segurança Industrial:</strong> pipelines de visão para conformidade de EPI, detecção de situações de risco e monitoramento de áreas restritas.</li>
+          <li><strong>Sistemas de OCR:</strong> pipelines automatizados para reconhecimento de placas veiculares de alta precisão e extração de dados de documentos.</li>
+        </ul>
+      </article></li>
+      <li><span class="tl-kind">Pesquisa</span><article class="card">
+        <h3>Pesquisa em Imagem Médica | USP &amp; University of Pittsburgh</h3>
+        <p class="muted">Aplicação de aprendizado de máquina a dados médicos complexos.</p>
+        <ul>
+          <li><strong>Detecção de COVID-19:</strong> arquiteturas híbridas de deep learning (EfficientNet-B0 + Radiomics) e modelos em ensemble (YOLOX/YOLOv5) para segmentação de opacidades pulmonares.</li>
+          <li><strong>Diagnóstico Auxiliado por Computador (CAD):</strong> sistemas de classificação de lesões mamárias (ultrassom em modo B/elastografia), usando SVM e extração de características mapeadas ao léxico BI-RADS.</li>
+          <li><strong>Contribuição Acadêmica:</strong> pesquisadora visitante (Research Scholar) na University of Pittsburgh (EUA), com foco em algoritmos de extração de características.</li>
+        </ul>
+      </article></li>
+      </ol>
+      </div>
+    </section>
+
+    <section id="projects" class="section" aria-labelledby="proj-h">
+      <div class="section-label"><b>04</b>Projetos</div>
+      <div>
+      <h2 id="proj-h">Projetos em destaque</h2>
+      <div class="filters" role="group" aria-label="Filtrar projetos" hidden>
+        <button type="button" data-filter="all" aria-pressed="true">Todos <span>10</span></button>
+        <button type="button" data-filter="video" aria-pressed="false">Análise de vídeo <span>7</span></button>
+        <button type="button" data-filter="medical" aria-pressed="false">Imagem médica <span>1</span></button>
+        <button type="button" data-filter="ocr" aria-pressed="false">OCR <span>1</span></button>
+        <button type="button" data-filter="tools" aria-pressed="false">Ferramentas <span>1</span></button>
+      </div>
+      <div class="grid">
+        <article class="card" data-cat="ocr">
+          <p class="card-meta"><span>OCR</span><span>CLI · interface web · Docker</span></p>
+          <h3>NutriLabel OCR</h3>
+          <p>Transforma a foto da embalagem de um alimento em dados nutricionais estruturados. Quatorze motores de OCR intercambiáveis, do Tesseract e PaddleOCR a modelos de OCR visão-linguagem como olmOCR e GLM-OCR, alimentam um extrator sensível ao layout que lida com colunas por 100 g e por porção, formatos da UE e dos EUA, mais de 15 idiomas e fotos rotacionadas. Regras de consistência nutricional capturam erros típicos de OCR, e cada motor é comparado em um benchmark com fotos reais do Open Food Facts. Inclui CLI, interface web local, API Python e Docker.</p>
+          <figure class="flow"><figcaption>Fig. 01 · pipeline</figcaption><ol><li>Foto da embalagem</li><li>Motor de OCR (1 de 14)</li><li>Extrator sensível ao layout</li><li>Regras de consistência nutricional</li><li>Nutrientes estruturados</li></ol></figure>
+          <ul class="chips"><li>Python</li><li>PaddleOCR</li><li>Tesseract</li><li>Surya / docTR / EasyOCR</li><li>OCR visão-linguagem</li><li>Transformers</li><li>Docker</li></ul>
+          <a class="link" href="https://github.com/karemdm/nutrilabel-ocr" rel="noopener">Ver código &rarr;</a>
+        </article>
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Análise de vídeo</span><span>App Streamlit · CLI</span></p>
+          <h3>PPE Compliance VLM</h3>
+          <p>Verifica equipamentos de proteção individual (EPI) em vídeo. Modelos YOLO com classes pareadas detectam cada item como usado ou não usado (capacete, colete, luvas, óculos, máscara), um rastreador acompanha cada trabalhador e uma votação majoritária de 3 segundos confirma as violações antes de a caixa ficar vermelha, filtrando oscilações. Um modelo visão-linguagem (SmolVLM ou Idefics2) então reconfere o recorte de cada trabalhador sinalizado, para revisão humana.</p>
+          <figure class="flow"><figcaption>Fig. 02 · pipeline</figcaption><ol><li>Vídeo</li><li>YOLO EPI (usado / não usado)</li><li>ByteTrack por trabalhador</li><li>Votação majoritária de 3 s</li><li>Checagem do recorte por VLM</li><li>Relatório de violações</li></ol></figure>
+          <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8 / YOLO26</li><li>ByteTrack</li><li>SmolVLM / Idefics2</li><li>Streamlit</li><li>OpenCV</li></ul>
+          <a class="link" href="https://github.com/karemdm/ppe-compliance-vlm" rel="noopener">Ver código &rarr;</a>
+        </article>
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Análise de vídeo</span><span>CLI</span></p>
+          <h3>Fall Detection Alert</h3>
+          <p>Dispara alertas quando uma pessoa cai em vídeo. Keypoints do YOLO11-pose e rastreamento alimentam uma máquina de estados por pessoa (em pé, caindo, caída, alerta), guiada pelo ângulo do tronco, pela proporção do corpo e pela velocidade do quadril, com um tempo de retenção para evitar alarmes falsos. Testado em uma mistura de quedas do GMDCSA24 e clipes externos; não requer treinamento e roda em CPU.</p>
+          <figure class="flow"><figcaption>Fig. 03 · pipeline</figcaption><ol><li>Vídeo</li><li>Keypoints YOLO11-pose</li><li>ByteTrack</li><li>Máquina de estados por pessoa</li><li>Alerta de queda</li></ol></figure>
+          <ul class="chips"><li>Python</li><li>Ultralytics YOLO11-pose</li><li>ByteTrack</li><li>OpenCV</li></ul>
+          <a class="link" href="https://github.com/karemdm/fall-detection-alert" rel="noopener">Ver código &rarr;</a>
+        </article>
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Análise de vídeo</span><span>Configurador desktop · CLI</span></p>
+          <h3>Pedestrian-Vehicle Proximity Alert</h3>
+          <p>Dispara alertas quando pedestres se aproximam de carros, ônibus ou caminhões em vídeo. Combina rastreamento YOLO com profundidade monocular do Depth Anything V2: um limiar de distância 2D escalado pela altura da pessoa, um limiar de profundidade relativa, uma votação em janela de tempo por pessoa e a filtragem de ciclistas e motociclistas.</p>
+          <figure class="flow"><figcaption>Fig. 04 · pipeline</figcaption><ol><li>Vídeo</li><li>Rastreamento YOLO</li><li>Depth Anything V2</li><li>Limiares 2D + profundidade</li><li>Votação em janela de tempo</li><li>Alerta de proximidade</li></ol></figure>
+          <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>Depth Anything V2</li><li>Transformers</li><li>OpenCV</li><li>Tkinter</li></ul>
+          <a class="link" href="https://github.com/karemdm/pedestrian-vehicle-proximity-alert" rel="noopener">Ver código &rarr;</a>
+        </article>
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Análise de vídeo</span><span>Inicializador desktop · CLI</span></p>
+          <h3>Directional Line-Crossing Counter</h3>
+          <p>Conta pessoas e veículos que cruzam linhas desenhadas pelo usuário sobre o vídeo, separados por direção (IN/OUT). Os cruzamentos usam um teste estrito de interseção de segmentos sobre as trajetórias rastreadas, cada ID é contado uma única vez por linha, e os rostos podem ser desfocados opcionalmente na saída.</p>
+          <figure class="flow"><figcaption>Fig. 05 · pipeline</figcaption><ol><li>Vídeo + linhas desenhadas</li><li>YOLOv8 + BoT-SORT</li><li>Interseção de segmentos</li><li>Contagens IN / OUT</li><li>Desfoque de rosto opcional</li></ol></figure>
+          <ul class="chips"><li>Python</li><li>Ultralytics YOLOv8</li><li>BoT-SORT</li><li>OpenCV</li><li>Tkinter</li></ul>
+          <a class="link" href="https://github.com/karemdm/directional-line-crossing-counter" rel="noopener">Ver código &rarr;</a>
+        </article>
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Análise de vídeo</span><span>CLI</span></p>
+          <h3>Crowd Heatmap Analytics</h3>
+          <p>Gera um mapa de calor espacial com decaimento dos locais por onde as pessoas caminham, lado a lado com a visualização do rastreamento, e informa a ocupação atual, o pico de ocupação e o total de pessoas únicas rastreadas. Útil para estudar fluxos e pontos de concentração em espaços públicos.</p>
+          <figure class="flow"><figcaption>Fig. 06 · pipeline</figcaption><ol><li>Vídeo</li><li>YOLO + ByteTrack</li><li>Mapa de calor com decaimento</li><li>Ocupação & picos</li></ol></figure>
+          <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>ByteTrack</li><li>OpenCV</li><li>NumPy</li></ul>
+          <a class="link" href="https://github.com/karemdm/crowd-heatmap-analytics" rel="noopener">Ver código &rarr;</a>
+        </article>
+        <article class="card" data-cat="medical">
+          <p class="card-meta"><span>Imagem médica</span><span>Notebooks Jupyter</span></p>
+          <h3>Lung Opacity Localization</h3>
+          <p>Experimentos de localização de opacidades pulmonares em radiografias de tórax usando detectores YOLOv5 e YOLOX fundidos com Weighted Boxes Fusion, além de um classificador CNN com transfer learning. Inclui notebooks de pré-processamento, treinamento, ensemble e avaliação de mAP. Código complementar ao artigo publicado em <em>Big Data and Cognitive Computing</em> (2024). Código de pesquisa, não destinado a uso clínico.</p>
+          <figure class="flow"><figcaption>Fig. 07 · pipeline</figcaption><ol><li>Radiografia de tórax</li><li>Pré-processamento</li><li>YOLOv5 · YOLOX</li><li>Weighted Boxes Fusion</li><li>Caixas de opacidade + mAP</li></ol></figure>
+          <ul class="chips"><li>Python</li><li>TensorFlow/Keras</li><li>PyTorch</li><li>YOLOv5</li><li>YOLOX</li><li>ensemble-boxes</li><li>pandas</li><li>OpenCV</li><li>pydicom</li><li>Jupyter</li></ul>
+          <p class="links"><a class="link" href="https://github.com/karemdm/lung-opacity-localization" rel="noopener">Ver código &rarr;</a><a class="link" href="https://doi.org/10.3390/bdcc8080084" rel="noopener">Artigo · BDCC 2024 &rarr;</a></p>
+        </article>
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Análise de vídeo</span><span>CLI</span></p>
+          <h3>Small Person Pose (YOLOv8)</h3>
+          <p>Experimentos de detecção de pessoas pequenas e estimativa de sua pose em vídeo de alta resolução com YOLOv8. Compara a inferência por janela deslizante com sobreposição e fusão por NMS a uma abordagem em dois estágios de detectar e depois recortar, com rastreamento SORT opcional.</p>
+          <figure class="flow"><figcaption>Fig. 08 · pipeline</figcaption><ol><li>Vídeo de alta resolução</li><li>Janela deslizante / recorte</li><li>YOLOv8 pose</li><li>Fusão por NMS</li><li>Trilhas SORT</li></ol></figure>
+          <ul class="chips"><li>Python</li><li>PyTorch</li><li>Ultralytics YOLOv8</li><li>SAHI</li><li>OpenCV</li><li>NumPy</li><li>SORT</li><li>FilterPy</li></ul>
+          <a class="link" href="https://github.com/karemdm/small-person-pose-yolov8" rel="noopener">Ver código &rarr;</a>
+        </article>
+        <article class="card" data-cat="video">
+          <p class="card-meta"><span>Análise de vídeo</span><span>CLI</span></p>
+          <h3>YOLO + OpenCV Tracking</h3>
+          <p>Uma ferramenta Python que detecta pessoas em vídeo com um modelo Ultralytics YOLO e as acompanha entre quadros usando um de sete rastreadores do OpenCV. As detecções são associadas às trilhas pelo IoU das caixas delimitadoras, e o vídeo de saída mostra cada trilha com um ID persistente. Os limiares e o tempo de vida das trilhas são expostos como argumentos de linha de comando.</p>
+          <figure class="flow"><figcaption>Fig. 09 · pipeline</figcaption><ol><li>Vídeo</li><li>Detecção de pessoas com YOLO</li><li>Associação por IoU</li><li>Rastreador OpenCV (1 de 7)</li><li>Vídeo com IDs</li></ol></figure>
+          <ul class="chips"><li>Python</li><li>OpenCV</li><li>NumPy</li><li>Ultralytics YOLO</li></ul>
+          <a class="link" href="https://github.com/karemdm/yolo-opencv-tracking" rel="noopener">Ver código &rarr;</a>
+        </article>
+        <article class="card" data-cat="tools">
+          <p class="card-meta"><span>Ferramentas</span><span>App desktop</span></p>
+          <h3>Video Frame Picker</h3>
+          <p>Duas pequenas ferramentas desktop para escolher quadros. Um player de vídeo feito com OpenCV e Tkinter avança pelo vídeo e salva o quadro atual em JPEG. Um visualizador de imagens feito com Pillow permite navegar por uma pasta de imagens e copiar as selecionadas para uma pasta de saída.</p>
+          <figure class="flow"><figcaption>Fig. 10 · pipeline</figcaption><ol><li>Vídeo ou pasta de imagens</li><li>Visualizador Tkinter</li><li>Escolha dos quadros</li><li>JPEGs salvos</li></ol></figure>
+          <ul class="chips"><li>Python 3</li><li>OpenCV</li><li>Tkinter</li><li>Pillow</li><li>unidecode</li></ul>
+          <a class="link" href="https://github.com/karemdm/video-frame-picker" rel="noopener">Ver código &rarr;</a>
+        </article>
+      </div>
+      </div>
+    </section>
+
+    <section id="publications" class="section" aria-labelledby="pub-h">
+      <div class="section-label"><b>05</b>Publicações</div>
+      <div>
+      <h2 id="pub-h">Publicações selecionadas</h2>
+      <ol class="pubs">
+        <li>
+          <span class="pub-n">01</span>
+          <div>
+            <p class="pub-meta"><span>2025</span><span>Artigo em periódico</span></p>
+            <h3><a href="https://doi.org/10.3390/jsan14010010" rel="noopener">A Novel Approach to Road Safety: Detecting Illegal Overtaking Using Smartphone Cameras and Deep Learning for Vehicle Auditing</a></h3>
+            <p class="pub-authors"><b>Marcomini, K. D.</b>; Brito, V. C.; Balestra, G. C.; Tosetto, V.; Duarte, L. C.; Donadon, A. R.</p>
+            <p class="pub-venue">Journal of Sensor and Actuator Networks, v. 14, art. 10 · <a href="https://doi.org/10.3390/jsan14010010" rel="noopener">doi:10.3390/jsan14010010</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">02</span>
+          <div>
+            <p class="pub-meta"><span>2024</span><span>Artigo em periódico</span></p>
+            <h3><a href="https://doi.org/10.3390/bdcc8080084" rel="noopener">Ensemble of Convolutional Neural Networks for COVID-19 Localization on Chest X-ray Images</a></h3>
+            <p class="pub-authors"><b>Marcomini, K. D.</b></p>
+            <p class="pub-venue">Big Data and Cognitive Computing, v. 8, art. 84 · <a href="https://doi.org/10.3390/bdcc8080084" rel="noopener">doi:10.3390/bdcc8080084</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">03</span>
+          <div>
+            <p class="pub-meta"><span>2020</span><span>Artigo em periódico</span></p>
+            <h3><a href="https://doi.org/10.1016/j.ejrad.2020.109197" rel="noopener">Impact of radiomics on the breast ultrasound radiologist’s clinical practice: from lumpologist to data wrangler</a></h3>
+            <p class="pub-authors">Fleury, E. F. C.; <b>Marcomini, K. D.</b></p>
+            <p class="pub-venue">European Journal of Radiology, v. 131, art. 109197 · <a href="https://doi.org/10.1016/j.ejrad.2020.109197" rel="noopener">doi:10.1016/j.ejrad.2020.109197</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">04</span>
+          <div>
+            <p class="pub-meta"><span>2019</span><span>Artigo em periódico</span></p>
+            <h3><a href="https://doi.org/10.1186/s41747-019-0112-7" rel="noopener">Performance of machine learning software to classify breast lesions using BI-RADS radiomic features on ultrasound images</a></h3>
+            <p class="pub-authors">Fleury, E. F. C.; <b>Marcomini, K. D.</b></p>
+            <p class="pub-venue">European Radiology Experimental, v. 3, art. 34 · <a href="https://doi.org/10.1186/s41747-019-0112-7" rel="noopener">doi:10.1186/s41747-019-0112-7</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">05</span>
+          <div>
+            <p class="pub-meta"><span>2018</span><span>Artigo em periódico</span></p>
+            <h3><a href="https://doi.org/10.1177/1533033818763461" rel="noopener">The Feasibility of Classifying Breast Masses Using a Computer-Assisted Diagnosis (CAD) System Based on Ultrasound Elastography and BI-RADS Lexicon</a></h3>
+            <p class="pub-authors">Fleury, E. F. C.; Gianini, A. C.; <b>Marcomini, K. D.</b>; Oliveira, V.</p>
+            <p class="pub-venue">Technology in Cancer Research &amp; Treatment, v. 17 · <a href="https://doi.org/10.1177/1533033818763461" rel="noopener">doi:10.1177/1533033818763461</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">06</span>
+          <div>
+            <p class="pub-meta"><span>2018</span><span>Artigo em periódico</span></p>
+            <h3><a href="https://doi.org/10.3390/bioengineering5030062" rel="noopener">Evaluation of a Computer-Aided Diagnosis System in the Classification of Lesions in Breast Strain Elastography Imaging</a></h3>
+            <p class="pub-authors"><b>Marcomini, K. D.</b>; Fleury, E. F. C.; Oliveira, V. M.; Carneiro, A. A. O.; Schiabel, H.; Nishikawa, R. M.</p>
+            <p class="pub-venue">Bioengineering (Basel), v. 5, art. 62 · <a href="https://doi.org/10.3390/bioengineering5030062" rel="noopener">doi:10.3390/bioengineering5030062</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="pub-n">07</span>
+          <div>
+            <p class="pub-meta"><span>2016</span><span>Artigo em periódico</span></p>
+            <h3><a href="https://doi.org/10.1155/2016/7987212" rel="noopener">Application of Artificial Neural Network Models in Segmentation and Classification of Nodules in Breast Ultrasound Digital Images</a></h3>
+            <p class="pub-authors"><b>Marcomini, K. D.</b>; Carneiro, A. A. O.; Schiabel, H.</p>
+            <p class="pub-venue">International Journal of Biomedical Imaging, v. 2016, pp. 1–13 · <a href="https://doi.org/10.1155/2016/7987212" rel="noopener">doi:10.1155/2016/7987212</a></p>
+          </div>
+        </li>
+      </ol>
+      <p class="pub-more">Lista completa no <a href="https://scholar.google.com/citations?user=eMh5PGEAAAAJ" rel="noopener">Google Scholar</a>, no <a href="https://orcid.org/0000-0002-8594-4654" rel="noopener">ORCID</a> e no <a href="http://lattes.cnpq.br/9252140833340424" rel="noopener">Lattes</a>.</p>
+      </div>
+    </section>
+
+    <section id="education" class="section" aria-labelledby="edu-h">
+      <div class="section-label"><b>06</b>Formação</div>
+      <div>
+      <h2 id="edu-h">Formação &amp; Docência</h2>
+      <article class="card">
+        <ul>
+          <li><strong>Ph.D. em Ciência da Computação:</strong> Universidade de São Paulo (USP).</li>
+          <li><strong>Professora (nível de graduação):</strong> docência em Processamento Digital de Imagens, Computação Gráfica e Interação Humano-Computador.</li>
+        </ul>
+      </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-h">
+      <div class="section-label"><b>07</b>Contato</div>
+      <div>
+      <h2 id="contact-h">Perfis &amp; contato</h2>
+      <ul class="profiles">
+        <li><a class="card" href="https://github.com/karemdm" rel="noopener"><span class="p-kind">GitHub</span><span class="p-id">karemdm</span><span class="p-go">Código &amp; projetos →</span></a></li>
+        <li><a class="card" href="https://www.linkedin.com/in/karem-marcomini/?locale=pt_BR" rel="noopener"><span class="p-kind">LinkedIn</span><span class="p-id">karem-marcomini</span><span class="p-go">Perfil profissional →</span></a></li>
+        <li><a class="card" href="http://lattes.cnpq.br/9252140833340424" rel="noopener"><span class="p-kind">Lattes</span><span class="p-id">9252140833340424</span><span class="p-go">Currículo acadêmico →</span></a></li>
+        <li><a class="card" href="https://scholar.google.com/citations?user=eMh5PGEAAAAJ" rel="noopener"><span class="p-kind">Google Scholar</span><span class="p-id">eMh5PGEAAAAJ</span><span class="p-go">Citações →</span></a></li>
+        <li><a class="card" href="https://orcid.org/0000-0002-8594-4654" rel="noopener"><span class="p-kind">ORCID</span><span class="p-id">0000-0002-8594-4654</span><span class="p-go">Registro de pesquisa →</span></a></li>
+        <li><a class="card" href="https://bv.fapesp.br/pt/pesquisador/90602/karem-daiane-marcomini/" rel="noopener"><span class="p-kind">FAPESP</span><span class="p-id">Pesquisadora BV 90602</span><span class="p-go">Auxílios &amp; bolsas →</span></a></li>
+      </ul>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>&copy; Karem Daiane Marcomini</span>
+    <span>
+      <a href="https://github.com/karemdm" rel="noopener">GitHub</a> ·
+      <a href="https://www.linkedin.com/in/karem-marcomini/?locale=pt_BR" rel="noopener">LinkedIn</a> ·
+      <a href="http://lattes.cnpq.br/9252140833340424" rel="noopener">Lattes</a> ·
+      <a href="https://scholar.google.com/citations?user=eMh5PGEAAAAJ" rel="noopener">Scholar</a> ·
+      <a href="https://orcid.org/0000-0002-8594-4654" rel="noopener">ORCID</a>
+    </span>
+  </div>
+</footer>
+<script>
+(function(){
+  var root=document.documentElement,mq=matchMedia('(prefers-color-scheme: light)');
+  var btns=document.querySelectorAll('.theme-switch button');
+  function apply(c){
+    root.dataset.choice=c;
+    root.dataset.theme=c==='system'?(mq.matches?'light':'dark'):c;
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.choice===c))});
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    try{localStorage.setItem('kdm.theme',b.dataset.choice)}catch(e){}
+    apply(b.dataset.choice);
+  })});
+  if(mq.addEventListener)mq.addEventListener('change',function(){if(root.dataset.choice==='system')apply('system')});
+  apply(root.dataset.choice||'system');
+})();
+</script>
+<script>
+(function(){
+  var bar=document.querySelector('.filters');if(!bar)return;
+  bar.hidden=false;
+  var cards=document.querySelectorAll('#projects .card[data-cat]');
+  bar.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    var f=b.dataset.filter;
+    bar.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+    cards.forEach(function(c){c.hidden=!(f==='all'||c.dataset.cat===f)});
+  });
+})();
+</script>
+</body>
+</html>
