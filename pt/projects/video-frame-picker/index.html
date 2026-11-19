@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f3ec">
+<title>Video Frame Picker | Karem Marcomini</title>
+<meta name="description" content="Duas pequenas ferramentas desktop para montar datasets de imagens à mão: percorra um vídeo e salve os quadros que valem anotação, depois faça a curadoria de uma pasta de fotos com uma tecla por imagem.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Video Frame Picker | Karem Marcomini">
+<meta property="og:description" content="Duas pequenas ferramentas desktop para montar datasets de imagens à mão: percorra um vídeo e salve os quadros que valem anotação, depois faça a curadoria de uma pasta de fotos com uma tecla por imagem.">
+<meta property="og:url" content="https://karemdm.github.io/pt/projects/video-frame-picker/">
+<meta property="og:image" content="https://karemdm.github.io/assets/projects/video-frame-picker/poster.jpg">
+<link rel="alternate" hreflang="en" href="https://karemdm.github.io/projects/video-frame-picker/">
+<link rel="alternate" hreflang="pt-BR" href="https://karemdm.github.io/pt/projects/video-frame-picker/">
+<link rel="icon" href="https://avatars.githubusercontent.com/u/72208245?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+(function(){var c='light';try{c=localStorage.getItem('kdm.theme')==='dark'?'dark':'light'}catch(e){}
+document.documentElement.dataset.theme=c;})();
+</script>
+<link rel="stylesheet" href="../../../assets/site.css">
+<link rel="stylesheet" href="../../../assets/project.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../../../pt/">Karem Marcomini</a>
+    <nav class="primary" aria-label="Primary">
+      <a href="../../../pt/#projects">Projetos</a>
+      <a href="https://github.com/karemdm/video-frame-picker" rel="noopener">GitHub</a>
+    </nav>
+    <div class="lang-switch"><a href="../../../projects/video-frame-picker/" lang="en" hreflang="en">EN</a><a href="./" aria-current="page" lang="pt-BR">PT</a></div>
+    <div class="theme-switch" role="group" aria-label="Tema de cores">
+      <button type="button" data-choice="light">claro</button>
+      <button type="button" data-choice="dark">escuro</button>
+    </div>
+  </div>
+</header>
+<main class="container project">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../pt/">Início</a> / <a href="../../../pt/#projects">Projetos</a> / <span>Video Frame Picker</span></nav>
+  <div class="p-hero">
+    <p class="meta"><span>Ferramenta de dataset</span><span>Aplicativo desktop</span><span>MIT</span></p>
+    <h1>Video Frame Picker</h1>
+    <p class="lede">Todo projeto de visão computacional começa escolhendo imagens. O Video Frame Picker transforma essa tarefa num ritmo de teclado: percorra horas de vídeo em saltos de 40, 200 ou 800 quadros, aperte Espaço nos momentos que valem anotação e depois passe por uma pasta de fotos ficando só com as úteis. Nada para treinar e nada para configurar: abra um vídeo ou uma pasta e comece a escolher.</p>
+    <div class="btns"><a class="button button-primary" href="https://github.com/karemdm/video-frame-picker" rel="noopener">Ver código no GitHub</a><a class="button" href="../../../pt/#projects">← Todos os projetos</a></div>
+  </div>
+  <figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/video-frame-picker/demo.mp4" poster="../../../assets/projects/video-frame-picker/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Gravação de tela: um vídeo de rua abre no seletor de quadros, a usuária percorre o vídeo com as setas e a roda do mouse e salva cinco quadros; depois o seletor de imagens percorre uma pasta de fotos de rua e copia cinco delas; o console lista as pastas do dataset resultante."></video></div><figcaption>As duas ferramentas nos exemplos que vêm no repositório: cinco quadros escolhidos de um vídeo de rua, cinco fotos selecionadas de uma pasta e a árvore do dataset resultante. Gravado no Windows, em tempo real exceto a digitação. Imagens: câmeras públicas de rua (Abbey Road, Londres, e Shinjuku, Tóquio).</figcaption></figure>
+  <dl class="stats"><div><dt>ferramentas: quadros de vídeo e pastas de fotos</dt><dd>2</dd></div><div><dt>para salvar o quadro ou a foto na tela</dt><dd>1 tecla</dd></div><div><dt>tamanhos de salto, ajustáveis com --steps</dt><dd>3</dd></div><div><dt>treino ou configuração</dt><dd>0</dd></div></dl>
+  <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>Tkinter</li><li>OpenCV</li><li>Pillow</li><li>argparse</li></ul>
+  <section class="section" id="s1"><div class="section-label">Como funciona</div><div>
+<h2><span class="sec-n">01</span>Do vídeo bruto a um dataset selecionado</h2>
+<p>O seletor de quadros lê o vídeo com o OpenCV e só decodifica o quadro em que você para, então percorrer uma gravação longa continua instantâneo. O quadro salvo é exatamente o que está na tela, na resolução original. O seletor de imagens percorre qualquer pasta de fotos e copia as escolhidas para uma pasta de saída, sem mexer nas originais.</p>
+<figure class="fig"><div class="scroll-x"><svg class="diagram" viewBox="0 0 1226 160" role="img" aria-label="O fluxo do vídeo ao dataset coberto pelas duas ferramentas">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>
+<rect x="1" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="14" y="30" class="d-num">01</text>
+<text x="14" y="54" class="d-title">Vídeo</text>
+<text x="14" y="78" class="d-text">mp4 · mov · avi · 3gp</text>
+<text x="14" y="96" class="d-text">ou a janela de arquivo</text>
+<line x1="178" y1="75" x2="207" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="211" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="224" y="30" class="d-num">02</text>
+<text x="224" y="54" class="d-title">Navegar</text>
+<text x="224" y="78" class="d-text">setas ±40 / ±200</text>
+<text x="224" y="96" class="d-text">roda ±800, barra</text>
+<line x1="388" y1="75" x2="417" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="421" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="434" y="30" class="d-num">03</text>
+<text x="434" y="54" class="d-title">Salvar quadro</text>
+<text x="434" y="78" class="d-text">Espaço · Enter · S</text>
+<text x="434" y="96" class="d-text">JPG em resolução total</text>
+<line x1="598" y1="75" x2="627" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="631" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="644" y="30" class="d-num">04</text>
+<text x="644" y="54" class="d-title">Pasta de fotos</text>
+<text x="644" y="78" class="d-text">png · jpg · bmp · tiff</text>
+<text x="644" y="96" class="d-text">proporção mantida</text>
+<line x1="808" y1="75" x2="837" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="841" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="854" y="30" class="d-num">05</text>
+<text x="854" y="54" class="d-title">Manter ou pular</text>
+<text x="854" y="78" class="d-text">→ ← ↓ ↑</text>
+<text x="854" y="96" class="d-text">Espaço copia + avança</text>
+<line x1="1018" y1="75" x2="1047" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="1051" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
+<text x="1064" y="30" class="d-num">06</text>
+<text x="1064" y="54" class="d-title">Dataset</text>
+<text x="1064" y="78" class="d-text">dataset/frames</text>
+<text x="1064" y="96" class="d-text">dataset/images</text>
+</svg></div><figcaption>Fig. 01 · O fluxo do vídeo ao dataset coberto pelas duas ferramentas</figcaption></figure>
+<dl class="defs"><div><dt>Navegação rápida</dt><dd>Setas, cima/baixo, a roda do mouse e a barra de rolagem saltam quantidades diferentes, então dá para passar por uma hora de vídeo e ainda parar no quadro exato.</dd></div><div><dt>O que você vê é o que salva</dt><dd>O JPG salvo é o quadro da tela na resolução do próprio vídeo, com o nome do vídeo e o índice do quadro, então cada imagem pode ser rastreada até a origem.</dd></div><div><dt>Início por linha de comando</dt><dd>Passe um vídeo ou uma pasta e um diretório --out para pular as janelas de seleção; uma linha de status na janela confirma cada gravação.</dd></div></dl>
+
+</div></section><section class="section" id="s2"><div class="section-label">Resultados</div><div>
+<h2><span class="sec-n">02</span>Uma passada, duas saídas</h2>
+<div class="frames"><figure><img src="../../../assets/projects/video-frame-picker/step-1.jpg" alt="Percorrendo o vídeo e salvando um quadro" loading="lazy" width="640" height="360"><figcaption>Percorrendo o vídeo e salvando um quadro</figcaption></figure><figure><img src="../../../assets/projects/video-frame-picker/step-2.jpg" alt="Mais adiante no vídeo, o console registra cada arquivo salvo" loading="lazy" width="640" height="360"><figcaption>Mais adiante no vídeo, o console registra cada arquivo salvo</figcaption></figure><figure><img src="../../../assets/projects/video-frame-picker/step-3.jpg" alt="Curadoria de uma pasta de fotos, uma tecla por imagem" loading="lazy" width="640" height="360"><figcaption>Curadoria de uma pasta de fotos, uma tecla por imagem</figcaption></figure></div>
+<p class="note">O vídeo e as fotos de exemplo ficam na pasta <code>examples/</code> do repositório, então a mesma sessão pode ser reproduzida logo após a instalação.</p>
+
+</div></section><section class="section" id="s3"><div class="section-label">Como rodar</div><div>
+<h2><span class="sec-n">03</span>Três passos para testar</h2>
+<div class="terminal" data-tabs><div class="terminal-bar"><span>instalação</span><span class="os-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="0">Linux / macOS</button><button type="button" role="tab" aria-selected="false" data-tab="1">Windows · PowerShell</button><button type="button" role="tab" aria-selected="false" data-tab="2">Windows · cmd</button></span><button type="button" class="copy" data-copy>Copiar</button></div><pre data-pane="0"><code>git clone https://github.com/karemdm/video-frame-picker.git
+cd video-frame-picker
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt</code></pre><pre data-pane="1" hidden><code>git clone https://github.com/karemdm/video-frame-picker.git
+cd video-frame-picker
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt</code></pre><pre data-pane="2" hidden><code>git clone https://github.com/karemdm/video-frame-picker.git
+cd video-frame-picker
+python -m venv .venv
+.venv\Scripts\activate.bat
+pip install -r requirements.txt</code></pre></div><div class="terminal"><div class="terminal-bar"><span>escolher quadros do vídeo de exemplo</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>python video_frame_picker.py examples/abbey_road_15s.mp4 --out dataset/frames</code></pre></div><div class="terminal"><div class="terminal-bar"><span>selecionar as fotos de exemplo</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>python image_picker.py examples/street_photos --out dataset/images</code></pre></div>
+</div></section><section class="section" id="s4"><div class="section-label">Decisões de projeto</div><div>
+<h2><span class="sec-n">04</span>Por que foi construído assim</h2>
+<div class="grid"><article class="card"><h3>Teclado primeiro</h3><p>Escolher imagens é repetitivo; com uma tecla por ação, as mãos ficam no teclado e os olhos na imagem.</p></article><article class="card"><h3>Decodifica só o que você vê</h3><p>A navegação salta direto para o quadro de destino em vez de reproduzir o vídeo, então gravações longas continuam responsivas.</p></article><article class="card"><h3>Interface da biblioteca padrão</h3><p>O Tkinter vem com o Python, então os únicos pacotes extras são OpenCV e Pillow; roda igual no Windows, macOS e Linux.</p></article><article class="card"><h3>Nomes rastreáveis</h3><p>Os nomes dos arquivos levam o nome do vídeo e o índice do quadro, o que facilita voltar ao vídeo ou evitar quadros quase iguais.</p></article><article class="card"><h3>Originais intactos</h3><p>O seletor de imagens copia, nunca move nem edita, então a pasta de origem continua igual.</p></article><article class="card"><h3>Cabe na tela</h3><p>A prévia é dimensionada para cada vídeo e mantém a proporção, de vídeos verticais de celular a imagens 4K largas.</p></article></div>
+</div></section>
+  <nav class="next-project"><a href="../../../pt/#projects">← Todos os projetos</a><a href="../nutrilabel-ocr/">Próximo projeto: NutriLabel OCR →</a></nav>
+</main>
+<footer>
+  <div class="container">
+    <span>&copy; Karem Daiane Marcomini</span>
+  </div>
+</footer>
+<script>
+(function(){
+  var root=document.documentElement,btns=document.querySelectorAll('.theme-switch button');
+  function apply(c){root.dataset.theme=c;btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.choice===c))})}
+  btns.forEach(function(b){b.addEventListener('click',function(){try{localStorage.setItem('kdm.theme',b.dataset.choice)}catch(e){}apply(b.dataset.choice)})});
+  apply(root.dataset.theme||'light');
+  document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+    var code=b.closest('.terminal').querySelector('pre:not([hidden]) code').innerText;
+    (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(function(){var t=b.textContent;b.textContent='Copiado';setTimeout(function(){b.textContent=t},1400)}).catch(function(){});
+  })});
+  document.querySelectorAll('[data-tabs]').forEach(function(box){box.querySelectorAll('[data-tab]').forEach(function(t){t.addEventListener('click',function(){
+    box.querySelectorAll('[data-tab]').forEach(function(x){x.setAttribute('aria-selected',String(x===t))});
+    box.querySelectorAll('[data-pane]').forEach(function(p){p.hidden=p.dataset.pane!==t.dataset.tab});
+  })})});
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.target.tagName==='VIDEO'){e.isIntersecting?e.target.play().catch(function(){}):e.target.pause()}
+    else if(e.isIntersecting){e.target.classList.add('is-seen');io.unobserve(e.target)}
+  })},{threshold:.2}):null;
+  document.querySelectorAll('video,.fig,.frames figure,.stats div').forEach(function(el){if(io){if(el.tagName!=='VIDEO')el.classList.add('reveal');io.observe(el)}});
+})();
+</script>
+</body>
+</html>
