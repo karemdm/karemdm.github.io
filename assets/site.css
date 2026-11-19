@@ -141,9 +141,13 @@ p{margin:0 0 14px}
 .plain{list-style:none;margin:0;padding:0}
 .plain li{padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
 .plain li strong{font-family:var(--mono);font-weight:500;color:var(--accent)}
-.card-title{text-decoration:none}
-.card-title::after{content:" →";color:var(--accent);opacity:0;transition:opacity .2s}
-.card:hover .card-title::after{opacity:1}
+.card-title{text-decoration:none;color:var(--text)}
+.card-title::after{content:" →";color:var(--accent)}
+.card-title::before{content:"";position:absolute;inset:0;z-index:0}
+.grid .card:has(.card-title){position:relative;border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+.grid .card:has(.card-title)::after{content:"demo";position:absolute;top:14px;right:14px;font:11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-ink);background:var(--accent);padding:4px 7px;border-radius:3px}
+.grid .card:has(.card-title):hover .card-title{color:var(--accent)}
+.grid .card .links,.grid .card .chips{position:relative;z-index:1}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font:13px var(--mono)}
 footer .container{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a{color:var(--muted)}
