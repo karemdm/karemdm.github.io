@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f3ec">
+<title>Video Frame Picker | Karem Marcomini</title>
+<meta name="description" content="Two small desktop tools for building image datasets by hand: jump through a video and save the frames worth labelling, then curate a folder of photos with one key per image.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Video Frame Picker | Karem Marcomini">
+<meta property="og:description" content="Two small desktop tools for building image datasets by hand: jump through a video and save the frames worth labelling, then curate a folder of photos with one key per image.">
+<meta property="og:url" content="https://karemdm.github.io/projects/video-frame-picker/">
+<meta property="og:image" content="https://karemdm.github.io/assets/projects/video-frame-picker/poster.jpg">
+<link rel="alternate" hreflang="en" href="https://karemdm.github.io/projects/video-frame-picker/">
+<link rel="alternate" hreflang="pt-BR" href="https://karemdm.github.io/pt/projects/video-frame-picker/">
+<link rel="icon" href="https://avatars.githubusercontent.com/u/72208245?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+(function(){var c='light';try{c=localStorage.getItem('kdm.theme')==='dark'?'dark':'light'}catch(e){}
+document.documentElement.dataset.theme=c;})();
+</script>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/project.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../../">Karem Marcomini</a>
+    <nav class="primary" aria-label="Primary">
+      <a href="../../#projects">Projects</a>
+      <a href="https://github.com/karemdm/video-frame-picker" rel="noopener">GitHub</a>
+    </nav>
+    <div class="lang-switch"><a href="./" aria-current="page" lang="en">EN</a><a href="../../../pt/projects/video-frame-picker/" lang="pt-BR" hreflang="pt-BR">PT</a></div>
+    <div class="theme-switch" role="group" aria-label="Color theme">
+      <button type="button" data-choice="light">light</button>
+      <button type="button" data-choice="dark">dark</button>
+    </div>
+  </div>
+</header>
+<main class="container project">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../../#projects">Projects</a> / <span>Video Frame Picker</span></nav>
+  <div class="p-hero">
+    <p class="meta"><span>Dataset tooling</span><span>Desktop app</span><span>MIT</span></p>
+    <h1>Video Frame Picker</h1>
+    <p class="lede">Every computer vision project starts with choosing images. Video Frame Picker turns that chore into a keyboard rhythm: jump through hours of video in steps of 40, 200 or 800 frames, press Space on the moments worth labelling, then run through a folder of photos and keep only the useful ones. Nothing to train and nothing to configure: open a video or a folder and start picking.</p>
+    <div class="btns"><a class="button button-primary" href="https://github.com/karemdm/video-frame-picker" rel="noopener">View code on GitHub</a><a class="button" href="../../#projects">← All projects</a></div>
+  </div>
+  <figure class="demo"><div class="demo-frame"><video src="../../assets/projects/video-frame-picker/demo.mp4" poster="../../assets/projects/video-frame-picker/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording: a street video opens in the frame picker, the user jumps through it with the arrow keys and the mouse wheel and saves five frames; then the image picker browses a folder of street photos and copies five of them; the console lists the resulting dataset folders."></video></div><figcaption>Both tools on the examples shipped with the repo: five frames picked from a street video, five photos kept from a folder, and the resulting dataset tree. Recorded on Windows, real time except the typing. Footage: public street webcams (Abbey Road, London and Shinjuku, Tokyo).</figcaption></figure>
+  <dl class="stats"><div><dt>tools: video frames and photo folders</dt><dd>2</dd></div><div><dt>to save the frame or photo on screen</dt><dd>1 key</dd></div><div><dt>jump sizes, set with --steps</dt><dd>3</dd></div><div><dt>training or configuration</dt><dd>0</dd></div></dl>
+  <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>Tkinter</li><li>OpenCV</li><li>Pillow</li><li>argparse</li></ul>
+  <section class="section" id="s1"><div class="section-label">How it works</div><div>
+<h2><span class="sec-n">01</span>From raw footage to a curated dataset</h2>
+<p>The frame picker reads the video with OpenCV and only decodes the frame you land on, so jumping through a long recording stays instant. The frame saved is exactly the one on screen, at full resolution. The image picker then walks through any folder of photos and copies the keepers to an output folder, leaving the originals untouched.</p>
+<figure class="fig"><div class="scroll-x"><svg class="diagram" viewBox="0 0 1226 160" role="img" aria-label="The video-to-dataset flow covered by the two tools">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>
+<rect x="1" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="14" y="30" class="d-num">01</text>
+<text x="14" y="54" class="d-title">Video</text>
+<text x="14" y="78" class="d-text">mp4 · mov · avi · 3gp</text>
+<text x="14" y="96" class="d-text">or the file dialog</text>
+<line x1="178" y1="75" x2="207" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="211" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="224" y="30" class="d-num">02</text>
+<text x="224" y="54" class="d-title">Seek</text>
+<text x="224" y="78" class="d-text">arrows ±40 / ±200</text>
+<text x="224" y="96" class="d-text">wheel ±800, scrollbar</text>
+<line x1="388" y1="75" x2="417" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="421" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="434" y="30" class="d-num">03</text>
+<text x="434" y="54" class="d-title">Save frame</text>
+<text x="434" y="78" class="d-text">Space · Enter · S</text>
+<text x="434" y="96" class="d-text">full-resolution JPG</text>
+<line x1="598" y1="75" x2="627" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="631" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="644" y="30" class="d-num">04</text>
+<text x="644" y="54" class="d-title">Photo folder</text>
+<text x="644" y="78" class="d-text">png · jpg · bmp · tiff</text>
+<text x="644" y="96" class="d-text">aspect ratio kept</text>
+<line x1="808" y1="75" x2="837" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="841" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+<text x="854" y="30" class="d-num">05</text>
+<text x="854" y="54" class="d-title">Keep or skip</text>
+<text x="854" y="78" class="d-text">→ ← ↓ ↑</text>
+<text x="854" y="96" class="d-text">Space copies + next</text>
+<line x1="1018" y1="75" x2="1047" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="1051" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
+<text x="1064" y="30" class="d-num">06</text>
+<text x="1064" y="54" class="d-title">Dataset</text>
+<text x="1064" y="78" class="d-text">dataset/frames</text>
+<text x="1064" y="96" class="d-text">dataset/images</text>
+</svg></div><figcaption>Fig. 01 · The video-to-dataset flow covered by the two tools</figcaption></figure>
+<dl class="defs"><div><dt>Fast seeking</dt><dd>Arrow keys, Up/Down, the mouse wheel and the scrollbar jump by different amounts, so you can skim an hour of footage and still stop on the exact frame.</dd></div><div><dt>What you see is what you save</dt><dd>The saved JPG is the frame on screen at the video's own resolution, named after the video and the frame index, so every image can be traced back to its source.</dd></div><div><dt>Scriptable start</dt><dd>Pass a video or folder and an --out directory to skip the dialogs; a status line in the window confirms every save.</dd></div></dl>
+
+</div></section><section class="section" id="s2"><div class="section-label">Results</div><div>
+<h2><span class="sec-n">02</span>One pass, two outputs</h2>
+<div class="frames"><figure><img src="../../assets/projects/video-frame-picker/step-1.jpg" alt="Jumping through the video and saving a frame" loading="lazy" width="640" height="360"><figcaption>Jumping through the video and saving a frame</figcaption></figure><figure><img src="../../assets/projects/video-frame-picker/step-2.jpg" alt="Further along the video, the console logs every saved file" loading="lazy" width="640" height="360"><figcaption>Further along the video, the console logs every saved file</figcaption></figure><figure><img src="../../assets/projects/video-frame-picker/step-3.jpg" alt="Curating a folder of photos, one key per image" loading="lazy" width="640" height="360"><figcaption>Curating a folder of photos, one key per image</figcaption></figure></div>
+<p class="note">The example video and photos live in the repo's <code>examples/</code> folder, so the same session can be reproduced right after installing.</p>
+
+</div></section><section class="section" id="s3"><div class="section-label">Run it</div><div>
+<h2><span class="sec-n">03</span>Three steps to try it</h2>
+<div class="terminal" data-tabs><div class="terminal-bar"><span>install</span><span class="os-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="0">Linux / macOS</button><button type="button" role="tab" aria-selected="false" data-tab="1">Windows · PowerShell</button><button type="button" role="tab" aria-selected="false" data-tab="2">Windows · cmd</button></span><button type="button" class="copy" data-copy>Copy</button></div><pre data-pane="0"><code>git clone https://github.com/karemdm/video-frame-picker.git
+cd video-frame-picker
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt</code></pre><pre data-pane="1" hidden><code>git clone https://github.com/karemdm/video-frame-picker.git
+cd video-frame-picker
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt</code></pre><pre data-pane="2" hidden><code>git clone https://github.com/karemdm/video-frame-picker.git
+cd video-frame-picker
+python -m venv .venv
+.venv\Scripts\activate.bat
+pip install -r requirements.txt</code></pre></div><div class="terminal"><div class="terminal-bar"><span>pick frames from the example video</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>python video_frame_picker.py examples/abbey_road_15s.mp4 --out dataset/frames</code></pre></div><div class="terminal"><div class="terminal-bar"><span>curate the example photos</span><button type="button" class="copy" data-copy>Copy</button></div><pre><code>python image_picker.py examples/street_photos --out dataset/images</code></pre></div>
+</div></section><section class="section" id="s4"><div class="section-label">Design decisions</div><div>
+<h2><span class="sec-n">04</span>Why it is built this way</h2>
+<div class="grid"><article class="card"><h3>Keyboard first</h3><p>Choosing images is repetitive; with one key per action the hands stay on the keyboard and the eyes on the image.</p></article><article class="card"><h3>Decode only what you see</h3><p>Seeking jumps straight to the target frame instead of playing the video, so long recordings stay responsive.</p></article><article class="card"><h3>Standard library GUI</h3><p>Tkinter ships with Python, so the only extra packages are OpenCV and Pillow; it runs the same on Windows, macOS and Linux.</p></article><article class="card"><h3>Traceable names</h3><p>File names carry the video name and frame index, which makes it easy to go back to the footage or avoid near-duplicate frames.</p></article><article class="card"><h3>Originals untouched</h3><p>The image picker copies, it never moves or edits, so the source folder stays intact.</p></article><article class="card"><h3>Fits the screen</h3><p>The preview is sized to each video and keeps its aspect ratio, from portrait phone clips to wide 4K footage.</p></article></div>
+</div></section>
+  <nav class="next-project"><a href="../../#projects">← All projects</a><a href="../nutrilabel-ocr/">Next project: NutriLabel OCR →</a></nav>
+</main>
+<footer>
+  <div class="container">
+    <span>&copy; Karem Daiane Marcomini</span>
+  </div>
+</footer>
+<script>
+(function(){
+  var root=document.documentElement,btns=document.querySelectorAll('.theme-switch button');
+  function apply(c){root.dataset.theme=c;btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.choice===c))})}
+  btns.forEach(function(b){b.addEventListener('click',function(){try{localStorage.setItem('kdm.theme',b.dataset.choice)}catch(e){}apply(b.dataset.choice)})});
+  apply(root.dataset.theme||'light');
+  document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+    var code=b.closest('.terminal').querySelector('pre:not([hidden]) code').innerText;
+    (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(function(){var t=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=t},1400)}).catch(function(){});
+  })});
+  document.querySelectorAll('[data-tabs]').forEach(function(box){box.querySelectorAll('[data-tab]').forEach(function(t){t.addEventListener('click',function(){
+    box.querySelectorAll('[data-tab]').forEach(function(x){x.setAttribute('aria-selected',String(x===t))});
+    box.querySelectorAll('[data-pane]').forEach(function(p){p.hidden=p.dataset.pane!==t.dataset.tab});
+  })})});
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.target.tagName==='VIDEO'){e.isIntersecting?e.target.play().catch(function(){}):e.target.pause()}
+    else if(e.isIntersecting){e.target.classList.add('is-seen');io.unobserve(e.target)}
+  })},{threshold:.2}):null;
+  document.querySelectorAll('video,.fig,.frames figure,.stats div').forEach(function(el){if(io){if(el.tagName!=='VIDEO')el.classList.add('reveal');io.observe(el)}});
+})();
+</script>
+</body>
+</html>
