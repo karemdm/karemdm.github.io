@@ -1,0 +1,87 @@
+{
+ "output": "C:/Users/KAREMDAIANEMARCOMINI/Desktop/portfolio-demos/recordings/fall-raw-v2.mkv",
+ "stage": [
+  240,
+  40,
+  1440,
+  1080
+ ],
+ "fps": 20,
+ "backdrop": "#1b1c1e",
+ "consoles": [
+  {
+   "title": "fall-alert",
+   "cwd": "C:\\Users\\KAREMDAIANEMARCOMINI\\Desktop\\portfolio-demos\\fall-detection-alert",
+   "rect": [
+    0,
+    840,
+    1440,
+    240
+   ],
+   "color": "0F",
+   "prompt": "fall-detection-alert",
+   "init": "call ..\\.venv-video\\Scripts\\activate.bat"
+  }
+ ],
+ "steps": [
+  {
+   "do": "sleep",
+   "s": 1.0
+  },
+  {
+   "do": "type",
+   "console": "fall-alert",
+   "label": "run1",
+   "text": "fall-alert -i samples\\gmdcsa24-s1-fall-05.mp4 -o outputs\\fall-05.mp4 --events-json outputs\\fall-05.json"
+  },
+  {
+   "do": "window",
+   "title": "Fall Detection Alert",
+   "rect": [
+    0,
+    0,
+    1440,
+    840
+   ]
+  },
+  {
+   "do": "wait_gone",
+   "title": "Fall Detection Alert"
+  },
+  {
+   "do": "sleep",
+   "s": 1.0
+  },
+  {
+   "do": "type",
+   "console": "fall-alert",
+   "label": "json",
+   "text": "type outputs\\fall-05.json"
+  },
+  {
+   "do": "sleep",
+   "s": 2.5
+  },
+  {
+   "do": "type",
+   "console": "fall-alert",
+   "label": "run2",
+   "text": "fall-alert -i samples\\gmdcsa24-s1-fall-11.mp4 -o outputs\\fall-11.mp4"
+  },
+  {
+   "do": "window",
+   "title": "Fall Detection Alert",
+   "rect": [
+    0,
+    0,
+    1440,
+    840
+   ]
+  },
+  {
+   "do": "wait_gone",
+   "title": "Fall Detection Alert"
+  }
+ ],
+ "tail": 2.5
+}
