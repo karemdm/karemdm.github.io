@@ -107,7 +107,7 @@ p{margin:0 0 14px}
 .profiles a.card{display:flex;flex-direction:column;gap:6px;text-decoration:none;height:100%;transition:border-color .2s}
 .profiles a.card:hover{border-color:var(--accent);color:var(--text)}
 .p-kind{font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
-.p-id{font-size:19px;font-weight:600;overflow-wrap:anywhere}
+.p-id{font:600 15px/1.4 var(--mono);overflow-wrap:anywhere}  /* handles and IDs fit on one line */
 .p-go{font:13px var(--mono);color:var(--muted)}
 .pubs{list-style:none;margin:0;padding:0;border-top:2px solid var(--rule)}
 .pubs>li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 16px;padding:20px 0;border-bottom:1px solid var(--line)}
