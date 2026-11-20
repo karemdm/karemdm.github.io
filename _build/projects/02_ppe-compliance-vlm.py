@@ -37,6 +37,7 @@ PAGE = {
     "en": {
         "summary": "PPE compliance in video: YOLO person tracking with re-identification, worn / missing PPE detection, a temporal vote per worker and short vision-language model reports, in a Streamlit app.",
         "meta": ["Video analytics", "Streamlit app · CLI", "AGPL-3.0"],
+        "extra_links": [("https://doi.org/10.2118/216426-MS", "Paper · ADIPEC 2023")],
         "lede": "Checks personal protective equipment on every worker in a video. Each person is tracked and re-identified, every hardhat, vest, glove, goggle and mask is matched to its wearer, and a 3-second majority vote turns a worker red only when the evidence holds. At the end, a vision-language model writes a one-line report for each worker with a confirmed violation.",
         "video_alt": "Screen recording of the Streamlit app: the infraction filter is narrowed to hardhat and safety vest, a construction-site video is uploaded, workers turn green or red in the live feed, and report cards with VLM text appear.",
         "video_caption": "The Streamlit app end to end: choose the infractions, upload a video, watch the live feed and read the VLM report cards. Recorded on a laptop CPU; processing and the VLM step are sped up. Footage: Pexels.",
@@ -85,6 +86,7 @@ PAGE = {
     "pt": {
         "summary": "Uso de EPI em vídeo: rastreamento de pessoas com YOLO e re-identificação, detecção de EPI usado / ausente, voto temporal por trabalhador e relatórios curtos de um modelo visão-linguagem, num app Streamlit.",
         "meta": ["Análise de vídeo", "App Streamlit · CLI", "AGPL-3.0"],
+        "extra_links": [("https://doi.org/10.2118/216426-MS", "Artigo · ADIPEC 2023")],
         "lede": "Verifica o equipamento de proteção individual de cada trabalhador num vídeo. Cada pessoa é rastreada e re-identificada, cada capacete, colete, luva, óculos e máscara é associado a quem o usa, e um voto de maioria em 3 segundos só deixa o trabalhador vermelho quando a evidência se mantém. No fim, um modelo visão-linguagem escreve uma frase de relatório para cada trabalhador com violação confirmada.",
         "video_alt": "Gravação do app Streamlit: o filtro de infrações fica só com capacete e colete, um vídeo de obra é enviado, os trabalhadores ficam verdes ou vermelhos na prévia e aparecem os cartões de relatório com texto do VLM.",
         "video_caption": "O app Streamlit de ponta a ponta: escolher as infrações, enviar o vídeo, acompanhar a prévia e ler os cartões do VLM. Gravado na CPU de um notebook; processamento e etapa do VLM acelerados. Imagens: Pexels.",
