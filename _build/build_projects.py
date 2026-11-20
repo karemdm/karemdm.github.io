@@ -17,11 +17,11 @@ SRC = Path(__file__).resolve().parent / "projects"
 UI = {
     "en": dict(projects="Projects", back="← All projects", code="View code on GitHub", how="How it works",
                results="Results", run="Run it", decisions="Design decisions", demo="Demo", next="Next project",
-               copy="Copy", copied="Copied", theme=("light", "dark"), stack="Stack", lang_label="Color theme",
+               copy="Copy", copied="Copied", theme=("Light theme", "Dark theme"), stack="Stack", lang_label="Color theme",
                home="Home"),
     "pt": dict(projects="Projetos", back="← Todos os projetos", code="Ver código no GitHub", how="Como funciona",
                results="Resultados", run="Como rodar", decisions="Decisões de projeto", demo="Demonstração",
-               next="Próximo projeto", copy="Copiar", copied="Copiado", theme=("claro", "escuro"), stack="Stack",
+               next="Próximo projeto", copy="Copiar", copied="Copiado", theme=("Tema claro", "Tema escuro"), stack="Stack",
                lang_label="Tema de cores", home="Início"),
 }
 
@@ -302,8 +302,8 @@ document.documentElement.dataset.theme=c;}})();
     </nav>
     <div class="lang-switch">{'<a href="./" aria-current="page" lang="en">EN</a><a href="%s" lang="pt-BR" hreflang="pt-BR">PT</a>' % other if lang == 'en' else '<a href="%s" lang="en" hreflang="en">EN</a><a href="./" aria-current="page" lang="pt-BR">PT</a>' % other}</div>
     <div class="theme-switch" role="group" aria-label="{u['lang_label']}">
-      <button type="button" data-choice="light">{u['theme'][0]}</button>
-      <button type="button" data-choice="dark">{u['theme'][1]}</button>
+      <button type="button" data-choice="light" aria-label="{u['theme'][0]}" title="{u['theme'][0]}"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+      <button type="button" data-choice="dark" aria-label="{u['theme'][1]}" title="{u['theme'][1]}"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
     </div>
   </div>
 </header>

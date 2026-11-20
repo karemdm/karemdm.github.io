@@ -30,7 +30,8 @@ nav.primary{display:flex;gap:24px;font-size:15px;margin-left:auto}
 nav.primary a{text-decoration:none;color:var(--muted);white-space:nowrap}
 nav.primary a:hover{color:var(--accent)}
 .theme-switch{display:flex;border:1px solid var(--line);border-radius:3px;font:12px var(--mono)}
-.theme-switch button{background:none;border:0;color:var(--muted);font:inherit;padding:5px 9px;cursor:pointer}
+.theme-switch button{background:none;border:0;color:var(--muted);font:inherit;padding:5px 9px;cursor:pointer;display:flex;align-items:center}
+.theme-switch svg{display:block}
 .theme-switch button+button{border-left:1px solid var(--line)}
 .theme-switch button[aria-pressed=true]{color:var(--accent)}
 
