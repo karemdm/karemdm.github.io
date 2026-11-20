@@ -32,8 +32,8 @@ nav.primary a:hover{color:var(--accent)}
 .theme-switch{display:flex;border:1px solid var(--line);border-radius:3px;font:12px var(--mono)}
 .theme-switch button{background:none;border:0;color:var(--muted);font:inherit;padding:5px 9px;cursor:pointer;display:flex;align-items:center}
 .theme-switch svg{display:block}
-.theme-switch button+button{border-left:1px solid var(--line)}
-.theme-switch button[aria-pressed=true]{color:var(--accent)}
+.theme-switch button:hover{color:var(--accent)}
+.theme-switch button[aria-pressed=true]{display:none}  /* one icon: the theme you can switch to */
 
 /* hero */
 .hero{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:32px clamp(32px,5vw,72px);padding:clamp(36px,5vw,64px) 0 clamp(48px,6vw,80px);align-items:center}
