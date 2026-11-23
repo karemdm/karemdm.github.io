@@ -78,8 +78,8 @@ PAGE = {'slug': 'fall-detection-alert',
         'more_demos': [{'title': 'Harder footage: slips on ice',
                         'intro': 'Doorbell and handheld phone clips, small people, portrait video and snow. With '
                                  '<code>--model yolo26s-pose.pt --conf 0.20</code> (plus the pose gate and id-switch '
-                                 'repair, both on by default), all three slips raise an alert, and each alert clears '
-                                 'as soon as its person leaves the screen.',
+                                 'repair, both on by default), all three slips raise an alert, and each alert closes '
+                                 'within 2 s of its person leaving the screen.',
                         'alt': 'Screen recording: fall-alert runs on three outdoor slips on ice; each fall gets a red '
                                'FALL ALERT banner.',
                         'caption': 'Recorded on a laptop CPU, processing sped up. Third-party footage from a public '
@@ -207,7 +207,7 @@ PAGE = {'slug': 'fall-detection-alert',
                         'intro': 'Clipes de campainha e de celular na mão, pessoas pequenas, vídeo vertical e neve. '
                                  'Com <code>--model yolo26s-pose.pt --conf 0.20</code> (além do filtro por pose e do '
                                  'reparo de troca de ID, ambos ativos por padrão), os três escorregões geram alerta, e '
-                                 'cada alerta some assim que a pessoa sai da tela.',
+                                 'cada alerta se encerra até 2 s depois de a pessoa sair da tela.',
                         'alt': 'Gravação de tela: fall-alert roda em três escorregões no gelo; cada queda recebe a '
                                'faixa vermelha FALL ALERT.',
                         'caption': 'Gravado na CPU de um notebook, processamento acelerado. Imagens de terceiros, de '
