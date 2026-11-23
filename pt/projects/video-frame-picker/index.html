@@ -47,7 +47,7 @@ document.documentElement.dataset.theme=c;})();
     <p class="lede">Todo projeto de visão computacional começa escolhendo imagens. O Video Frame Picker transforma essa tarefa num ritmo de teclado: percorra horas de vídeo em saltos de 40, 200 ou 800 quadros, aperte Espaço nos momentos que valem anotação e depois passe por uma pasta de fotos ficando só com as úteis. Nada para treinar e nada para configurar: abra um vídeo ou uma pasta e comece a escolher.</p>
     <div class="btns"><a class="button button-primary" href="https://github.com/karemdm/video-frame-picker" rel="noopener">Ver código no GitHub</a><a class="button" href="../../../pt/#projects">← Todos os projetos</a></div>
   </div>
-  <figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/video-frame-picker/demo.mp4" poster="../../../assets/projects/video-frame-picker/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Gravação de tela: um vídeo de rua abre no seletor de quadros, a usuária percorre o vídeo com as setas e a roda do mouse e salva cinco quadros; depois o seletor de imagens percorre uma pasta de fotos de rua e copia cinco delas; o console lista as pastas do dataset resultante."></video></div><figcaption>As duas ferramentas nos exemplos que vêm no repositório: cinco quadros escolhidos de um vídeo de rua, cinco fotos selecionadas de uma pasta e a árvore do dataset resultante. Gravado no Windows, em tempo real exceto a digitação. Imagens: câmeras públicas de rua (Abbey Road, Londres, e Shinjuku, Tóquio).</figcaption></figure>
+  <figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/video-frame-picker/demo.mp4" poster="../../../assets/projects/video-frame-picker/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Gravação de tela: um vídeo de rua abre no seletor de quadros, a usuária percorre o vídeo com as setas e a roda do mouse e salva cinco quadros; depois o seletor de imagens percorre uma pasta de fotos de rua e copia cinco delas; o console lista as pastas do dataset resultante."></video></div><figcaption>As duas ferramentas em material de câmeras públicas de rua: cinco quadros escolhidos de um vídeo de rua, cinco fotos selecionadas de uma pasta e as pastas do dataset resultante. O repositório traz um vídeo de exemplo mais curto e seis fotos para testar o mesmo fluxo. Gravado no Windows, em tempo real exceto a digitação. Imagens: câmeras públicas de rua (Abbey Road, Londres, e Shinjuku, Tóquio).</figcaption></figure>
   <dl class="stats"><div><dt>ferramentas: quadros de vídeo e pastas de fotos</dt><dd>2</dd></div><div><dt>para salvar o quadro ou a foto na tela</dt><dd>1 tecla</dd></div><div><dt>tamanhos de salto, ajustáveis com --steps</dt><dd>3</dd></div><div><dt>treino ou configuração</dt><dd>0</dd></div></dl>
   <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>Tkinter</li><li>OpenCV</li><li>Pillow</li><li>argparse</li></ul>
   <section class="section" id="s1"><div class="section-label">Como funciona</div><div>
@@ -64,8 +64,8 @@ document.documentElement.dataset.theme=c;})();
 <rect x="211" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
 <text x="224" y="30" class="d-num">02</text>
 <text x="224" y="54" class="d-title">Navegar</text>
-<text x="224" y="78" class="d-text">setas ±40 / ±200</text>
-<text x="224" y="96" class="d-text">roda ±800, barra</text>
+<text x="224" y="78" class="d-text">→ 40 · ↓ 200</text>
+<text x="224" y="96" class="d-text">roda 800 · volta ½</text>
 <line x1="388" y1="75" x2="417" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
 <rect x="421" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
 <text x="434" y="30" class="d-num">03</text>
@@ -96,7 +96,7 @@ document.documentElement.dataset.theme=c;})();
 </div></section><section class="section" id="s2"><div class="section-label">Resultados</div><div>
 <h2><span class="sec-n">02</span>Uma passada, duas saídas</h2>
 <div class="frames"><figure><img src="../../../assets/projects/video-frame-picker/step-1.jpg" alt="Percorrendo o vídeo e salvando um quadro" loading="lazy" width="640" height="360"><figcaption>Percorrendo o vídeo e salvando um quadro</figcaption></figure><figure><img src="../../../assets/projects/video-frame-picker/step-2.jpg" alt="Mais adiante no vídeo, o console registra cada arquivo salvo" loading="lazy" width="640" height="360"><figcaption>Mais adiante no vídeo, o console registra cada arquivo salvo</figcaption></figure><figure><img src="../../../assets/projects/video-frame-picker/step-3.jpg" alt="Curadoria de uma pasta de fotos, uma tecla por imagem" loading="lazy" width="640" height="360"><figcaption>Curadoria de uma pasta de fotos, uma tecla por imagem</figcaption></figure></div>
-<p class="note">O vídeo e as fotos de exemplo ficam na pasta <code>examples/</code> do repositório, então a mesma sessão pode ser reproduzida logo após a instalação.</p>
+<p class="note">Um vídeo de exemplo de 15 segundos e seis fotos ficam na pasta <code>examples/</code> do repositório, então o mesmo fluxo pode ser testado logo após a instalação.</p>
 
 </div></section><section class="section" id="s3"><div class="section-label">Como rodar</div><div>
 <h2><span class="sec-n">03</span>Três passos para testar</h2>
