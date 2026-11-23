@@ -47,7 +47,7 @@ document.documentElement.dataset.theme=c;})();
     <p class="lede">Every computer vision project starts with choosing images. Video Frame Picker turns that chore into a keyboard rhythm: jump through hours of video in steps of 40, 200 or 800 frames, press Space on the moments worth labelling, then run through a folder of photos and keep only the useful ones. Nothing to train and nothing to configure: open a video or a folder and start picking.</p>
     <div class="btns"><a class="button button-primary" href="https://github.com/karemdm/video-frame-picker" rel="noopener">View code on GitHub</a><a class="button" href="../../#projects">← All projects</a></div>
   </div>
-  <figure class="demo"><div class="demo-frame"><video src="../../assets/projects/video-frame-picker/demo.mp4" poster="../../assets/projects/video-frame-picker/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording: a street video opens in the frame picker, the user jumps through it with the arrow keys and the mouse wheel and saves five frames; then the image picker browses a folder of street photos and copies five of them; the console lists the resulting dataset folders."></video></div><figcaption>Both tools on the examples shipped with the repo: five frames picked from a street video, five photos kept from a folder, and the resulting dataset tree. Recorded on Windows, real time except the typing. Footage: public street webcams (Abbey Road, London and Shinjuku, Tokyo).</figcaption></figure>
+  <figure class="demo"><div class="demo-frame"><video src="../../assets/projects/video-frame-picker/demo.mp4" poster="../../assets/projects/video-frame-picker/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording: a street video opens in the frame picker, the user jumps through it with the arrow keys and the mouse wheel and saves five frames; then the image picker browses a folder of street photos and copies five of them; the console lists the resulting dataset folders."></video></div><figcaption>Both tools on public street-webcam material: five frames picked from a street video, five photos kept from a folder, and the resulting dataset folders. The repo ships a shorter example video and six photos to try the same workflow. Recorded on Windows, real time except the typing. Footage: public street webcams (Abbey Road, London and Shinjuku, Tokyo).</figcaption></figure>
   <dl class="stats"><div><dt>tools: video frames and photo folders</dt><dd>2</dd></div><div><dt>to save the frame or photo on screen</dt><dd>1 key</dd></div><div><dt>jump sizes, set with --steps</dt><dd>3</dd></div><div><dt>training or configuration</dt><dd>0</dd></div></dl>
   <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>Tkinter</li><li>OpenCV</li><li>Pillow</li><li>argparse</li></ul>
   <section class="section" id="s1"><div class="section-label">How it works</div><div>
@@ -64,8 +64,8 @@ document.documentElement.dataset.theme=c;})();
 <rect x="211" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
 <text x="224" y="30" class="d-num">02</text>
 <text x="224" y="54" class="d-title">Seek</text>
-<text x="224" y="78" class="d-text">arrows ±40 / ±200</text>
-<text x="224" y="96" class="d-text">wheel ±800, scrollbar</text>
+<text x="224" y="78" class="d-text">→ 40 · ↓ 200</text>
+<text x="224" y="96" class="d-text">wheel 800 · back ½</text>
 <line x1="388" y1="75" x2="417" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
 <rect x="421" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
 <text x="434" y="30" class="d-num">03</text>
@@ -96,7 +96,7 @@ document.documentElement.dataset.theme=c;})();
 </div></section><section class="section" id="s2"><div class="section-label">Results</div><div>
 <h2><span class="sec-n">02</span>One pass, two outputs</h2>
 <div class="frames"><figure><img src="../../assets/projects/video-frame-picker/step-1.jpg" alt="Jumping through the video and saving a frame" loading="lazy" width="640" height="360"><figcaption>Jumping through the video and saving a frame</figcaption></figure><figure><img src="../../assets/projects/video-frame-picker/step-2.jpg" alt="Further along the video, the console logs every saved file" loading="lazy" width="640" height="360"><figcaption>Further along the video, the console logs every saved file</figcaption></figure><figure><img src="../../assets/projects/video-frame-picker/step-3.jpg" alt="Curating a folder of photos, one key per image" loading="lazy" width="640" height="360"><figcaption>Curating a folder of photos, one key per image</figcaption></figure></div>
-<p class="note">The example video and photos live in the repo's <code>examples/</code> folder, so the same session can be reproduced right after installing.</p>
+<p class="note">A 15-second example video and six photos live in the repo's <code>examples/</code> folder, so the same workflow can be tried right after installing.</p>
 
 </div></section><section class="section" id="s3"><div class="section-label">Run it</div><div>
 <h2><span class="sec-n">03</span>Three steps to try it</h2>
