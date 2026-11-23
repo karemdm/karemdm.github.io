@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f5f3ec">
 <title>NutriLabel OCR | Karem Marcomini</title>
-<meta name="description" content="Lê a tabela nutricional de qualquer foto de embalagem com 14 motores de OCR intercambiáveis, um extrator que entende o layout e checagens de coerência nutricional; CLI, interface web local, API Python e Docker.">
+<meta name="description" content="Lê a tabela nutricional de qualquer foto de embalagem com 15 motores de OCR intercambiáveis, um extrator que entende o layout e checagens de coerência nutricional; CLI, interface web local, API Python e Docker.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NutriLabel OCR | Karem Marcomini">
-<meta property="og:description" content="Lê a tabela nutricional de qualquer foto de embalagem com 14 motores de OCR intercambiáveis, um extrator que entende o layout e checagens de coerência nutricional; CLI, interface web local, API Python e Docker.">
+<meta property="og:description" content="Lê a tabela nutricional de qualquer foto de embalagem com 15 motores de OCR intercambiáveis, um extrator que entende o layout e checagens de coerência nutricional; CLI, interface web local, API Python e Docker.">
 <meta property="og:url" content="https://karemdm.github.io/pt/projects/nutrilabel-ocr/">
 <meta property="og:image" content="https://karemdm.github.io/assets/projects/nutrilabel-ocr/poster.jpg">
 <link rel="alternate" hreflang="en" href="https://karemdm.github.io/projects/nutrilabel-ocr/">
@@ -44,12 +44,12 @@ document.documentElement.dataset.theme=c;})();
   <div class="p-hero">
     <p class="meta"><span>OCR</span><span>CLI · interface web · API Python · Docker</span><span>MIT</span></p>
     <h1>NutriLabel OCR</h1>
-    <p class="lede">Transforma a foto de uma embalagem em dados nutricionais estruturados. Escolha qualquer um dos 14 motores de OCR, do Tesseract clássico aos modelos visão-linguagem de 2025–2026, e um extrator que entende o layout encontra cada nutriente com os valores por 100 g e por porção, em mais de 15 idiomas e até em fotos de lado. Regras de coerência nutricional corrigem erros típicos de OCR, e todos os motores são medidos no mesmo benchmark de fotos reais do Open Food Facts.</p>
+    <p class="lede">Transforma a foto de uma embalagem em dados nutricionais estruturados. Escolha qualquer um dos 15 motores de OCR, do Tesseract clássico aos modelos visão-linguagem de 2025–2026, e um extrator que entende o layout encontra cada nutriente com os valores por 100 g e por porção, em mais de 15 idiomas e até em fotos de lado. Regras de coerência nutricional corrigem erros típicos de OCR, e todos os motores são medidos no mesmo benchmark de fotos reais do Open Food Facts.</p>
     <div class="btns"><a class="button button-primary" href="https://github.com/karemdm/nutrilabel-ocr" rel="noopener">Ver código no GitHub</a><a class="button" href="../../../pt/#projects">← Todos os projetos</a></div>
   </div>
   <figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/nutrilabel-ocr/demo.mp4" poster="../../../assets/projects/nutrilabel-ocr/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Gravação da interface web local: seis fotos reais de produtos são abertas, lidas com o RapidOCR, mostradas lado a lado com os valores destacados, lidas de novo com o docTR e exportadas para CSV."></video></div><figcaption>A interface web local: abrir fotos, ler com o RapidOCR, navegar pela visão lado a lado, trocar para o docTR para comparar e exportar CSV. Gravado na CPU de um notebook, leitura acelerada. Fotos: colaboradores do Open Food Facts (CC BY-SA 3.0).</figcaption></figure>
-  <dl class="stats"><div><dt>motores de OCR num único parâmetro</dt><dd>14</dd></div><div><dt>idiomas, formatos europeu e americano</dt><dd>15+</dd></div><div><dt>de F1 em fotos reais com RapidOCR em CPU</dt><dd>0,73</dd></div><div><dt>treino necessário</dt><dd>0</dd></div></dl>
-  <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>RapidOCR (ONNX)</li><li>PaddleOCR</li><li>docTR</li><li>EasyOCR</li><li>Tesseract</li><li>Surya</li><li>olmOCR / GLM-OCR</li><li>Docker</li></ul>
+  <dl class="stats"><div><dt>motores de OCR num único parâmetro</dt><dd>15</dd></div><div><dt>idiomas, formatos europeu e americano</dt><dd>15+</dd></div><div><dt>de F1 em fotos reais com RapidOCR em CPU</dt><dd>0,73</dd></div><div><dt>treino necessário</dt><dd>0</dd></div></dl>
+  <ul class="chips p-stack" aria-label="Stack"><li>Python</li><li>RapidOCR (ONNX)</li><li>PaddleOCR</li><li>docTR</li><li>EasyOCR</li><li>Tesseract</li><li>Surya</li><li>olmOCR / GLM-OCR</li><li>Ultralytics OCR (YOLO26-text)</li><li>Docker</li></ul>
   <section class="section" id="s1"><div class="section-label">Como funciona</div><div>
 <h2><span class="sec-n">01</span>De uma foto torta a números limpos</h2>
 <p>O motor de OCR só transforma pixels em palavras com posições. Todo o resto é um extrator que entende o layout e lê a tabela como uma pessoa: encontra os nomes dos nutrientes, encontra os números com unidades, associa cada número à sua linha e coluna e confere se o resultado faz sentido nutricional.</p>
@@ -64,7 +64,7 @@ document.documentElement.dataset.theme=c;})();
 <rect x="211" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
 <text x="224" y="30" class="d-num">02</text>
 <text x="224" y="54" class="d-title">Motor de OCR</text>
-<text x="224" y="78" class="d-text">1 de 14</text>
+<text x="224" y="78" class="d-text">1 de 15</text>
 <text x="224" y="96" class="d-text">palavras + caixas</text>
 <line x1="388" y1="75" x2="417" y2="75" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#ah)"/>
 <rect x="421" y="5" width="174" height="140" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
@@ -91,28 +91,31 @@ document.documentElement.dataset.theme=c;})();
 <text x="1064" y="78" class="d-text">repara decimais perdidos</text>
 <text x="1064" y="96" class="d-text">JSON / CSV</text>
 </svg></div><figcaption>Fig. 01 · Pipeline de extração, da foto aos dados estruturados</figcaption></figure>
-<dl class="defs"><div><dt>Qualquer motor, o mesmo extrator</dt><dd>Motores que devolvem texto em vez de caixas (OCR visão-linguagem) são dispostos numa grade, então o mesmo extrator e o mesmo benchmark valem para os 14.</dd></div><div><dt>Layouts reais de rótulo</dt><dd>Colunas por 100 g e por porção, kJ e kcal na mesma célula, colunas de %VD ignoradas, tabelas americanas, fotos de lado e tabelas horizontais.</dd></div><div><dt>Autoverificação</dt><dd>Gordura saturada ≤ gordura, açúcares ≤ carboidratos, ≤ 100 g por 100 g, kJ ≈ 4,184 × kcal: valores implausíveis são sinalizados e um separador decimal perdido é reparado.</dd></div></dl>
+<dl class="defs"><div><dt>Qualquer motor, o mesmo extrator</dt><dd>Motores que devolvem texto em vez de caixas (OCR visão-linguagem) são dispostos numa grade, então o mesmo extrator e o mesmo benchmark valem para os 15.</dd></div><div><dt>Layouts reais de rótulo</dt><dd>Colunas por 100 g e por porção, kJ e kcal na mesma célula, colunas de %VD ignoradas, tabelas americanas, fotos de lado e tabelas horizontais.</dd></div><div><dt>Autoverificação</dt><dd>Gordura saturada ≤ gordura, açúcares ≤ carboidratos, ≤ 100 g por 100 g, kJ ≈ 4,184 × kcal: valores implausíveis são sinalizados e um separador decimal perdido é reparado.</dd></div></dl>
 
 </div></section><section class="section" id="s2"><div class="section-label">Resultados</div><div>
 <h2><span class="sec-n">02</span>Medido em fotos reais de produtos</h2>
 <p>F1 por campo nas 199 fotos de teste do dataset de nutrientes do Open Food Facts: fotos de celular, embalagens curvas, reflexos e muitos idiomas. A referência usa o OCR em nuvem do próprio dataset com o mesmo extrator.</p>
-<figure class="fig"><svg class="chart" viewBox="0 0 900 186" role="img" aria-label="F1 por campo para cada motor de OCR em fotos reais (maior é melhor)">
+<figure class="fig"><svg class="chart" viewBox="0 0 900 230" role="img" aria-label="F1 por campo para cada motor de OCR em fotos reais (maior é melhor)">
 <text x="208" y="25" class="c-label" text-anchor="end">OCR de referência</text>
 <rect x="220" y="5" width="610.0" height="30" rx="3" fill="var(--muted)"/>
 <text x="838.0" y="25" class="c-label">0,834</text>
-<text x="208" y="69" class="c-label" text-anchor="end">RapidOCR (CPU)</text>
-<rect x="220" y="49" width="533.9" height="30" rx="3" fill="var(--accent)"/>
-<text x="761.9" y="69" class="c-label">0,730</text>
-<text x="208" y="113" class="c-label" text-anchor="end">docTR (CPU)</text>
-<rect x="220" y="93" width="511.3" height="30" rx="3" fill="var(--accent)"/>
-<text x="739.3" y="113" class="c-label">0,699</text>
-<text x="208" y="157" class="c-label" text-anchor="end">EasyOCR (CPU)</text>
-<rect x="220" y="137" width="397.9" height="30" rx="3" fill="var(--line)"/>
-<text x="625.9" y="157" class="c-label">0,544</text>
+<text x="208" y="69" class="c-label" text-anchor="end">Ultralytics OCR (CPU)</text>
+<rect x="220" y="49" width="542.7" height="30" rx="3" fill="var(--accent)"/>
+<text x="770.7" y="69" class="c-label">0,742</text>
+<text x="208" y="113" class="c-label" text-anchor="end">RapidOCR (CPU)</text>
+<rect x="220" y="93" width="533.9" height="30" rx="3" fill="var(--accent)"/>
+<text x="761.9" y="113" class="c-label">0,730</text>
+<text x="208" y="157" class="c-label" text-anchor="end">docTR (CPU)</text>
+<rect x="220" y="137" width="511.3" height="30" rx="3" fill="var(--accent)"/>
+<text x="739.3" y="157" class="c-label">0,699</text>
+<text x="208" y="201" class="c-label" text-anchor="end">EasyOCR (CPU)</text>
+<rect x="220" y="181" width="397.9" height="30" rx="3" fill="var(--line)"/>
+<text x="625.9" y="201" class="c-label">0,544</text>
 </svg><figcaption>Fig. 03 · F1 por campo para cada motor de OCR em fotos reais (maior é melhor)</figcaption></figure>
 <div class="frames"><figure><img src="../../../assets/projects/nutrilabel-ocr/example-1.jpg" alt="Tabela em alemão / inglês / francês, valores associados nos três idiomas" loading="lazy" width="640" height="360"><figcaption>Tabela em alemão / inglês / francês, valores associados nos três idiomas</figcaption></figure><figure><img src="../../../assets/projects/nutrilabel-ocr/example-2.jpg" alt="Rótulo espanhol com colunas por 100 g e por porção" loading="lazy" width="640" height="360"><figcaption>Rótulo espanhol com colunas por 100 g e por porção</figcaption></figure><figure><img src="../../../assets/projects/nutrilabel-ocr/example-3.jpg" alt="Foto pequena e de baixa resolução, ainda assim lida" loading="lazy" width="640" height="360"><figcaption>Foto pequena e de baixa resolução, ainda assim lida</figcaption></figure></div>
-<div class="scroll-x"><table class="data-table"><thead><tr><th>Motor</th><th>F1</th><th>Precisão</th><th>Revocação</th><th>Rótulos perfeitos</th></tr></thead><tbody><tr><td data-label="Motor">OCR de referência (tokens do dataset)</td><td data-label="F1">0,834</td><td data-label="Precisão">0,887</td><td data-label="Revocação">0,787</td><td data-label="Rótulos perfeitos">41,9 %</td></tr><tr><td data-label="Motor"><b>RapidOCR</b> (ONNX, CPU)</td><td data-label="F1"><b>0,730</b></td><td data-label="Precisão">0,856</td><td data-label="Revocação">0,636</td><td data-label="Rótulos perfeitos">17,6 %</td></tr><tr><td data-label="Motor">docTR</td><td data-label="F1">0,699</td><td data-label="Precisão">0,808</td><td data-label="Revocação">0,617</td><td data-label="Rótulos perfeitos">18,1 %</td></tr><tr><td data-label="Motor">EasyOCR</td><td data-label="F1">0,544</td><td data-label="Precisão">0,677</td><td data-label="Revocação">0,454</td><td data-label="Rótulos perfeitos">6,0 %</td></tr></tbody></table></div>
-<p class="note">O extrator foi ajustado só com o conjunto de treino; o de teste ficou separado. O motor mais leve, o RapidOCR em ONNX Runtime, é o que mais se aproxima da referência em nuvem.</p>
+<div class="scroll-x"><table class="data-table"><thead><tr><th>Motor</th><th>F1</th><th>Precisão</th><th>Revocação</th><th>Rótulos perfeitos</th></tr></thead><tbody><tr><td data-label="Motor">OCR de referência (tokens do dataset)</td><td data-label="F1">0,834</td><td data-label="Precisão">0,887</td><td data-label="Revocação">0,787</td><td data-label="Rótulos perfeitos">41,9 %</td></tr><tr><td data-label="Motor"><b>Ultralytics OCR</b> (<code>ultralytics:s</code>, CPU)</td><td data-label="F1"><b>0,742</b></td><td data-label="Precisão">0,774</td><td data-label="Revocação">0,712</td><td data-label="Rótulos perfeitos">20,1 %</td></tr><tr><td data-label="Motor">RapidOCR (ONNX, CPU)</td><td data-label="F1">0,730</td><td data-label="Precisão">0,856</td><td data-label="Revocação">0,636</td><td data-label="Rótulos perfeitos">17,6 %</td></tr><tr><td data-label="Motor">docTR</td><td data-label="F1">0,699</td><td data-label="Precisão">0,808</td><td data-label="Revocação">0,617</td><td data-label="Rótulos perfeitos">18,1 %</td></tr><tr><td data-label="Motor">EasyOCR</td><td data-label="F1">0,544</td><td data-label="Precisão">0,677</td><td data-label="Revocação">0,454</td><td data-label="Rótulos perfeitos">6,0 %</td></tr></tbody></table></div>
+<p class="note">O extrator foi ajustado só com o conjunto de treino; o de teste ficou separado. O Ultralytics OCR (detector de texto YOLO26 + reconhecedor PP-OCRv6) tem o maior F1 entre os motores, graças à revocação (0,712 contra 0,636); o RapidOCR em ONNX Runtime é mais preciso (0,856 contra 0,774) e muito mais rápido em CPU (cerca de 5,7 s por imagem contra cerca de 119 s). O Ultralytics OCR usa a licença AGPL-3.0 e é um extra opcional. Fotos mais difíceis: reexecutar as 10 fotos de menor F1 do Ultralytics OCR com o detector maior <code>x</code> subiu o F1 médio delas de 0,041 para 0,104 (4 melhoraram, 6 ficaram iguais, 4 continuam em 0, 3 delas porque o extrator atribui valores à coluna errada de por 100 g / por porção). É uma amostra dos piores casos, então não é comparável ao conjunto completo.</p>
 <h3 class="sub">Galeria de fotos reais</h3>
 <p>Seis fotos do conjunto de teste lidas pelo RapidOCR: cada valor lido aparece destacado na cor do seu nutriente, ao lado da tabela extraída.</p>
 <figure class="demo"><div class="demo-frame"><video src="../../../assets/projects/nutrilabel-ocr/gallery.mp4" poster="../../../assets/projects/nutrilabel-ocr/gallery.jpg" muted loop playsinline preload="none" aria-label="Galeria animada: tabelas nutricionais reais com caixas coloridas sobre os valores e a tabela extraída ao lado de cada foto."></video></div><figcaption>Gerada pelo make report a partir do benchmark. Fotos: colaboradores do Open Food Facts (CC BY-SA 3.0).</figcaption></figure>
@@ -134,7 +137,7 @@ python -m venv .venv
 pip install -e ".[rapidocr]"</code></pre></div><div class="terminal"><div class="terminal-bar"><span>ler uma foto</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>nutrilabel read label.jpg --engine rapidocr</code></pre></div><div class="terminal"><div class="terminal-bar"><span>interface web local</span><button type="button" class="copy" data-copy>Copiar</button></div><pre><code>nutrilabel ui</code></pre></div>
 </div></section><section class="section" id="s4"><div class="section-label">Decisões de projeto</div><div>
 <h2><span class="sec-n">04</span>Por que foi construído assim</h2>
-<div class="grid"><article class="card"><h3>Vários motores, um parâmetro</h3><p>Não existe um OCR melhor para tudo: precisão, velocidade, tamanho da instalação, hardware e licença se equilibram. O benchmark mede esse equilíbrio e engine="auto" segue o ranking.</p></article><article class="card"><h3>Regras legíveis</h3><p>Não precisa de dados de treino, e cada valor pode ser rastreado até as palavras e caixas de onde veio.</p></article><article class="card"><h3>Benchmark primeiro</h3><p>Toda mudança no extrator é medida em fotos reais, com precisão, revocação, taxa de rótulos perfeitos e F1 por nutriente.</p></article><article class="card"><h3>Núcleo leve</h3><p>O núcleo só precisa de NumPy e Pillow; cada motor é um extra opcional, então a instalação só com CPU fica pequena.</p></article><article class="card"><h3>Local por padrão</h3><p>CLI, interface web, API Python ou Docker, e as imagens nunca saem da máquina. O servidor web usa só a biblioteca padrão.</p></article><article class="card"><h3>Só modelos abertos</h3><p>O OCR visão-linguagem roda pelo Hugging Face ou por um servidor local Ollama / vLLM; nenhuma API paga é chamada.</p></article></div>
+<div class="grid"><article class="card"><h3>Vários motores, um parâmetro</h3><p>Não existe um OCR melhor para tudo: precisão, velocidade, tamanho da instalação, hardware e licença se equilibram. O benchmark mede esse equilíbrio; engine="auto" escolhe o primeiro motor instalado de uma lista fixa de preferência, que privilegia motores leves e rápidos.</p></article><article class="card"><h3>Regras legíveis</h3><p>Não precisa de dados de treino, e cada valor pode ser rastreado até as palavras e caixas de onde veio.</p></article><article class="card"><h3>Benchmark primeiro</h3><p>Toda mudança no extrator é medida em fotos reais, com precisão, revocação, taxa de rótulos perfeitos e F1 por nutriente.</p></article><article class="card"><h3>Núcleo leve</h3><p>O núcleo só precisa de NumPy e Pillow; cada motor é um extra opcional, então a instalação só com CPU fica pequena.</p></article><article class="card"><h3>Local por padrão</h3><p>CLI, interface web, API Python ou Docker, e as imagens nunca saem da máquina. O servidor web usa só a biblioteca padrão.</p></article><article class="card"><h3>Só modelos abertos</h3><p>O OCR visão-linguagem roda pelo Hugging Face ou por um servidor local Ollama / vLLM; nenhuma API paga é chamada.</p></article></div>
 </div></section>
   <nav class="next-project"><a href="../../../pt/#projects">← Todos os projetos</a><a href="../ppe-compliance-vlm/">Próximo projeto: PPE Compliance VLM →</a></nav>
 </main>
