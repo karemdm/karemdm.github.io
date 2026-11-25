@@ -66,15 +66,22 @@ PAGE = {'slug': 'fall-detection-alert',
         'trace_legend': {'angle': 'torso angle θ (degrees)', 'velocity': 'hip velocity v (body heights / s)'},
         'frames': ['1.2 s · upright, green box', '2.6 s · fallen, red box', '4.2 s · alert banner open'],
         'results_table': (['Run', 'Hits', 'Misses', 'False alerts', 'Alert delay'],
-                          [['imgsz 1280, conf 0.30 (published run)',
+                          [['imgsz 1280, conf 0.30 (published run, current library versions)',
                             '<b>9 / 9</b>',
                             '0',
                             '0',
-                            '1.5–2.6 s (two at +4.0 s)'],
-                           ['imgsz 1280, conf 0.35', '8 / 9', '1', '0', '1.5–2.6 s'],
-                           ['imgsz 640, conf 0.35', '6 / 9', '3', '0', '1.5–2.4 s']]),
+                            '1.5–2.6 s (one late hit at +4.0 s)'],
+                           ['previous code (before the id-switch guard), same settings and library versions',
+                            '7 / 9', '2', '0', 'not tabulated'],
+                           ['imgsz 1280, conf 0.35 (earlier run, older library versions)', '8 / 9', '1', '0',
+                            '1.5–2.6 s (one marginal hit at +4.2 s)'],
+                           ['imgsz 640, conf 0.35 (earlier run, older library versions)', '6 / 9', '3', '0',
+                            '1.5–2.4 s']]),
         'results_note': 'Fall mix: eight falls from GMDCSA24 (three people, day and night, side, forward and backward '
-                        'falls) plus an outdoor fall in snow.',
+                        'falls) plus an outdoor fall in snow. The published run uses the library '
+                        'versions pinned in constraints.txt; with the previous code those versions gave 7 / 9, '
+                        'because a new person at a hard cut was stitched onto the previous person\'s open alert. '
+                        'Own measurement on one compilation, not a validation.',
         'more_demos': [{'title': 'Harder footage: slips on ice',
                         'intro': 'Doorbell and handheld phone clips, small people, portrait video and snow. With '
                                  '<code>--model yolo26s-pose.pt --conf 0.20</code> (plus the pose gate and id-switch '
@@ -136,7 +143,8 @@ PAGE = {'slug': 'fall-detection-alert',
                       ('Repairing id switches',
                        'When a person falls the box goes from tall to wide and the tracker often starts a new id. A '
                        'new track that appears within one body height of a track lost moments ago continues its state '
-                       'and alert.')]},
+                       'and alert, unless the lost track was upright or the newcomer is neither tilted nor wide, so a '
+                       'new person walking in starts fresh.')]},
  'pt': {'summary': 'Detecção de quedas por regras sobre os pontos-chave de pose do YOLO, com rastreamento de várias '
                    'pessoas e máquina de estados por pessoa. Sem treino, roda em CPU.',
         'meta': ['Análise de vídeo', 'CLI', 'AGPL-3.0'],
@@ -194,15 +202,22 @@ PAGE = {'slug': 'fall-detection-alert',
         'trace_legend': {'angle': 'ângulo do tronco θ (graus)', 'velocity': 'velocidade do quadril v (alturas / s)'},
         'frames': ['1,2 s · em pé, caixa verde', '2,6 s · caída, caixa vermelha', '4,2 s · faixa de alerta aberta'],
         'results_table': (['Execução', 'Acertos', 'Não detectadas', 'Alarmes falsos', 'Atraso do alerta'],
-                          [['imgsz 1280, conf 0,30 (execução publicada)',
+                          [['imgsz 1280, conf 0,30 (execução publicada, versões atuais das bibliotecas)',
                             '<b>9 / 9</b>',
                             '0',
                             '0',
-                            '1,5–2,6 s (dois em +4,0 s)'],
-                           ['imgsz 1280, conf 0,35', '8 / 9', '1', '0', '1,5–2,6 s'],
-                           ['imgsz 640, conf 0,35', '6 / 9', '3', '0', '1,5–2,4 s']]),
+                            '1,5–2,6 s (uma tardia em +4,0 s)'],
+                           ['código anterior (antes da proteção contra troca de ID), mesmas configurações e versões',
+                            '7 / 9', '2', '0', 'não tabelado'],
+                           ['imgsz 1280, conf 0,35 (execução anterior, versões antigas das bibliotecas)', '8 / 9', '1',
+                            '0', '1,5–2,6 s (uma marginal em +4,2 s)'],
+                           ['imgsz 640, conf 0,35 (execução anterior, versões antigas das bibliotecas)', '6 / 9', '3',
+                            '0', '1,5–2,4 s']]),
         'results_note': 'Compilação: oito quedas do GMDCSA24 (três pessoas, dia e noite, quedas laterais, para frente '
-                        'e para trás) e uma queda externa na neve.',
+                        'e para trás) e uma queda externa na neve. A execução publicada usa as versões de '
+                        'bibliotecas fixadas em constraints.txt; com o código anterior essas versões davam 7 / 9, '
+                        'porque uma pessoa nova num corte brusco era ligada ao alerta aberto da pessoa anterior. '
+                        'Medição própria em uma compilação, não é uma validação.',
         'more_demos': [{'title': 'Vídeos mais difíceis: escorregões no gelo',
                         'intro': 'Clipes de campainha e de celular na mão, pessoas pequenas, vídeo vertical e neve. '
                                  'Com <code>--model yolo26s-pose.pt --conf 0.20</code> (além do filtro por pose e do '
@@ -266,4 +281,5 @@ PAGE = {'slug': 'fall-detection-alert',
                       ('Reparo de troca de ID',
                        'Na queda a caixa passa de alta para larga e o rastreador costuma criar um ID novo. Uma trilha '
                        'nova que surge a até uma altura de corpo de outra perdida há pouco continua o estado e o '
-                       'alerta dela.')]}}
+                       'alerta dela, a menos que a perdida estivesse em pé ou a nova não seja inclinada nem larga, '
+                       'então uma pessoa nova que entra começa do zero.')]}}
