@@ -201,7 +201,7 @@ document.documentElement.dataset.theme=c;})();
         <article class="card" data-cat="video">
           <p class="card-meta"><span>Video analytics</span><span>Desktop setup · CLI</span></p>
           <h3>Pedestrian-Vehicle Proximity Alert</h3>
-          <p>Raises alerts when pedestrians get close to cars, buses or trucks in video. It combines YOLO tracking with Depth Anything V2 monocular depth: a 2D distance gate scaled by person height, a relative depth gate, a time-window vote per person, and filtering of cyclists and motorcyclists.</p>
+          <p>Raises alerts when pedestrians get close to cars, buses or trucks in video. It combines YOLO tracking with Depth Anything V2 monocular depth: a 2D distance gate scaled by person height, a relative depth gate, a time-window vote per person, and filtering of cyclists, motorcyclists and people inside vehicles.</p>
           <figure class="flow"><figcaption>Fig. 04 · pipeline</figcaption><ol><li>Video</li><li>YOLO tracking</li><li>Depth Anything V2</li><li>2D + depth gates</li><li>Time-window vote</li><li>Proximity alert</li></ol></figure>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>Depth Anything V2</li><li>Transformers</li><li>OpenCV</li><li>Tkinter</li></ul>
           <a class="link" href="https://github.com/karemdm/pedestrian-vehicle-proximity-alert" rel="noopener">View code &rarr;</a>

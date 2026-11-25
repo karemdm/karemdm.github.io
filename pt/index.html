@@ -202,7 +202,7 @@ document.documentElement.dataset.theme=c;})();
         <article class="card" data-cat="video">
           <p class="card-meta"><span>Análise de vídeo</span><span>Configurador desktop · CLI</span></p>
           <h3>Pedestrian-Vehicle Proximity Alert</h3>
-          <p>Dispara alertas quando pedestres se aproximam de carros, ônibus ou caminhões em vídeo. Combina rastreamento YOLO com profundidade monocular do Depth Anything V2: um limiar de distância 2D escalado pela altura da pessoa, um limiar de profundidade relativa, uma votação em janela de tempo por pessoa e a filtragem de ciclistas e motociclistas.</p>
+          <p>Dispara alertas quando pedestres se aproximam de carros, ônibus ou caminhões em vídeo. Combina rastreamento YOLO com profundidade monocular do Depth Anything V2: um limiar de distância 2D escalado pela altura da pessoa, um limiar de profundidade relativa, uma votação em janela de tempo por pessoa e a filtragem de ciclistas, motociclistas e pessoas dentro de veículos.</p>
           <figure class="flow"><figcaption>Fig. 04 · pipeline</figcaption><ol><li>Vídeo</li><li>Rastreamento YOLO</li><li>Depth Anything V2</li><li>Limiares 2D + profundidade</li><li>Votação em janela de tempo</li><li>Alerta de proximidade</li></ol></figure>
           <ul class="chips"><li>Python</li><li>Ultralytics YOLO</li><li>Depth Anything V2</li><li>Transformers</li><li>OpenCV</li><li>Tkinter</li></ul>
           <a class="link" href="https://github.com/karemdm/pedestrian-vehicle-proximity-alert" rel="noopener">Ver código &rarr;</a>
